@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
     "core-js": "^2.6.3",
+    "jquery": "^3.3.1",
     "rxjs": "~6.3.3",
     "zone.js": "^0.8.29"
   },
@@ -31,6 +32,7 @@
     "@angular/language-service": "~7.0.0",
     "@types/jasmine": "^2.8.16",
     "@types/jasminewd2": "~2.0.3",
+    "@types/jquery": "^3.3.29",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
