@@ -1,19 +1,36 @@
-<div class="container">
-  <ul>
+<div class="container-fluid">
+    <div class="row no-gutters attr_name">
+      <div class="col-4">Questionnaire Title</div>
+      <div class="col-3">Time Assigned</div>
+      <div class="col-3">Deadline</div>
+    </div>
     <div class="accordion" *ngFor="let questionnaire of FAKE_QLIST">
-      <div class="row no-gutters">
-      <div class="card col">
-        <div class="card-header row" id="heading">
-          <h2 class="mb-0 col-10">
-            <button class="btn btn-link" type="button" aria-expanded="false" [attr.data-target]="'#collapse'+questionnaire.id" data-toggle="collapse" [attr.aria-controls]="'#collapse'+questionnaire.id">
+
+      <div class="card entries">
+        <div class="card-header row no-gutters mb-0" id="heading">
+            <button class="btn btn-link col-4"
+                    style="text-align: left"
+                    type="button"
+                    data-toggle="popover"
+                    title="Description"
+                    data-container="body"
+                    data-placement="right"
+                    data-content="Hey!">
               {{ questionnaire.title }}
             </button>
-          </h2>
-          <div class="col-2">
-            <a href="{{'view-questionnaire/' + questionnaire.id }}"> Detail </a>
-          </div>
+            <div class="col-3">
+              {{ questionnaire.dateAssigned.toLocaleDateString() }}
+            </div>
+            <div class="col-3">
+              {{ questionnaire.dateAssigned.toLocaleDateString() }}
+            </div>
+            <div class="col-1">
+              <a href="{{'view-questionnaire/' + questionnaire.id }}"> Detail </a>
+            </div>
         </div>
-        <div class="collapse show" id="{{ 'collapse' + questionnaire.id }}">
+
+
+        <div class="collapse" id="{{ 'collapse' + questionnaire.id }}">
           <div class="card card-body">
             Questionnaire details
           </div>
@@ -21,6 +38,4 @@
       </div>
 
     </div>
-  </div>
-  </ul>
 </div>
