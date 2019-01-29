@@ -12,12 +12,16 @@ import { InfoComponent } from './components/info/info.component';
 import { NavComponent } from './components/core/nav/nav.component';
 import { QuestionairesComponent } from './components/management/questionaires.component';
 import { PageNotFoundComponent } from './components/errors/page-not-found/page-not-found.component';
+import { QListComponent } from './components/q-list/q-list.component';
+import { CardComponent } from './components/card/card.component';
+import { IndexComponent } from './index/index.component';
 
 const appRoutes: Routes = [
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
-
+  { path: 'index', component: IndexComponent},
+  { path: '', redirectTo: 'index', pathMatch: 'full'},
   //END
-  { path: '**', component: PageNotFoundComponent, data: {title: 'Page Not Found'}} //Needs to be last since it will match every url
+  //{ path: '**', component: PageNotFoundComponent, data: {title: 'Page Not Found'}} //Needs to be last since it will match every url
 ];
 
 @NgModule({
@@ -27,7 +31,10 @@ const appRoutes: Routes = [
     InfoComponent,
     NavComponent,
     QuestionairesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    QListComponent,
+    CardComponent,
+    IndexComponent
   ],
   imports: [
     RouterModule.forRoot(
