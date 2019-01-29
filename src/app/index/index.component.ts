@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PAGES } from '../pages';
-import { Page } from '../page';
+import { Page } from '../../classes/page';
 
 @Component({
   selector: 'app-index',

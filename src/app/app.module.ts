@@ -17,11 +17,16 @@ import { CardComponent } from './components/card/card.component';
 import { IndexComponent } from './index/index.component';
 
 const appRoutes: Routes = [
-  { path: 'info', component: InfoComponent, data: { title: 'info' }},
+  // Main
   { path: 'index', component: IndexComponent},
   { path: '', redirectTo: 'index', pathMatch: 'full'},
-  //END
-  //{ path: '**', component: PageNotFoundComponent, data: {title: 'Page Not Found'}} //Needs to be last since it will match every url
+  // Functionality
+  { path: 'q-list', component: QListComponent},
+  // END
+  // { path: '**', component: PageNotFoundComponent, data: {title: 'Page Not Found'}} //Needs to be last since it will match every url
+
+  // Others
+  { path: 'info', component: InfoComponent, data: { title: 'info' }},
 ];
 
 @NgModule({
