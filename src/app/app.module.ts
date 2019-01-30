@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './components/errors/page-not-found/page-n
 import { QListComponent } from './components/q-list/q-list.component';
 import { CardComponent } from './components/card/card.component';
 import { IndexComponent } from './index/index.component';
+import { ViewQuestionnaireComponent } from './components/view-questionnaire/view-questionnaire.component';
 
 const appRoutes: Routes = [
   // Main
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full'},
   // Functionality
   { path: 'q-list', component: QListComponent},
+  { path: 'view-questionnaire/:id', component: ViewQuestionnaireComponent},
   // END
   // { path: '**', component: PageNotFoundComponent, data: {title: 'Page Not Found'}} //Needs to be last since it will match every url
 
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     QListComponent,
     CardComponent,
-    IndexComponent
+    IndexComponent,
+    ViewQuestionnaireComponent
   ],
   imports: [
     RouterModule.forRoot(

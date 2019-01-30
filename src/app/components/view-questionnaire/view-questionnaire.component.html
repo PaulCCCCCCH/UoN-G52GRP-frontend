@@ -1,0 +1,114 @@
+<div class="container-fluid">
+  <div class="row border-bottom">
+      <h1 class="card-title">
+          {{ questionnaire.title }}
+      </h1>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <b>Date assigned:</b>
+    </div>
+    <div class="col-6">
+      {{ questionnaire.dateAssigned.toLocaleDateString() }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <b>Deadline:</b>
+    </div>
+    <div class="col-6">
+      {{ questionnaire.deadline.toLocaleDateString() }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <b>Assigned to:</b>
+    </div>
+    <div class="col-6">
+      <!-- Modal trigger -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" aria-hidden="true">
+        Show list
+      </button>
+      <!-- Modal body. It's wired. Every time I want to toggle/collapse something, it does not work.-->
+    </div>
+  </div>
+
+  <div class="row border-bottom" style="padding-bottom: 30px">
+    <div class="col-6">
+      <b>Status:</b>
+    </div>
+    <div class="col-6">
+      {{ questionnaire.status }}
+    </div>
+  </div>
+
+  <br>
+  <div class="card-title">
+    <h2>Response</h2>
+  </div>
+  <div class="row progress" style="height: 30px">
+    <div class="progress-bar bg-success" role="progressbar" style="{{ 'width: ' + ((progress * 100) | number: '1.0-0') + '%' }}" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
+      {{ questionnaire.responseNumber }} / {{ questionnaire.assignedNumber }}
+    </div>
+  </div>
+
+  <hr>
+  <div class="card-title">
+    <h2>Views</h2>
+  </div>
+
+  <div class="list-group">
+    <div class="row">
+      <div class="col-8">
+        View overall statistics of the responses.
+      </div>
+      <div class="col-4">
+        <button type="button" class="btn btn-outline-success">View Overall</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        See response list and check them out one by one.
+      </div>
+      <div class="col-4">
+        <button type="button" class="btn btn-outline-success">Response List</button>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div class="card-title">
+    <h2>Services</h2>
+  </div>
+  <div class="list-group">
+    <div class="row">
+      <div class="col-8">
+        Assign the questionnaire to other people through email.
+      </div>
+      <div class="col-4">
+        <button type="button" class="btn btn-outline-success">Assign</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        Change the deadline of the questionnaire.
+      </div>
+      <div class="col-4">
+        <button type="button" class="btn btn-outline-success">Change Deadline</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8">
+        Send Chase-up emails to those who haven't responded yet.
+      </div>
+      <div class="col-4">
+        <button type="button" class="btn btn-outline-success">Send Chase-up</button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
