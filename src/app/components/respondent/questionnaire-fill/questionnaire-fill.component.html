@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <h5 class="card-header">
+          <div class="container">
+            <div class="row">
+              <div class="col-8">
+                The Title
+              </div>
+              <div class="col-4 text-right">
+                <button type="button" class="btn btn-success" onclick="window.location.href = '/response/dash';">Save as Draft</button>
+                <button type="button" class="btn btn-danger" onclick="window.location.href = '/response/submit';">Submit</button>
+              </div>
+            </div>
+          </div>
+        </h5>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <form>
+              <li class="list-group-item">
+                <div class="form-group">
+                  <span class="badge badge-danger">*Required</span><br>
+                  <label for="exampleInputPassword1">What is your favorite IDE?</label>
+                  <input type="text" class="form-control" id="intro" placeholder="Please enter here">
+                </div>
+              </li>
+              <li class="list-group-item">
+                  <div class="form-group">
+                    <span class="badge badge-danger">*Required</span><br>
+                    <label for="exampleFormControlSelect1">What is your favorite programming language of the following?</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option disabled selected value></option>
+                      <option>Javascript</option>
+                      <option>C++</option>
+                      <option>Java</option>
+                      <option>Haskell</option>
+                      <option>Python</option>
+                    </select>
+                  </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-group">
+                  <span class="badge badge-danger">*Required</span><br>
+                  <label for="exampleInputPassword1">What IDE do you use for the language you selected above.</label>
+                  <input type="text" class="form-control" id="intro" placeholder="Please enter here">
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-group">
+                  <span class="badge badge-danger">*Required</span><br>
+                  <label for="exampleFormControlSelect2">Which programming languages do you know</label>
+                  <p style="font-size:.8em">On windows use <em>ctrl</em> to select/deselect multiple options. On mac use <em>command</em>.</p>
+                  <select multiple class="form-control" id="exampleFormControlSelect2">
+                    <option>Javascript</option>
+                    <option>C++</option>
+                    <option>Java</option>
+                    <option>Haskell</option>
+                    <option>Python</option>
+                  </select>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <span class="badge badge-danger">*Required</span><br>
+                <p>Would you recommend Javascript for agile development.</p>
+
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" >
+                <label class="form-check-label" for="exampleRadios1">
+                  Yes
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                <label class="form-check-label" for="exampleRadios2">
+                  neutral
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+                <label class="form-check-label" for="exampleRadios3">
+                  No
+                </label>
+              </div>
+              </li>
+              <li class="list-group-item">
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Are there any other comments you would like to add?</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+              </li>
+            </form>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

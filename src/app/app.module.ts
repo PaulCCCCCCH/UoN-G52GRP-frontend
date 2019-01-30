@@ -10,11 +10,18 @@ import { DemoComponent } from './demo/demo.component';
 import { DemoService } from './services/demo.service';
 import { InfoComponent } from './components/info/info.component';
 import { NavComponent } from './components/core/nav/nav.component';
-import { QuestionairesComponent } from './components/management/questionaires.component';
 import { PageNotFoundComponent } from './components/errors/page-not-found/page-not-found.component';
+import { QuestionnaireDashboardComponent } from './components/respondent/questionnaire-dashboard/questionnaire-dashboard.component';
+import { QuestionnaireFillComponent } from './components/respondent/questionnaire-fill/questionnaire-fill.component';
+import { QuestionnaireSubmitComponent } from './components/respondent/questionnaire-submit/questionnaire-submit.component';
 
 const appRoutes: Routes = [
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
+
+  //Respondant Routes
+  { path: 'response/dash', component: QuestionnaireDashboardComponent, data: { title: 'Dashboard' }},
+  { path: 'response/complete', component: QuestionnaireFillComponent, data: { title: 'Questionnaire' }},
+  { path: 'response/submit', component: QuestionnaireSubmitComponent, data: { title: 'Submitted' }},
 
   //END
   { path: '**', component: PageNotFoundComponent, data: {title: 'Page Not Found'}} //Needs to be last since it will match every url
@@ -26,8 +33,10 @@ const appRoutes: Routes = [
     DemoComponent,
     InfoComponent,
     NavComponent,
-    QuestionairesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    QuestionnaireDashboardComponent,
+    QuestionnaireFillComponent,
+    QuestionnaireSubmitComponent
   ],
   imports: [
     RouterModule.forRoot(
