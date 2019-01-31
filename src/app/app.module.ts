@@ -55,7 +55,6 @@ const appRoutes: Routes = [
     QuestionnaireFillComponent,
     QuestionnaireSubmitComponent,
     EditQuestionnaireComponent,
-    QuestionairesComponent,
     PageNotFoundComponent,
     QListComponent,
     CardComponent,
