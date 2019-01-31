@@ -81,3 +81,4 @@ typings/
 
 # Webstorm file
 .idea/
+**/.idea/
