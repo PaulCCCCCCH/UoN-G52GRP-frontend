@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container topmargin">
     <div class="row no-gutters attr_name">
       <div class="col-4">Questionnaire Title</div>
       <div class="col-3">Time Assigned</div>
@@ -6,27 +6,31 @@
     </div>
     <div class="accordion" *ngFor="let questionnaire of FAKE_QLIST">
 
-      <div class="card entries">
+      <button class="card btn entries" (click)="onClick(questionnaire.id)"
+           [attr.aria-expanded]="toggled == questionnaire.id"
+            style="text-align: left">
         <div class="card-header row no-gutters mb-0" id="heading">
-            <button class="btn btn-link col-4"
-                    style="text-align: left"
-                    type="button"
-                    data-toggle="popover"
-                    title="Description"
-                    data-container="body"
-                    data-placement="right"
-                    data-content="Hey!">
+            <div class="col-4">
               {{ questionnaire.title }}
-            </button>
-            <div class="col-3">
-              {{ questionnaire.dateAssigned.toLocaleDateString() }}
             </div>
             <div class="col-3">
               {{ questionnaire.dateAssigned.toLocaleDateString() }}
             </div>
-            <div class="col-1">
+            <div class="col-3">
+              {{ questionnaire.dateAssigned.toLocaleDateString() }}
+            </div>
+            <div class="col-2">
               <a href="{{'view-questionnaire/' + questionnaire.id }}"> Detail </a>
             </div>
+        </div>
+        <div>
+          <div id="{{ questionnaire.id }}" [ngbCollapse]="toggled == questionnaire.id">
+            <div class="card">
+              <div class="card-body">
+                {{ questionnaire.id }} {{ questionnaire.description }}
+              </div>
+            </div>
+          </div>
         </div>
 
 
@@ -35,7 +39,7 @@
             Questionnaire details
           </div>
         </div>
-      </div>
+      </button>
 
     </div>
 </div>

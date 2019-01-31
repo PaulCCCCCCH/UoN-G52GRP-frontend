@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { HttpModule } from '@angular/http';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
@@ -21,6 +21,11 @@ import { QListComponent } from './components/q-list/q-list.component';
 import { CardComponent } from './components/card/card.component';
 import { IndexComponent } from './index/index.component';
 import { ViewQuestionnaireComponent } from './components/view-questionnaire/view-questionnaire.component';
+import { QuestionnaireDashboardComponent } from './components/respondent/questionnaire-dashboard/questionnaire-dashboard.component';
+import { QuestionnaireFillComponent } from './components/respondent/questionnaire-fill/questionnaire-fill.component';
+import { QuestionnaireSubmitComponent } from './components/respondent/questionnaire-submit/questionnaire-submit.component';
+import { EditQuestionnaireComponent } from './components/investigator/questionnaires/edit-questionnaire/edit-questionnaire.component';
+
 const appRoutes: Routes = [
   // Main
   { path: 'index', component: IndexComponent},
@@ -30,6 +35,9 @@ const appRoutes: Routes = [
   { path: 'view-questionnaire/:id', component: ViewQuestionnaireComponent},
   // END
   // { path: '**', component: PageNotFoundComponent, data: {title: 'Page Not Found'}} //Needs to be last since it will match every url
+
+  // Others
+  { path: 'info', component: InfoComponent, data: { title: 'info' }},
 
   //Respondant Routes
   { path: 'response/dash', component: QuestionnaireDashboardComponent, data: { title: 'Dashboard' }},
@@ -50,6 +58,11 @@ const appRoutes: Routes = [
     DemoComponent,
     InfoComponent,
     NavComponent,
+    PageNotFoundComponent,
+    QListComponent,
+    CardComponent,
+    IndexComponent,
+    ViewQuestionnaireComponent,
     PageNotFoundComponent,
     QuestionnaireDashboardComponent,
     QuestionnaireFillComponent,

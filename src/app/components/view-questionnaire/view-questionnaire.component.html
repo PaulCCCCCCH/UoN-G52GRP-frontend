@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container topmargin">
   <div class="row border-bottom">
       <h1 class="card-title">
           {{ questionnaire.title }}
@@ -28,10 +28,7 @@
     </div>
     <div class="col-6">
       <!-- Modal trigger -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" aria-hidden="true">
-        Show list
-      </button>
-      <!-- Modal body. It's wired. Every time I want to toggle/collapse something, it does not work.-->
+      <button class="btn btn-primary" (click)="openWindowCustomClass(viewAssigned)">Show List</button>
     </div>
   </div>
 
@@ -48,12 +45,7 @@
   <div class="card-title">
     <h2>Response</h2>
   </div>
-  <div class="row progress" style="height: 30px">
-    <div class="progress-bar bg-success" role="progressbar" style="{{ 'width: ' + ((progress * 100) | number: '1.0-0') + '%' }}" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">
-      {{ questionnaire.responseNumber }} / {{ questionnaire.assignedNumber }}
-    </div>
-  </div>
-
+    <p><ngb-progressbar type="success" [value]="33">{{ questionnaire.responseNumber }} / {{ questionnaire.assignedNumber }}</ngb-progressbar></p>
   <hr>
   <div class="card-title">
     <h2>Views</h2>
@@ -96,7 +88,8 @@
         Change the deadline of the questionnaire.
       </div>
       <div class="col-4">
-        <button type="button" class="btn btn-outline-success">Change Deadline</button>
+
+        <button class="btn btn-outline-success" (click)="openWindowCustomClass(changeDeadline)">Change Deadline</button>
       </div>
     </div>
     <div class="row">
@@ -104,11 +97,62 @@
         Send Chase-up emails to those who haven't responded yet.
       </div>
       <div class="col-4">
-        <button type="button" class="btn btn-outline-success">Send Chase-up</button>
+        <button class="btn btn-outline-success" (click)="openWindowCustomClass(sendChaseUp)">Send Chase-up</button>
       </div>
     </div>
 
   </div>
 
+  <ng-template #changeDeadline let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Changing Deadline</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <input type="text" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()"/>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click')">Change</button>
+    </div>
+
+  </ng-template>
+
+  <ng-template #sendChaseUp let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Send Chase-up Emails</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      All the users that has been assigned this questionnaire but has not responded will receive and email. Once you have done it,
+      you cannot do it again for this questionnaire in 8 hours. Are you sure you want to send now?
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click')">Send</button>
+    </div>
+
+  </ng-template>
+
+  <ng-template #viewAssigned let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Questionnaire assigned to: </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <ul>
+        <li>psyabc@nottingham.ac.uk</li>
+        <li>psyabc@gmail.ac.uk</li>
+        <li>anotherexample@nottingham.ac.uk</li>
+      </ul>
+    </div>
+
+  </ng-template>
 </div>
 
