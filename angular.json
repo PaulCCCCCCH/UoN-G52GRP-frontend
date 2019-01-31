@@ -28,11 +28,11 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/styles/bootstrap/bootstrap.scss"
+              "src/styles/bootstrap/bootstrap.scss",
+              "src/styles/fontawesome/fontawesome.scss"
             ],
             "scripts": [
-              "src/assets/js/jquery/3.3.1.min.js",
-              "src/assets/js/bootstrap/3.3.7.js"
+
             ]
           },
           "configurations": {
