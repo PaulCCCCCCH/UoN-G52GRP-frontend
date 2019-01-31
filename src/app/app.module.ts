@@ -21,10 +21,6 @@ import { QListComponent } from './components/q-list/q-list.component';
 import { CardComponent } from './components/card/card.component';
 import { IndexComponent } from './index/index.component';
 import { ViewQuestionnaireComponent } from './components/view-questionnaire/view-questionnaire.component';
-import { QuestionnaireDashboardComponent } from './components/respondent/questionnaire-dashboard/questionnaire-dashboard.component';
-import { QuestionnaireFillComponent } from './components/respondent/questionnaire-fill/questionnaire-fill.component';
-import { QuestionnaireSubmitComponent } from './components/respondent/questionnaire-submit/questionnaire-submit.component';
-import { EditQuestionnaireComponent } from './components/investigator/questionnaires/edit-questionnaire/edit-questionnaire.component';
 
 const appRoutes: Routes = [
   // Main
@@ -59,20 +55,14 @@ const appRoutes: Routes = [
     InfoComponent,
     NavComponent,
     PageNotFoundComponent,
-    QListComponent,
-    CardComponent,
-    IndexComponent,
     ViewQuestionnaireComponent,
-    PageNotFoundComponent,
     QuestionnaireDashboardComponent,
     QuestionnaireFillComponent,
     QuestionnaireSubmitComponent,
     EditQuestionnaireComponent,
-    PageNotFoundComponent,
     QListComponent,
     CardComponent,
     IndexComponent,
-    ViewQuestionnaireComponent
   ],
   imports: [
     RouterModule.forRoot(
