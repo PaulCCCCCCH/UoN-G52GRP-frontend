@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
 
 @Component({
-  selector: 'app-edit-questionnaire',
-  templateUrl: './edit-questionnaire.component.html',
-  styleUrls: ['./edit-questionnaire.component.scss']
+  selector: 'app-view-questionnaires',
+  templateUrl: './view-questionnaires.component.html',
+  styleUrls: ['./view-questionnaires.component.scss']
 })
-export class EditQuestionnaireComponent implements OnInit {
+export class ViewQuestionnairesComponent implements OnInit {
+
   constructor(private _location: Location) { }
 
   ngOnInit() {

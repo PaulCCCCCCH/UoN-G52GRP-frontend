@@ -1,14 +1,14 @@
 import { Page } from '../classes/page';
 
 export const PAGES: Page[] = [
-  { pageName: 'View Questionnaire List',
+  { pageName: 'View Active Questionnaires',
     pageURL: 'q-list',
-    pageDescription: 'Show the list of all questionnaires',
+    pageDescription: 'Show the list of active questionnaires',
     iconURL: 'https://via.placeholder.com/300',
   },
-  { pageName: 'Another Page',
-    pageURL: 'stub',
-    pageDescription: 'Some other functionality',
+  { pageName: 'View List of questionnaires',
+    pageURL: 'questionnaires',
+    pageDescription: 'Shows the list of all availible questionnaires',
     iconURL: 'https://via.placeholder.com/300',
-  },
+  }
 ];

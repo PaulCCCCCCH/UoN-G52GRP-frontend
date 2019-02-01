@@ -21,16 +21,16 @@ import { QListComponent } from './components/q-list/q-list.component';
 import { CardComponent } from './components/card/card.component';
 import { IndexComponent } from './index/index.component';
 import { ViewQuestionnaireComponent } from './components/view-questionnaire/view-questionnaire.component';
+import { ViewQuestionnairesComponent } from './components/investigator/questionnaires/view-questionnaires/view-questionnaires.component';
+import { QuestionnaireSubmitConfirmComponent } from './components/respondent/questionnaire-submit-confirm/questionnaire-submit-confirm.component';
 
 const appRoutes: Routes = [
   // Main
-  { path: 'index', component: IndexComponent},
-  { path: '', redirectTo: 'index', pathMatch: 'full'},
+  { path: '', component: IndexComponent},
+  { path: 'index', redirectTo: 'index', pathMatch: 'full'},
   // Functionality
   { path: 'q-list', component: QListComponent},
   { path: 'view-questionnaire/:id', component: ViewQuestionnaireComponent},
-  // END
-  // { path: '**', component: PageNotFoundComponent, data: {title: 'Page Not Found'}} //Needs to be last since it will match every url
 
   // Others
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
@@ -38,10 +38,12 @@ const appRoutes: Routes = [
   //Respondant Routes
   { path: 'response/dash', component: QuestionnaireDashboardComponent, data: { title: 'Dashboard' }},
   { path: 'response/complete', component: QuestionnaireFillComponent, data: { title: 'Questionnaire' }},
-  { path: 'response/submit', component: QuestionnaireSubmitComponent, data: { title: 'Submitted' }},
+  { path: 'response/submit/confirm', component: QuestionnaireSubmitConfirmComponent, data: { title: 'Submitting' }},
+  { path: 'response/submit/success', component: QuestionnaireSubmitComponent, data: { title: 'Submitted' }},
 
   //Invesigator Routes
-  { path: 'questionnaire/edit', component: EditQuestionnaireComponent, data: { title: 'Dashboard' }},
+  { path: 'questionnaire/edit', component: EditQuestionnaireComponent, data: { title: 'Edit Questionnaire' }},
+  { path: 'questionnaires', component: ViewQuestionnairesComponent, data: { title: 'Questionnaires' }},
   // Others
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
   //END
@@ -63,6 +65,8 @@ const appRoutes: Routes = [
     QListComponent,
     CardComponent,
     IndexComponent,
+    ViewQuestionnairesComponent,
+    QuestionnaireSubmitConfirmComponent,
   ],
   imports: [
     RouterModule.forRoot(
