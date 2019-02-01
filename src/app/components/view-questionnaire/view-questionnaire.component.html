@@ -103,6 +103,32 @@
 
   </div>
 
+  <hr>
+  <div class="card-title">
+    <h2>Danger Zone</h2>
+  </div>
+  <div class="list-group">
+    <div class="row">
+      <div class="col-8">
+        Delete the questionnaire.
+      </div>
+      <div class="col-4">
+        <button class="btn btn-outline-danger" (click)="openWindowCustomClass(deleteQuestionnaire)">delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-group">
+    <div class="row">
+      <div class="col-8">
+        Close the questionnaire now and stop receiving any new responses.
+      </div>
+      <div class="col-4">
+        <button class="btn btn-outline-danger" (click)="openWindowCustomClass(closeQuestionnaire)">Close</button>
+      </div>
+    </div>
+  </div>
+
   <ng-template #changeDeadline let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Changing Deadline</h4>
@@ -154,5 +180,41 @@
     </div>
 
   </ng-template>
+
+  <ng-template #deleteQuestionnaire let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Send Chase-up Emails</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      If you delete the questionnaire, all responses gathered will be removed from server permanently.
+      Are you sure?
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Delete Questionnaire</button>
+    </div>
+
+  </ng-template>
+
+  <ng-template #closeQuestionnaire let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Send Chase-up Emails</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      If you close the questionnaire, all respondents will no longer be able to submit their answers, and
+      you cannot open the questionnaire again. Make sure you have collected enough information before proceeding.
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Close Questionnaire</button>
+    </div>
+
+  </ng-template>
+
 </div>
 
