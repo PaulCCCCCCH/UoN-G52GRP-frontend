@@ -23,6 +23,7 @@ import { IndexComponent } from './index/index.component';
 import { ViewQuestionnaireComponent } from './components/view-questionnaire/view-questionnaire.component';
 import { ViewQuestionnairesComponent } from './components/investigator/questionnaires/view-questionnaires/view-questionnaires.component';
 import { QuestionnaireSubmitConfirmComponent } from './components/respondent/questionnaire-submit-confirm/questionnaire-submit-confirm.component';
+import { AssignComponent } from './assign/assign.component';
 
 const appRoutes: Routes = [
   // Main
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
   // Functionality
   { path: 'q-list', component: QListComponent},
   { path: 'view-questionnaire/:id', component: ViewQuestionnaireComponent},
+  { path:'assign',component:AssignComponent},
 
   // Others
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
@@ -67,6 +69,7 @@ const appRoutes: Routes = [
     IndexComponent,
     ViewQuestionnairesComponent,
     QuestionnaireSubmitConfirmComponent,
+    AssignComponent,
   ],
   imports: [
     RouterModule.forRoot(
