@@ -34,50 +34,48 @@
         <td>Test</td>
         <td>Test@test.com</td>
         <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg"data-toggle="modal" data-target="#myModal" >View info</button></td>
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
       </tr>      
       <tr class="info">
         <td>Test</td>
         <td>Test</td>
         <td>Test@test.com</td>
         <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg"data-toggle="modal" data-target="#myModal" >View info</button></td>
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
       </tr>
       <tr class="info">
         <td>Test</td>
         <td>Test</td>
         <td>Test@test.com</td>
         <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">View info</button></td>
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)">View info</button></td>
       </tr>
       <tr class="info">
         <td>Test</td>
         <td>test</td>
         <td>test@test.com</td>
         <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg"data-toggle="modal" data-target="#myModal" >View info</button></td>
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
       </tr>
       <tr class="info">
         <td>Test</td>
         <td>test</td>
         <td>test@test.com</td>
         <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg"data-toggle="modal" data-target="#myModal" >View info</button></td>
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)">View info</button></td>
       </tr>
       <tr class="info">
         <td>Test</td>
         <td>test</td>
         <td>test@test.com</td>
         <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg"data-toggle="modal" data-target="#myModal" >View info</button></td>
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
       </tr>
     </tbody>
   </table>
-  
-  
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
+
+
+  <ng-template #content >
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h2 class="modal-title" id="myModalLabel" style="text-align:center ">Manage client's access right and group</h2>
@@ -92,16 +90,12 @@
                 Clients can be edited:  
                </label>
               <input aria-required="true" required="" style= "width:300px;max-width:98%;" type= "email">
+              <input class="pushbuttton-wide" style="background-color: aqua;color:blueviolet;;cursor:pointer;display:inline-block;font-size: 15px;font-weight:700;letter-spacing:1px;padding: .25em 1em .4em;text-align: center;vertical-align: middle;text-transform:uppercase;border-radius:3px;;margin-left: 0cm" type="submit" value="Submit">
           </form>
         </div>
-        <div class="modal-footer">
-          <input class="pushbuttton-wide" style="background-color: aqua;color:blueviolet;;cursor:pointer;display:inline-block;font-size: 15px;font-weight:700;letter-spacing:1px;padding: .25em 1em .4em;text-align: center;vertical-align: middle;text-transform:uppercase;border-radius:3px;;margin-left: 0cm" type="submit" value="Submit">
-        </div>
-      </div>
-    </div>
-  </div>
-    
+</ng-template>
 </div>
+    
 
 </body>
 </html>
