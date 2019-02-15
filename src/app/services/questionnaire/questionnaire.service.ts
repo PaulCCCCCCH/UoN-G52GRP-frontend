@@ -1,12 +1,23 @@
 import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs';
+import {Questionnaire} from '../../../classes/questionnaire';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionnaireService {
 
-  constructor() { }
+  private baseUrl = 'https://my-json-server.typicode.com/paulcccccch/demo/questionnaires';
 
-  getQuestionnaires
+  constructor(private http: HttpClient) { }
+
+  getQuestionnaire(id: number): Observable<Questionnaire> {
+    return this.http.get<Questionnaire>(this.baseUrl + `/?id=${id}`);
+  }
+
+  getQList(): Observable<Questionnaire[]> {
+    return this.http.get<Questionnaire[]>(this.baseUrl);
+  }
 
 }
