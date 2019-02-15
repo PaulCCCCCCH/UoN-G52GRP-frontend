@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Questionnaire } from '../../../classes/questionnaire';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -19,4 +19,5 @@ export class QuestionnaireService {
   getQuestionnaire(id: number): Observable<Questionnaire> {
     return this.httpClient.get<Questionnaire>(this.qListUrl + `/${id}`);
   }
+
 }
