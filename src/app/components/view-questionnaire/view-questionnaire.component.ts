@@ -28,6 +28,7 @@ export class ViewQuestionnaireComponent implements OnInit {
       this.questionnaire = questionnaire;
       this.progress = this.questionnaire.responseNumber / this.questionnaire.assignedNumber;
     });
+
   }
 
   openWindowCustomClass(content) {

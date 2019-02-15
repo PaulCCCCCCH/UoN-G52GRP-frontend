@@ -8,16 +8,16 @@ import { Observable } from 'rxjs';
 })
 export class QuestionnaireService {
 
-  private qListUrl = 'https://my-json-server.typicode.com/paulcccccch/demo/questionnaires';
+  private baseUrl = 'https://my-json-server.typicode.com/paulcccccch/demo/questionnaires';
 
-  constructor(private httpClient: HttpClient) { }
-
-  getQList(): Observable<Questionnaire[]> {
-    return this.httpClient.get<Questionnaire[]>(this.qListUrl);
-  }
+  constructor(private http: HttpClient) { }
 
   getQuestionnaire(id: number): Observable<Questionnaire> {
-    return this.httpClient.get<Questionnaire>(this.qListUrl + `/${id}`);
+    return this.http.get<Questionnaire>(this.baseUrl + `/?id=${id}`);
+  }
+
+  getQList(): Observable<Questionnaire[]> {
+    return this.http.get<Questionnaire[]>(this.baseUrl);
   }
 
 }
