@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {Questionnaire } from '../../../classes/questionnaire';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {QuestionnaireService} from '../../services/questionnaire/questionnaire.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-view-questionnaire',
@@ -9,23 +11,23 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ViewQuestionnaireComponent implements OnInit {
 
-  FAKE_QLIST: Questionnaire[];
+  id: number;
   questionnaire: Questionnaire;
   progress: number;
 
-  constructor(private modalService: NgbModal) {
-    this.FAKE_QLIST = [
-      new Questionnaire(1, 'How is Peter?'),
-      new Questionnaire(2, 'What do you think of ACE module?'),
-      new Questionnaire(3, 'Another questionnaire.'),
-    ];
-    const id = 2; // This should be from the router
-    this.questionnaire = this.FAKE_QLIST.find(q => q.id === id);
-    this.progress = this.questionnaire.responseNumber / this.questionnaire.assignedNumber;
+  constructor(
+    private modalService: NgbModal,
+    private questionnaireService: QuestionnaireService,
+    private route: ActivatedRoute
+  ) {
   }
 
   ngOnInit() {
-
+    this.id = +this.route.snapshot.paramMap.get('id');
+    this.questionnaireService.getQuestionnaire(this.id).subscribe(questionnaire => {
+      this.questionnaire = questionnaire;
+      this.progress = this.questionnaire.responseNumber / this.questionnaire.assignedNumber;
+    });
   }
 
   openWindowCustomClass(content) {
