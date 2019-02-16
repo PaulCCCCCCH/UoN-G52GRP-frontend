@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Manage staff</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h1 style="margin: 20px;text-align: center;color:blue;" >
+    Manage Staff
+  </h1>
+  <h2 style="margin:30px">
+    List of staff
+  </h2>
+  
+  <table class="table">
+    <thead>
+      <tr class="info">
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Company</th>
+        <th>View Info</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="info">
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test@test.com</td>
+        <td>Test</td>
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
+      </tr>      
+      <tr class="info">
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test@test.com</td>
+        <td>Test</td>
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
+      </tr>
+      <tr class="info">
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test@test.com</td>
+        <td>Test</td>
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)">View info</button></td>
+      </tr>
+      <tr class="info">
+        <td>Test</td>
+        <td>test</td>
+        <td>test@test.com</td>
+        <td>Test</td>
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
+      </tr>
+      <tr class="info">
+        <td>Test</td>
+        <td>test</td>
+        <td>test@test.com</td>
+        <td>Test</td>
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)">View info</button></td>
+      </tr>
+      <tr class="info">
+        <td>Test</td>
+        <td>test</td>
+        <td>test@test.com</td>
+        <td>Test</td>
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <ng-template #content >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title" id="myModalLabel" style="text-align:center ">Manage client's access right and group</h2>
+        </div>
+        <div class="modal-body">
+          <form class="contact-form" method="get">
+            <label style="font-size: 20px">
+              Clients can be viewed:  
+            </label>
+              <input aria-required="true" required="" style= "width:300px;max-width:98%;" type= "email">
+              <label style="font-size: 20px">
+                Clients can be edited:  
+               </label>
+              <input aria-required="true" required="" style= "width:300px;max-width:98%;" type= "email">
+              <input class="pushbuttton-wide" style="background-color: aqua;color:blueviolet;;cursor:pointer;display:inline-block;font-size: 15px;font-weight:700;letter-spacing:1px;padding: .25em 1em .4em;text-align: center;vertical-align: middle;text-transform:uppercase;border-radius:3px;;margin-left: 0cm" type="submit" value="Submit">
+          </form>
+        </div>
+</ng-template>
+</div>
+    
+
+</body>
+</html>
