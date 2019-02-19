@@ -26,6 +26,7 @@ import { QuestionnaireSubmitConfirmComponent } from './components/respondent/que
 import { AssignComponent } from './assign/assign.component';
 import { ResponseListComponent } from './components/response-list/response-list.component';
 import { ViewResponseSetComponent } from './components/view-response-set/view-response-set.component';
+import { ManageStaffComponent } from './manage-staff/manage-staff.component';
 
 const appRoutes: Routes = [
   // Main
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
   { path: 'assign', component: AssignComponent},
   { path: 'view-response-list/:id', component: ResponseListComponent},
   { path: 'view-response-set/:qid/:uid', component: ViewResponseSetComponent},
+  { path: 'manage-staff', component:ManageStaffComponent },
 
   // Others
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
@@ -76,11 +78,12 @@ const appRoutes: Routes = [
     AssignComponent,
     ResponseListComponent,
     ViewResponseSetComponent,
+    ManageStaffComponent,
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: true }, // <-- debugging purposes only
     ),
     BrowserModule,
     AppRoutingModule,
