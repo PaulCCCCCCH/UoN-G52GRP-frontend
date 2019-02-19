@@ -1,4 +1,4 @@
-<div class="container topmargin">
+<div *ngIf="finished" class="container topmargin">
   <div class="row border-bottom">
       <h1 class="card-title">
           {{ questionnaire.title }}
@@ -65,7 +65,7 @@
         See response list and check them out one by one.
       </div>
       <div class="col-4">
-        <button type="button" class="btn btn-outline-success">Response List</button>
+        <button type="button" class="btn btn-outline-success" (click)="viewResponseList()">Response List</button>
       </div>
     </div>
   </div>

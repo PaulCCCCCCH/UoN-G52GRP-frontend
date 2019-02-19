@@ -1,0 +1,32 @@
+<div *ngIf="finished" class="container topmargin">
+  <div class="card">
+    <div class="row">
+      <div class="col-6">{{ responseSet.userId }}</div>
+      <div class="col-6">{{ responseSet.submitDate }}</div>
+    </div>
+
+    <div *ngFor="let response of responses">
+      <div class="card">
+        <div class="card-header">
+          {{ getQuestionByResponse(response).questionBody }}
+        </div>
+        <div class="card-body">
+          <div *ngIf="[1, 2].includes(response.typeCode); then textBlock; else choiceBlock"></div>
+          <ng-template #textBlock class="container">
+            {{ response.responseBody }}
+          </ng-template>
+          <ng-template #choiceBlock class="container">
+            <div *ngFor="let choicePair of getChoicePairs(getQuestionByResponse(response))">
+              <p><span class="font-weight-bolder "*ngIf="response.responseBody.split(',').includes(choicePair.index.toString())"> √ </span> {{choicePair.text}}</p>
+            </div>
+          </ng-template>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

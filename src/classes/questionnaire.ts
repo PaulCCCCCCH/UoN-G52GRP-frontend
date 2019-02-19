@@ -21,6 +21,7 @@ export class Questionnaire {
 
 
   constructor(id: number, title: string) {
+    /*
     this.id = id;
     this.title = title;
     this.dateAssigned = '8 Feb 2019';
@@ -29,5 +30,6 @@ export class Questionnaire {
     this.responseNumber = 15;
     this.assignedNumber = 45;
     this.status = 'Accepting responses';
+    */
   }
 }

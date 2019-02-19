@@ -12,8 +12,8 @@ export class QuestionnaireService {
 
   constructor(private http: HttpClient) { }
 
-  getQuestionnaire(id: number): Observable<Questionnaire> {
-    return this.http.get<Questionnaire>(this.baseUrl + `/?id=${id}`);
+  getQuestionnaire(id: number): Observable<Questionnaire[]> {
+    return this.http.get<Questionnaire[]>(this.baseUrl + `/?id=${id}`);
   }
 
   getQList(): Observable<Questionnaire[]> {

@@ -1,4 +1,5 @@
 export class Response {
+  questionId: number;
   responseId: number;
   type: string;		// text | text box | choice | multiple choices
   typeCode: number; 	// 1     |      2      |       3    |            4

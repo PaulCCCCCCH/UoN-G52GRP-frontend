@@ -14,24 +14,17 @@ export class GetQuestionService {
   constructor(private http: HttpClient) { }
 
   /**
-   * Get one a complete question to a questionnaire.
+   * Get a QuestionSet object corresponding to a questionnaire specified by its id.
    */
-  getQuestionSet(questionnaireId: number, userId: number): Observable<QuestionSet> {
-    return this.http.get<QuestionSet>(this.baseUrl + `questionSets/?userId=${userId}&questionnaireId=${questionnaireId}`);
+  getQuestionSet(questionnaireId: number): Observable<QuestionSet> {
+    return this.http.get<QuestionSet>(this.baseUrl + `questionSets/?questionnaireId=${questionnaireId}`);
   }
 
   /**
-   * Get one question to a question.
+   * Get a question given its id.
    */
   getQuestion(questionId: number): Observable<Question> {
     return this.http.get<Question>(this.baseUrl + `questions/?questionId=${questionId}`);
-  }
-
-  /**
-   * Get the list of all questions to a questionnaire.
-   */
-  getQuestionSets(questionnaireId: number): Observable<QuestionSet[]> {
-    return this.http.get<QuestionSet[]>(this.baseUrl + `questionSets/?questionnaireId=${questionnaireId}`);
   }
 
 }

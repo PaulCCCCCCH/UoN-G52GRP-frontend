@@ -11,9 +11,10 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ViewQuestionnaireComponent implements OnInit {
 
-  id: number;
-  questionnaire: Questionnaire;
+  private id = +this.route.snapshot.paramMap.get('id');
+  private questionnaire: Questionnaire;
   progress: number;
+  finished = false;
 
   constructor(
     private modalService: NgbModal,
@@ -23,16 +24,25 @@ export class ViewQuestionnaireComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.id = +this.route.snapshot.paramMap.get('id');
-    this.questionnaireService.getQuestionnaire(this.id).subscribe(questionnaire => {
-      this.questionnaire = questionnaire;
+    this.questionnaireService.getQuestionnaire(this.id).subscribe(questionnaires => {
+      this.questionnaire = questionnaires[0];
       this.progress = this.questionnaire.responseNumber / this.questionnaire.assignedNumber;
+      this.finished = true;
     });
+    /*
+    this.questionnaireService.getQList().subscribe(questionnaires =>
+      this.questionnaire = questionnaires[0]
+    );
+    */
 
   }
 
   openWindowCustomClass(content) {
     this.modalService.open(content, { windowClass: 'dark-modal' });
+  }
+
+  viewResponseList() {
+    window.location.href = 'view-response-list/' + this.id;
   }
 
 }
