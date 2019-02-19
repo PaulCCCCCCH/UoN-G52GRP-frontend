@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class QuestionnaireFillComponent {
   selected = '';
   out = '';
-  onAddPost(){
+  onAddPost() {
       this.selected = this.out;
     }
 }

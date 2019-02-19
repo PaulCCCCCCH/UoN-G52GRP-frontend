@@ -16,8 +16,8 @@ export class GetResponseService {
   /**
    * Get one a complete response to a questionnaire.
    */
-  getResponseSet(questionnaireId: number, userId: number): Observable<ResponseSet> {
-    return this.http.get<ResponseSet>(this.baseUrl + `responseSets/?userId=${userId}&questionnaireId=${questionnaireId}`);
+  getResponseSet(questionnaireId: number, userId: number): Observable<ResponseSet[]> {
+    return this.http.get<ResponseSet[]>(this.baseUrl + `responseSets/?userId=${userId}&questionnaireId=${questionnaireId}`);
   }
 
   /**
