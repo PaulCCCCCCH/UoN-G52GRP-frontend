@@ -27,6 +27,7 @@ import { AssignComponent } from './assign/assign.component';
 import { ResponseListComponent } from './components/response-list/response-list.component';
 import { ViewResponseSetComponent } from './components/view-response-set/view-response-set.component';
 import { ManageStaffComponent } from './manage-staff/manage-staff.component';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 const appRoutes: Routes = [
   // Main
