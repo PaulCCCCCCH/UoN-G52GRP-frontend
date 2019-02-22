@@ -25,6 +25,7 @@ import { ViewQuestionnairesComponent } from './components/investigator/questionn
 import { QuestionnaireSubmitConfirmComponent } from './components/respondent/questionnaire-submit-confirm/questionnaire-submit-confirm.component';
 import { AssignComponent } from './assign/assign.component';
 import { ManageStaffComponent } from './manage-staff/manage-staff.component';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 const appRoutes: Routes = [
   // Main
