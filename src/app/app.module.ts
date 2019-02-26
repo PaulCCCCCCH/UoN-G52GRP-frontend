@@ -26,6 +26,9 @@ import { QuestionnaireSubmitConfirmComponent } from './components/respondent/que
 import { AssignComponent } from './assign/assign.component';
 import { ManageStaffComponent } from './manage-staff/manage-staff.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
+import { HttpClientModule }    from '@angular/common/http';
+import { FormsModule }    from '@angular/forms';
 
 const appRoutes: Routes = [
   // Main
@@ -74,6 +77,10 @@ const appRoutes: Routes = [
     QuestionnaireSubmitConfirmComponent,
     AssignComponent,
     ManageStaffComponent,
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
   ],
   imports: [
     RouterModule.forRoot(
