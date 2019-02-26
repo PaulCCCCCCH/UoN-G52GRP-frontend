@@ -1,0 +1,28 @@
+<div class="container topmargin">
+    <div class="row no-gutters attr_name">
+      <div class="col-4">Response Id</div>
+      <div class="col-3">Time Submited</div>
+      <div class="col-3">Excerpt</div>
+    </div>
+    <div class="accordion" *ngFor="let response of responses">
+
+      <div class="card btn entries" style="text-align: left;">
+        <div class="card-header row no-gutters mb-0" id="heading">
+            <div class="col-4">
+              {{ response.userId}}
+            </div>
+            <div class="col-3">
+              {{ response.submitDate }}
+            </div>
+            <div class="col-3">
+              {{ response.excerpt }}
+            </div>
+            <div class="col-2">
+              <a href="{{'view-response-set/' + response.questionnaireId + '/' + response.userId }}"> Detail </a>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+</div>

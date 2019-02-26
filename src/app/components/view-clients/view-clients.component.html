@@ -1,0 +1,28 @@
+<div *ngIf="finished" class="container topmargin">
+    <div class="row no-gutters attr_name">
+      <div class="col-3">Company Name</div>
+      <div class="col-3">description</div>
+      <div class="col-3">Operations</div>
+    </div>
+    <div class="accordion" *ngFor="let client of clients">
+
+      <div class="card btn entries" style="text-align: left;">
+        <div class="card-header row no-gutters mb-0" id="heading">
+            <div class="col-3">
+              {{ client.name}}
+            </div>
+            <div class="col-3">
+              {{ client.description}}
+            </div>
+            <div class="col-3">
+              <a href="/"> add/delete...  </a>
+            </div>
+           <div class="col-3">
+              <a href="{{'questionnaires/' + client.id}}"> See all forms</a>
+            </div>
+        </div>
+      </div>
+
+    </div>
+
+</div>

@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {Questionnaire } from '../../../classes/questionnaire';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {QuestionnaireService} from '../../services/questionnaire/questionnaire.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-view-questionnaire',
@@ -9,22 +11,29 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ViewQuestionnaireComponent implements OnInit {
 
-  FAKE_QLIST: Questionnaire[];
-  questionnaire: Questionnaire;
+  private id = +this.route.snapshot.paramMap.get('id');
+  private questionnaire: Questionnaire;
   progress: number;
+  finished = false;
 
-  constructor(private modalService: NgbModal) {
-    this.FAKE_QLIST = [
-      new Questionnaire(1, 'How is Peter?'),
-      new Questionnaire(2, 'What do you think of ACE module?'),
-      new Questionnaire(3, 'Another questionnaire.'),
-    ];
-    const id = 2; // This should be from the router
-    this.questionnaire = this.FAKE_QLIST.find(q => q.id === id);
-    this.progress = this.questionnaire.responseNumber / this.questionnaire.assignedNumber;
+  constructor(
+    private modalService: NgbModal,
+    private questionnaireService: QuestionnaireService,
+    private route: ActivatedRoute
+  ) {
   }
 
   ngOnInit() {
+    this.questionnaireService.getQuestionnaire(this.id).subscribe(questionnaires => {
+      this.questionnaire = questionnaires[0];
+      this.progress = this.questionnaire.responseNumber / this.questionnaire.assignedNumber;
+      this.finished = true;
+    });
+    /*
+    this.questionnaireService.getQList().subscribe(questionnaires =>
+      this.questionnaire = questionnaires[0]
+    );
+    */
 
   }
 
@@ -32,5 +41,12 @@ export class ViewQuestionnaireComponent implements OnInit {
     this.modalService.open(content, { windowClass: 'dark-modal' });
   }
 
+  viewResponseList() {
+    window.location.href = 'view-response-list/' + this.id;
+  }
+
+  viewOverall() {
+    window.location.href += '/view-overall';
+  }
 }
 
