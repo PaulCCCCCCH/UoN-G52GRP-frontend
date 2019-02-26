@@ -27,6 +27,10 @@ import { AssignComponent } from './assign/assign.component';
 import { ResponseListComponent } from './components/response-list/response-list.component';
 import { ViewResponseSetComponent } from './components/view-response-set/view-response-set.component';
 import { ManageStaffComponent } from './manage-staff/manage-staff.component';
+import { ViewClientsComponent } from './components/view-clients/view-clients.component';
+import { ViewOverallComponent } from './components/view-overall/view-overall.component';
+import { FormsModule } from '@angular/forms';
+import { AlertService } from './services/alert/alert.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 const appRoutes: Routes = [
@@ -39,7 +43,9 @@ const appRoutes: Routes = [
   { path: 'assign', component: AssignComponent},
   { path: 'view-response-list/:id', component: ResponseListComponent},
   { path: 'view-response-set/:qid/:uid', component: ViewResponseSetComponent},
-  { path: 'manage-staff', component:ManageStaffComponent },
+  { path: 'manage-staff', component: ManageStaffComponent },
+  { path: 'view-clients', component: ViewClientsComponent },
+  { path: 'view-questionnaire/:id/view-overall', component: ViewOverallComponent },
 
   // Others
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
@@ -52,7 +58,7 @@ const appRoutes: Routes = [
 
   //Invesigator Routes
   { path: 'questionnaire/edit', component: EditQuestionnaireComponent, data: { title: 'Edit Questionnaire' }},
-  { path: 'questionnaires', component: ViewQuestionnairesComponent, data: { title: 'Questionnaires' }},
+  { path: 'questionnaires/:id', component: ViewQuestionnairesComponent, data: { title: 'Questionnaires' }},
   // Others
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
   //END
@@ -80,18 +86,24 @@ const appRoutes: Routes = [
     ResponseListComponent,
     ViewResponseSetComponent,
     ManageStaffComponent,
+    ViewClientsComponent,
+    ViewOverallComponent,
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }, // <-- debugging purposes only
     ),
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
   ],
-  providers: [DemoService],
+  providers: [
+    DemoService,
+    AlertService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

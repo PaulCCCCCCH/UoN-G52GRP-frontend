@@ -45,5 +45,8 @@ export class ViewQuestionnaireComponent implements OnInit {
     window.location.href = 'view-response-list/' + this.id;
   }
 
+  viewOverall() {
+    window.location.href += '/view-overall';
+  }
 }
 
