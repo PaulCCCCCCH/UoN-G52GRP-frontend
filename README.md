@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 # Commit issue
 
-For Meng Wu and Jas Nijier, the contributor data has some issue: because the local issue, the author of part of code is two guests(not github user）namely Meng Wu and Jas Nijer. Consequently, the contributor data will not show code committed, even if thousands line has been commited for Meng Wu. After the problem is noticed, Meng and Jas are changing. But for thousands of line alrady commited for both two, proof can be seen roughly here:   
+For Meng Wu and Jas Nijier, the contributor data has some issue: because the local issue, the author of part of code is two guests(not github user）namely Meng Wu and Jas Nijer. Consequently, the contributor data will not show code committed, even if thousands line has been commited for Meng Wu. After the problem is noticed, Meng and Jas are changing. But for thousands of line alrady commited for both two, proof can be seen roughly here:   (because pulse just jave data of one month, this link is a photo showing proof)
 
 ## Development server
 
