@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
+# Commit issue
+
+For Meng Wu and Jas Nijier, the contributor data has some issue: because the local issue, the author of part of code is two guests(not github user）namely Meng Wu and Jas Nijer. Consequently, the contributor data will not show code committed, even if thousands line has been commited for Meng Wu. After the problem is noticed, Meng and Jas are changing. But for thousands of line alrady commited for both two, proof can be seen roughly here:   
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
