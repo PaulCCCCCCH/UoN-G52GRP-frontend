@@ -14,8 +14,10 @@ export class ViewClientsComponent implements OnInit {
   finished = false;
   id = this.route.snapshot.paramMap.get('id');
 
-  constructor(private clientService: ClientService,
-  private route: ActivatedRoute){}
+  constructor(
+    private clientService: ClientService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.clientService.getClients().subscribe(clients => {
