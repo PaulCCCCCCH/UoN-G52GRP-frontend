@@ -16,15 +16,15 @@ export class GetQuestionService {
   /**
    * Get a QuestionSet object corresponding to a questionnaire specified by its id.
    */
-  getQuestionSet(questionnaireId: number): Observable<QuestionSet> {
-    return this.http.get<QuestionSet>(this.baseUrl + `questionSets/?questionnaireId=${questionnaireId}`);
+  getQuestionSet(questionnaireId: number): Observable<QuestionSet[]> {
+    return this.http.get<QuestionSet[]>(this.baseUrl + `questionSets/?questionnaireId=${questionnaireId}`);
   }
 
   /**
    * Get a question given its id.
    */
-  getQuestion(questionId: number): Observable<Question> {
-    return this.http.get<Question>(this.baseUrl + `questions/?questionId=${questionId}`);
+  getQuestion(questionId: number): Observable<Question[]> {
+    return this.http.get<Question[]>(this.baseUrl + `questions/?id=${questionId}`);
   }
 
 }
