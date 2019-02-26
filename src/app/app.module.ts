@@ -31,6 +31,7 @@ import { ViewClientsComponent } from './components/view-clients/view-clients.com
 import { ViewOverallComponent } from './components/view-overall/view-overall.component';
 import { FormsModule } from '@angular/forms';
 import { AlertService } from './services/alert/alert.service';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 const appRoutes: Routes = [
   // Main
