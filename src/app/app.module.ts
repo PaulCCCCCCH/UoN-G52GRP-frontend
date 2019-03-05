@@ -23,6 +23,8 @@ import { IndexComponent } from './index/index.component';
 import { ViewQuestionnaireComponent } from './components/view-questionnaire/view-questionnaire.component';
 import { ViewQuestionnairesComponent } from './components/investigator/questionnaires/view-questionnaires/view-questionnaires.component';
 import { QuestionnaireSubmitConfirmComponent } from './components/respondent/questionnaire-submit-confirm/questionnaire-submit-confirm.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
 
 const appRoutes: Routes = [
   // Main
@@ -42,6 +44,8 @@ const appRoutes: Routes = [
   { path: 'response/submit/success', component: QuestionnaireSubmitComponent, data: { title: 'Submitted' }},
 
   //Invesigator Routes
+  { path: 'login', component: LoginComponent, data: { title: 'Login' }},
+  { path: 'home', component: HomeComponent, data: { title: 'Home' }},
   { path: 'questionnaire/edit', component: EditQuestionnaireComponent, data: { title: 'Edit Questionnaire' }},
   { path: 'questionnaires', component: ViewQuestionnairesComponent, data: { title: 'Questionnaires' }},
   // Others
@@ -67,6 +71,8 @@ const appRoutes: Routes = [
     IndexComponent,
     ViewQuestionnairesComponent,
     QuestionnaireSubmitConfirmComponent,
+    LoginComponent,
+    HomeComponent,
   ],
   imports: [
     RouterModule.forRoot(
