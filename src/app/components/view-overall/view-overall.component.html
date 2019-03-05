@@ -1,0 +1,86 @@
+<div id="temp" class="container topmargin">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="container-fluid" style="margin-bottom:12px;">
+            <div class="row">
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <ul class="list-group list-group-flush" id="form">
+
+            <li *ngFor="let question of questions; let i = index" class="list-group-item">
+              <div class="card">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-2">
+                      QUESTION {{i + 1}}
+                    </div>
+                    <div class="text-right col-10">
+                      <div ngbDropdown class="d-inline-block">
+                        <button type="button" class="btn btn-outline-primary" (click)="isCollapsed[i] = !isCollapsed[i]"
+                                [attr.aria-expanded]="!isCollapsed[i]" [attr.aria-controls]="'stat'+i">
+                          Toggle
+                        </button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="question.typeCode == 1 || question.typeCode == 2" class="card-body">
+
+                  <div class="form-group">
+                    <h3><span style="color: darkgrey">Text: </span>{{question.questionBody}}</h3>
+                  </div>
+                  <div id="stat{{i}}" [ngbCollapse]="isCollapsed[i]">
+                    <div class="card">
+                      <ul class="card-body">
+                        <li *ngFor="let text of responseTextKeeper[question.id]">
+                          {{text}}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                </div>
+
+
+                <div *ngIf="question.typeCode == 3 || question.typeCode == 4" class="card-body">
+
+                  <div class="form-group">
+                    <h3><span style="color: darkgrey">Multiple Choice: </span>{{question.questionBody}}</h3>
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="container" id="stat{{i}}" [ngbCollapse]="isCollapsed[i]" >
+                      <div class="card-body">
+                        <div *ngFor="let choice of question.choices; let j = index" class="list-group-item">
+                          <div class="row">
+                            <p>{{choice}}</p>
+                          </div>
+                          <div class="row">
+                            <div class="col-12">
+                              <ngb-progressbar showValue="true" type="success" [value]="responseCounter[question.id][j] * 100 / responseNumber"></ngb-progressbar>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

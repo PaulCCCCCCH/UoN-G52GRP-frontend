@@ -1,4 +1,4 @@
-<div class="container topmargin">
+<div *ngIf="finished" class="container topmargin">
   <div class="row border-bottom">
       <h1 class="card-title">
           {{ questionnaire.title }}
@@ -9,7 +9,7 @@
       <b>Date assigned:</b>
     </div>
     <div class="col-6">
-      {{ questionnaire.dateAssigned.toLocaleDateString() }}
+      {{ questionnaire.dateAssigned }}
     </div>
   </div>
 
@@ -18,7 +18,7 @@
       <b>Deadline:</b>
     </div>
     <div class="col-6">
-      {{ questionnaire.deadline.toLocaleDateString() }}
+      {{ questionnaire.deadline }}
     </div>
   </div>
 
@@ -57,7 +57,7 @@
         View overall statistics of the responses.
       </div>
       <div class="col-4">
-        <button type="button" class="btn btn-outline-success">View Overall</button>
+        <button type="button" class="btn btn-outline-success" (click)="viewOverall()">View Overall</button>
       </div>
     </div>
     <div class="row">
@@ -65,7 +65,7 @@
         See response list and check them out one by one.
       </div>
       <div class="col-4">
-        <button type="button" class="btn btn-outline-success">Response List</button>
+        <button type="button" class="btn btn-outline-success" (click)="viewResponseList()">Response List</button>
       </div>
     </div>
   </div>

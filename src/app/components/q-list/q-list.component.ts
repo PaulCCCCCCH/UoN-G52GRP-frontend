@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Questionnaire } from '../../../classes/questionnaire';
-import * as $ from 'jquery';
+import { QuestionnaireService } from '../../services/questionnaire/questionnaire.service';
 
 @Component({
   selector: 'app-q-list',
@@ -9,20 +9,22 @@ import * as $ from 'jquery';
 })
 export class QListComponent implements OnInit {
 
-  FAKE_QLIST: Questionnaire[];
+  // FAKE_QLIST: Questionnaire[];
   qList: Questionnaire[];
   public toggled;
 
-  constructor() {
-    this.FAKE_QLIST = [
+  constructor(private questionnaireService: QuestionnaireService) {
+    /*this.FAKE_QLIST = [
       new Questionnaire(1, 'How is Peter?'),
       new Questionnaire(2, 'What do you think of ACE module?'),
       new Questionnaire(3, 'Another questionnaire.'),
-    ];
+    ];*/
   }
 
   ngOnInit() {
-    this.qList = this.FAKE_QLIST;
+    this.questionnaireService.getQList().subscribe(questionnaires =>
+      this.qList = questionnaires
+    );
   }
 
   onClick(id) {
