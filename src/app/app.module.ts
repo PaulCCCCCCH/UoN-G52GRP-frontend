@@ -1,8 +1,10 @@
-
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -27,18 +29,14 @@ import { ViewResponseSetComponent } from './components/view-response-set/view-re
 import { ManageStaffComponent } from './manage-staff/manage-staff.component';
 import { ViewClientsComponent } from './components/view-clients/view-clients.component';
 import { ViewOverallComponent } from './components/view-overall/view-overall.component';
+import { FormsModule } from '@angular/forms';
 import { AlertService } from './services/alert/alert.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
-import { HttpClientModule }    from '@angular/common/http';
-import { FormsModule }    from '@angular/forms';
 
 const appRoutes: Routes = [
-  
   // Main
   { path: '', component: IndexComponent},
   { path: 'index', redirectTo: 'index', pathMatch: 'full'},
-  
   // Functionality
   { path: 'q-list', component: QListComponent},
   { path: 'view-questionnaire/:id', component: ViewQuestionnaireComponent},
@@ -61,10 +59,8 @@ const appRoutes: Routes = [
   //Invesigator Routes
   { path: 'questionnaire/edit', component: EditQuestionnaireComponent, data: { title: 'Edit Questionnaire' }},
   { path: 'questionnaires/:id', component: ViewQuestionnairesComponent, data: { title: 'Questionnaires' }},
-  
   // Others
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
-  
   //END
   { path: '**', component: PageNotFoundComponent, data: {title: 'Page Not Found'}} //Needs to be last since it will match every url
 ];
@@ -90,14 +86,9 @@ const appRoutes: Routes = [
     ResponseListComponent,
     ViewResponseSetComponent,
     ManageStaffComponent,
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
     ViewClientsComponent,
     ViewOverallComponent,
   ],
-
   imports: [
     RouterModule.forRoot(
       appRoutes,
@@ -109,13 +100,10 @@ const appRoutes: Routes = [
     NgbModule,
     HttpClientModule,
   ],
-
   providers: [
     DemoService,
     AlertService
   ],
-
   bootstrap: [AppComponent],
 })
-
 export class AppModule { }
