@@ -27,34 +27,33 @@
             <!-- Modal -->
                 <ng-template #content let-modal>
                   <div class="modal-header">
-                    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+                    <h4 class="modal-title" id="modal-basic-title">Create Questionnaire</h4>
                     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
                     <form>
-                      <div class="form-group">
-                        <label for="dateOfBirth">Date of birth</label>
-                        <div class="input-group">
-                          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-                          <div class="input-group-append">
-                            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+                      <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">Questionnaire Name</span>
                           </div>
+                          <input type="text" class="form-control" aria-describedby="basic-addon1">
                         </div>
-                      </div>
                     </form>
+                      <input type="radio"> Create from Scratch<br>
+                        <input type="radio"> Create from Draft<br>
+                        <input type="radio"> Create from Template
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+                    <a href="login" class="btn btn-outline-dark" >Start</a>
                   </div>
                 </ng-template>
 
-                <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+                <button class="btn btn-lg btn-primary" (click)="open(content)">-></button>
 
-                <hr>
 
-                <pre>{{closeResult}}</pre>
+                
 
             </div>
         </div>
