@@ -1,99 +1,173 @@
+<!--HTML document for manage staff-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Manage staff</title>
+  <!--title of  page-->
+  <title>
+    Manage staff
+  </title>
+   
+  <!--Script used-->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 </head>
+
 <body>
 
 <div class="container">
+  
+  <!--Title of the page-->
   <h1 style="margin: 20px;text-align: center;color:blue;" >
     Manage Staff
   </h1>
+
+  <!--Sub-title-->
   <h2 style="margin:30px">
     List of staff
   </h2>
-  
+
+  <!--Table to display the current staff in the system -->
   <table class="table">
+
     <thead>
+      <!--Info for the staff, including name, email adress, company and detailed info. -->
+      <!-- For detailed info part, after clicking in, a pop over window will show, containing coressponding info for the staff -->
       <tr class="info">
+
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Email</th>
-        <th>Company</th>
+        <th>Company</th>        
         <th>View Info</th>
+
       </tr>
+
     </thead>
+
     <tbody>
+
       <tr class="info">
+
+        <td>Test</td>
+        <td>Test</td>
+        <td>Test@test.com</td>
+        <td>Test</td>      
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
+      
+      </tr>  
+
+      <tr class="info">
+
         <td>Test</td>
         <td>Test</td>
         <td>Test@test.com</td>
         <td>Test</td>
         <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
-      </tr>      
-      <tr class="info">
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test@test.com</td>
-        <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
+      
       </tr>
+
       <tr class="info">
+
         <td>Test</td>
         <td>Test</td>
         <td>Test@test.com</td>
         <td>Test</td>
         <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)">View info</button></td>
+      
       </tr>
+
       <tr class="info">
+        
         <td>Test</td>
         <td>test</td>
         <td>test@test.com</td>
         <td>Test</td>
         <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
+      
       </tr>
+
       <tr class="info">
+        
         <td>Test</td>
         <td>test</td>
         <td>test@test.com</td>
         <td>Test</td>
         <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)">View info</button></td>
+      
       </tr>
+
       <tr class="info">
+        
         <td>Test</td>
         <td>test</td>
         <td>test@test.com</td>
         <td>Test</td>
         <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
+      
       </tr>
+
     </tbody>
+
   </table>
 
-
+  <!--Pop over functionality and the view of the pop over page-->
+  <!--Modal is used to facilite the pop over page-->
   <ng-template #content >
+
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h2 class="modal-title" id="myModalLabel" style="text-align:center ">Manage client's access right and group</h2>
+          <!--Close button-->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+            <span aria-hidden="true">
+
+              &times;
+
+            </span>
+
+          </button>
+
+          <!--Title-->
+          <h2 class="modal-title" id="myModalLabel" style="text-align:center ">
+
+            Manage client's access right and group
+
+          </h2>
+
         </div>
+        <!--Main part of pop over page-->
         <div class="modal-body">
+          
+          <!--Edit detailed info for a staff-->
           <form class="contact-form" method="get">
+
+            <!--Description for first input area-->
             <label style="font-size: 20px">
               Clients can be viewed:  
             </label>
+              
+              <!--First input; Clients that staff can edit; A email input is required. -->
               <input aria-required="true" required="" style= "width:300px;max-width:98%;" type= "email">
+              
+              <!--Description for the second input area-->
               <label style="font-size: 20px">
                 Clients can be edited:  
                </label>
-              <input aria-required="true" required="" style= "width:300px;max-width:98%;" type= "email">
+              <!--Second input; Clients that staff can view; A email input is required-->             
+              <input aria-required="true" required="" style= "width:300px;max-width:98%;" type= "email"> 
+              <!--Button to submit the input information-->        
               <input class="pushbuttton-wide" style="background-color: aqua;color:blueviolet;;cursor:pointer;display:inline-block;font-size: 15px;font-weight:700;letter-spacing:1px;padding: .25em 1em .4em;text-align: center;vertical-align: middle;text-transform:uppercase;border-radius:3px;;margin-left: 0cm" type="submit" value="Submit">
-          </form>
+          
+            </form>
+
         </div>
+
 </ng-template>
+
 </div>
    
 
