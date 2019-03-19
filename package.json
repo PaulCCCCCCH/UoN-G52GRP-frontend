@@ -22,6 +22,8 @@
     "@angular/router": "~7.0.0",
     "@fortawesome/fontawesome-free": "^5.7.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.2",
+    "angular-in-memory-web-api": "^0.8.0",
+    "bootstrap": "4.2.1",
     "core-js": "^2.6.3",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",

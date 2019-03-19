@@ -4,7 +4,7 @@
       <div class="col-3">Time Assigned</div>
       <div class="col-3">Deadline</div>
     </div>
-    <div class="accordion" *ngFor="let questionnaire of FAKE_QLIST">
+    <div class="accordion" *ngFor="let questionnaire of qList">
 
       <button class="card btn entries" (click)="onClick(questionnaire.id)"
            [attr.aria-expanded]="toggled == questionnaire.id"
@@ -14,10 +14,10 @@
               {{ questionnaire.title }}
             </div>
             <div class="col-3">
-              {{ questionnaire.dateAssigned.toLocaleDateString() }}
+              {{ questionnaire.dateAssigned }}
             </div>
             <div class="col-3">
-              {{ questionnaire.dateAssigned.toLocaleDateString() }}
+              {{ questionnaire.deadline }}
             </div>
             <div class="col-2">
               <a href="{{'view-questionnaire/' + questionnaire.id }}"> Detail </a>
