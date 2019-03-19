@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Questionnaire } from '../../../classes/questionnaire';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {QuestionnaireService} from '../../services/questionnaire/questionnaire.service';
