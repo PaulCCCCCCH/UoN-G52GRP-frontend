@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Client} from '../../../classes/client';
 import {RequestOptions} from '@angular/http';
+import {MyHttpResponse} from '../../../classes/myHttpResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class ClientService {
     return this.http.get<Client[]>(this.baseUrl + `?id=${id}`);
   }
 
-  getClients(): Observable<Client[]> {
+  getClients(): Observable<MyHttpResponse> {
     // headers.append('test@', 'something');
   const httpOptions = {
     headers: new HttpHeaders({
@@ -28,7 +29,7 @@ export class ClientService {
     })
   };
   // const result = this.http.get<Client[]>(this.baseUrl, httpOptions);
-  return this.http.get<Client[]>(this.baseUrl, httpOptions);
+  return this.http.get<MyHttpResponse>(this.baseUrl, httpOptions);
   }
 
 }
