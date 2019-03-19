@@ -1,18 +1,17 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
-import {Question} from '../../../../../classes/question';
-import {GetQuestionService} from '../../../../services/getQuestion/get-question.service';
+import {Question} from '../../../classes/question';
+import {GetQuestionService} from '../../services/getQuestion/get-question.service';
 import {Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-edit-questionnaire',
-  templateUrl: './edit-questionnaire.component.html',
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./edit-questionnaire.component.scss']
+  selector: 'app-questionnaire-edit',
+  templateUrl: './questionnaire-edit.component.html',
+  styleUrls: ['./questionnaire-edit.component.scss']
 })
-export class EditQuestionnaireComponent implements OnInit {
+export class QuestionnaireEditComponent implements OnInit {
 
   private questions: Question[];
 

@@ -16,7 +16,8 @@ import { PageNotFoundComponent } from './components/errors/page-not-found/page-n
 import { QuestionnaireDashboardComponent } from './components/respondent/questionnaire-dashboard/questionnaire-dashboard.component';
 import { QuestionnaireFillComponent } from './components/respondent/questionnaire-fill/questionnaire-fill.component';
 import { QuestionnaireSubmitComponent } from './components/respondent/questionnaire-submit/questionnaire-submit.component';
-import { EditQuestionnaireComponent } from './components/investigator/questionnaires/edit-questionnaire/edit-questionnaire.component';
+
+import { QuestionnaireEditComponent } from './components/questionnaire-edit/questionnaire-edit.component';
 import { QListComponent } from './components/q-list/q-list.component';
 import { CardComponent } from './components/card/card.component';
 import { IndexComponent } from './index/index.component';
@@ -33,11 +34,11 @@ import { ViewClientsComponent } from './components/view-clients/view-clients.com
 import { ViewOverallComponent } from './components/view-overall/view-overall.component';
 import { FormsModule } from '@angular/forms';
 import { AlertService } from './services/alert/alert.service';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 const appRoutes: Routes = [
   // Main
-  { path: '', component: IndexComponent},
+  { path: '', component: HomeComponent },
   { path: 'index', redirectTo: 'index', pathMatch: 'full'},
   // Functionality
   { path: 'q-list', component: QListComponent},
@@ -54,15 +55,15 @@ const appRoutes: Routes = [
 
   //Respondant Routes
   { path: 'response/dash', component: QuestionnaireDashboardComponent, data: { title: 'Dashboard' }},
-  { path: 'response/complete', component: QuestionnaireFillComponent, data: { title: 'Questionnaire' }},
+  { path: 'response/complete/:formId', component: QuestionnaireFillComponent, data: { title: 'Questionnaire' }},
   { path: 'response/submit/confirm', component: QuestionnaireSubmitConfirmComponent, data: { title: 'Submitting' }},
   { path: 'response/submit/success', component: QuestionnaireSubmitComponent, data: { title: 'Submitted' }},
 
   //Invesigator Routes
   { path: 'login', component: LoginComponent, data: { title: 'Login' }},
   { path: 'home', component: HomeComponent, data: { title: 'Home' }},
-  { path: 'questionnaire/edit', component: EditQuestionnaireComponent, data: { title: 'Edit Questionnaire' }},
   { path: 'questionnaires/:id', component: ViewQuestionnairesComponent, data: { title: 'Questionnaires' }},
+  { path: 'questionnaire-edit', component: QuestionnaireEditComponent },
   // Others
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
   //END
@@ -80,7 +81,6 @@ const appRoutes: Routes = [
     QuestionnaireDashboardComponent,
     QuestionnaireFillComponent,
     QuestionnaireSubmitComponent,
-    EditQuestionnaireComponent,
     QListComponent,
     CardComponent,
     IndexComponent,
@@ -94,6 +94,7 @@ const appRoutes: Routes = [
     ManageStaffComponent,
     ViewClientsComponent,
     ViewOverallComponent,
+    QuestionnaireEditComponent,
   ],
   imports: [
     RouterModule.forRoot(
