@@ -1,86 +1,142 @@
+<!--Html file to factilite the functionality to view questionnaire -->
+
 <div *ngIf="finished" class="container topmargin">
   <div class="row border-bottom">
+     
       <h1 class="card-title">
           {{ questionnaire.title }}
       </h1>
+
   </div>
   <div class="row">
+
     <div class="col-6">
-      <b>Date assigned:</b>
+      <b>
+        Date assigned:
+      </b>
     </div>
+
     <div class="col-6">
       {{ questionnaire.dateAssigned }}
     </div>
+
   </div>
 
   <div class="row">
+
     <div class="col-6">
-      <b>Deadline:</b>
+      <b>
+        Deadline:
+      </b>
     </div>
+
     <div class="col-6">
       {{ questionnaire.deadline }}
     </div>
+
   </div>
 
   <div class="row">
+
     <div class="col-6">
-      <b>Assigned to:</b>
+      <b>
+        Assigned to:
+      </b>
     </div>
+
     <div class="col-6">
       <!-- Modal trigger -->
-      <button class="btn btn-primary" (click)="openWindowCustomClass(viewAssigned)">Show List</button>
+      <button class="btn btn-primary" (click)="openWindowCustomClass(viewAssigned)">
+        Show List
+      </button>
     </div>
+
   </div>
 
   <div class="row border-bottom" style="padding-bottom: 30px">
+
     <div class="col-6">
-      <b>Status:</b>
+      <b>
+        Status:
+      </b>
     </div>
+
     <div class="col-6">
       {{ questionnaire.status }}
     </div>
+
   </div>
 
   <br>
   <div class="card-title">
-    <h2>Response</h2>
+
+    <h2>
+      Response
+    </h2>
+
   </div>
-    <p><ngb-progressbar type="success" [value]="33">{{ questionnaire.responseNumber }} / {{ questionnaire.assignedNumber }}</ngb-progressbar></p>
+
+    <p>
+      <ngb-progressbar type="success" [value]="33">
+        {{ questionnaire.responseNumber }} / {{ questionnaire.assignedNumber }}
+      </ngb-progressbar>
+    </p>
+
   <hr>
+
   <div class="card-title">
-    <h2>Views</h2>
+    <h2>
+      Views
+    </h2>
   </div>
 
   <div class="list-group">
+
     <div class="row">
       <div class="col-8">
         View overall statistics of the responses.
       </div>
+
       <div class="col-4">
-        <button type="button" class="btn btn-outline-success" (click)="viewOverall()">View Overall</button>
+        <button type="button" class="btn btn-outline-success" (click)="viewOverall()">
+          View Overall
+        </button>
       </div>
+
     </div>
     <div class="row">
       <div class="col-8">
         See response list and check them out one by one.
       </div>
+
       <div class="col-4">
-        <button type="button" class="btn btn-outline-success" (click)="viewResponseList()">Response List</button>
+        <button type="button" class="btn btn-outline-success" (click)="viewResponseList()">
+          Response List
+        </button>
+
       </div>
     </div>
   </div>
 
   <hr>
+
   <div class="card-title">
-    <h2>Services</h2>
+    <h2>
+      Services
+    </h2>
   </div>
+
   <div class="list-group">
     <div class="row">
+
       <div class="col-8">
         Assign the questionnaire to other people through email.
       </div>
+
       <div class="col-4">
-        <button type="button" class="btn btn-outline-success">Assign</button>
+        <button type="button" class="btn btn-outline-success">
+          Assign
+        </button>
       </div>
     </div>
     <div class="row">
@@ -89,15 +145,21 @@
       </div>
       <div class="col-4">
 
-        <button class="btn btn-outline-success" (click)="openWindowCustomClass(changeDeadline)">Change Deadline</button>
+        <button class="btn btn-outline-success" (click)="openWindowCustomClass(changeDeadline)">
+          Change Deadline
+        </button>
       </div>
     </div>
     <div class="row">
+
       <div class="col-8">
         Send Chase-up emails to those who haven't responded yet.
       </div>
+
       <div class="col-4">
-        <button class="btn btn-outline-success" (click)="openWindowCustomClass(sendChaseUp)">Send Chase-up</button>
+        <button class="btn btn-outline-success" (click)="openWindowCustomClass(sendChaseUp)">
+          Send Chase-up
+        </button>
       </div>
     </div>
 
@@ -105,53 +167,79 @@
 
   <hr>
   <div class="card-title">
-    <h2>Danger Zone</h2>
+    <h2>
+      Danger Zone
+    </h2>
+
   </div>
   <div class="list-group">
     <div class="row">
       <div class="col-8">
         Delete the questionnaire.
       </div>
+
       <div class="col-4">
-        <button class="btn btn-outline-danger" (click)="openWindowCustomClass(deleteQuestionnaire)">delete</button>
+        <button class="btn btn-outline-danger" (click)="openWindowCustomClass(deleteQuestionnaire)">
+          delete
+        </button>
+
       </div>
     </div>
   </div>
 
   <div class="list-group">
     <div class="row">
+
       <div class="col-8">
         Close the questionnaire now and stop receiving any new responses.
       </div>
+
       <div class="col-4">
-        <button class="btn btn-outline-danger" (click)="openWindowCustomClass(closeQuestionnaire)">Close</button>
+        <button class="btn btn-outline-danger" (click)="openWindowCustomClass(closeQuestionnaire)">
+          Close
+        </button>
+
       </div>
     </div>
   </div>
 
   <ng-template #changeDeadline let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">Changing Deadline</h4>
+      <h4 class="modal-title">
+        Changing Deadline
+      </h4>
+
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">
+          &times;
+        </span>
       </button>
+
     </div>
     <div class="modal-body">
       <input type="text" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()"/>
 
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click')">Change</button>
+      <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click')">
+        Change
+      </button>
     </div>
 
   </ng-template>
 
   <ng-template #sendChaseUp let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">Send Chase-up Emails</h4>
+      <h4 class="modal-title">
+        Send Chase-up Emails
+      </h4>
+
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">
+          &times;
+        </span>
       </button>
+
     </div>
     <div class="modal-body">
       All the users that has been assigned this questionnaire but has not responded will receive and email. Once you have done it,
@@ -159,59 +247,102 @@
 
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click')">Send</button>
+
+      <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click')">
+        Send
+      </button>
+
     </div>
 
   </ng-template>
 
   <ng-template #viewAssigned let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">Questionnaire assigned to: </h4>
+      <h4 class="modal-title">
+        Questionnaire assigned to: 
+      </h4>
+
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">
+          &times;
+        </span>
       </button>
+
     </div>
     <div class="modal-body">
       <ul>
-        <li>psyabc@nottingham.ac.uk</li>
-        <li>psyabc@gmail.ac.uk</li>
-        <li>anotherexample@nottingham.ac.uk</li>
+
+        <li>
+          psyabc@nottingham.ac.uk
+        </li>
+
+        <li>
+          psyabc@gmail.ac.uk
+        </li>
+
+        <li>
+          anotherexample@nottingham.ac.uk
+        </li>
+
       </ul>
     </div>
 
   </ng-template>
 
   <ng-template #deleteQuestionnaire let-modal>
+
     <div class="modal-header">
-      <h4 class="modal-title">Send Chase-up Emails</h4>
+      <h4 class="modal-title">
+        Send Chase-up Emails
+      </h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">
+          &times;
+        </span>
       </button>
     </div>
+
     <div class="modal-body">
       If you delete the questionnaire, all responses gathered will be removed from server permanently.
       Are you sure?
 
     </div>
+
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Delete Questionnaire</button>
+      
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">
+        Delete Questionnaire
+      </button>
+
     </div>
 
   </ng-template>
 
   <ng-template #closeQuestionnaire let-modal>
+
     <div class="modal-header">
-      <h4 class="modal-title">Send Chase-up Emails</h4>
+
+      <h4 class="modal-title">
+        Send Chase-up Emails
+      </h4>
+
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">
+          &times;
+        </span>
       </button>
+
     </div>
     <div class="modal-body">
       If you close the questionnaire, all respondents will no longer be able to submit their answers, and
       you cannot open the questionnaire again. Make sure you have collected enough information before proceeding.
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Close Questionnaire</button>
+
+      <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">
+        Close Questionnaire
+      </button>
+
     </div>
 
   </ng-template>
