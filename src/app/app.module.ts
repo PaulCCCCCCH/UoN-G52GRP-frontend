@@ -32,7 +32,7 @@ import { ViewResponseSetComponent } from './components/view-response-set/view-re
 import { ManageStaffComponent } from './manage-staff/manage-staff.component';
 import { ViewClientsComponent } from './components/view-clients/view-clients.component';
 import { ViewOverallComponent } from './components/view-overall/view-overall.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AlertService } from './services/alert/alert.service';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
@@ -106,6 +106,7 @@ const appRoutes: Routes = [
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [
     DemoService,
