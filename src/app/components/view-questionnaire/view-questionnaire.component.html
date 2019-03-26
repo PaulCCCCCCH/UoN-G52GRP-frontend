@@ -2,12 +2,14 @@
 
 <div *ngIf="finished" class="container topmargin">
   <div class="row border-bottom">
-     
+      <!--Title of questionnaire-->
       <h1 class="card-title">
           {{ questionnaire.title }}
       </h1>
 
   </div>
+
+  <!--Date of questionnaire  assigned-->
   <div class="row">
 
     <div class="col-6">
@@ -22,8 +24,9 @@
 
   </div>
 
+<!--Deadline for completing the questionnaire -->
   <div class="row">
-
+    
     <div class="col-6">
       <b>
         Deadline:
@@ -35,7 +38,8 @@
     </div>
 
   </div>
-
+ 
+  <!--People that questionnarie assigned to-->
   <div class="row">
 
     <div class="col-6">
@@ -45,14 +49,15 @@
     </div>
 
     <div class="col-6">
-      <!-- Modal trigger -->
+      <!-- button to show the pop up window -->
       <button class="btn btn-primary" (click)="openWindowCustomClass(viewAssigned)">
         Show List
       </button>
     </div>
 
   </div>
-
+  
+  <!--Status of the questionnarie-->
   <div class="row border-bottom" style="padding-bottom: 30px">
 
     <div class="col-6">
@@ -68,6 +73,7 @@
   </div>
 
   <br>
+  <!--Section to show people have alreadyresponded -->
   <div class="card-title">
 
     <h2>
@@ -75,7 +81,8 @@
     </h2>
 
   </div>
-
+    
+    <!--Progress bar used to show number of people already responded and percentage compared to all people assigned-->
     <p>
       <ngb-progressbar type="success" [value]="33">
         {{ questionnaire.responseNumber }} / {{ questionnaire.assignedNumber }}
@@ -84,12 +91,14 @@
 
   <hr>
 
+  
   <div class="card-title">
     <h2>
       Views
     </h2>
   </div>
 
+  <!--Section to show detailed statistics-->
   <div class="list-group">
 
     <div class="row">
@@ -98,6 +107,7 @@
       </div>
 
       <div class="col-4">
+        <!--Button to show the pop up window-->
         <button type="button" class="btn btn-outline-success" (click)="viewOverall()">
           View Overall
         </button>
@@ -110,6 +120,7 @@
       </div>
 
       <div class="col-4">
+        <!--Button to show the pop up window-->
         <button type="button" class="btn btn-outline-success" (click)="viewResponseList()">
           Response List
         </button>
@@ -119,32 +130,36 @@
   </div>
 
   <hr>
-
+ 
   <div class="card-title">
     <h2>
       Services
     </h2>
   </div>
 
+  <!--Section for facilitating service functionality -->
   <div class="list-group">
     <div class="row">
 
       <div class="col-8">
         Assign the questionnaire to other people through email.
       </div>
-
+       
       <div class="col-4">
+        <!--Button to assign the questionnarie-->
         <button type="button" class="btn btn-outline-success">
           Assign
         </button>
       </div>
     </div>
+
     <div class="row">
       <div class="col-8">
         Change the deadline of the questionnaire.
       </div>
       <div class="col-4">
-
+        
+        <!--Button to change deadline-->
         <button class="btn btn-outline-success" (click)="openWindowCustomClass(changeDeadline)">
           Change Deadline
         </button>
@@ -157,6 +172,7 @@
       </div>
 
       <div class="col-4">
+        <!--Button to send chase up email-->
         <button class="btn btn-outline-success" (click)="openWindowCustomClass(sendChaseUp)">
           Send Chase-up
         </button>
@@ -166,6 +182,7 @@
   </div>
 
   <hr>
+  <!--Section for danger zone-->
   <div class="card-title">
     <h2>
       Danger Zone
@@ -179,6 +196,7 @@
       </div>
 
       <div class="col-4">
+        <!--Button to delete questionarrie -->
         <button class="btn btn-outline-danger" (click)="openWindowCustomClass(deleteQuestionnaire)">
           delete
         </button>
@@ -195,6 +213,7 @@
       </div>
 
       <div class="col-4">
+        <!--Button to close the email-->
         <button class="btn btn-outline-danger" (click)="openWindowCustomClass(closeQuestionnaire)">
           Close
         </button>
@@ -202,13 +221,15 @@
       </div>
     </div>
   </div>
-
+ 
+  <!--facilitate pop up page to change deadline-->
   <ng-template #changeDeadline let-modal>
+    <!--Header of pop over-->
     <div class="modal-header">
       <h4 class="modal-title">
         Changing Deadline
       </h4>
-
+     <!--Button to close the pop over-->
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">
           &times;
@@ -228,7 +249,9 @@
 
   </ng-template>
 
+   <!--facilitate pop u ppage to send chase up email-->
   <ng-template #sendChaseUp let-modal>
+    <!--Header of pop over-->
     <div class="modal-header">
       <h4 class="modal-title">
         Send Chase-up Emails
@@ -256,12 +279,14 @@
 
   </ng-template>
 
+<!--facilitate pop up page to view assigned-->
   <ng-template #viewAssigned let-modal>
+    <!--Header of the pop over-->
     <div class="modal-header">
       <h4 class="modal-title">
         Questionnaire assigned to: 
       </h4>
-
+     
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">
           &times;
@@ -269,6 +294,7 @@
       </button>
 
     </div>
+
     <div class="modal-body">
       <ul>
 
@@ -288,9 +314,9 @@
     </div>
 
   </ng-template>
-
+  <!--facilitate pop up page used to delete questionnarie-->
   <ng-template #deleteQuestionnaire let-modal>
-
+    <!--Header of pop over page-->
     <div class="modal-header">
       <h4 class="modal-title">
         Send Chase-up Emails
@@ -317,9 +343,10 @@
     </div>
 
   </ng-template>
-
+  
+  <!--facilitate pop up page used to close questionnarie-->
   <ng-template #closeQuestionnaire let-modal>
-
+    <!--Header of the pop over page-->
     <div class="modal-header">
 
       <h4 class="modal-title">
