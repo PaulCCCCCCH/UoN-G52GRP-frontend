@@ -35,6 +35,7 @@ import { ViewOverallComponent } from './components/view-overall/view-overall.com
 import { FormsModule } from '@angular/forms';
 import { AlertService } from './services/alert/alert.service';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
+import { ResetPasswordId2Component } from './components/reset-password-id2/reset-password-id2.component';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 const appRoutes: Routes = [
@@ -51,7 +52,7 @@ const appRoutes: Routes = [
   { path: 'view-clients', component: ViewClientsComponent },
   { path: 'view-questionnaire/:id/view-overall', component: ViewOverallComponent },
   { path: 'reset-password',component:ResetPasswordComponent},
-
+  { path: 'reset-password-id2', component:ResetPasswordId2Component},
   // Others
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
 
@@ -97,7 +98,8 @@ const appRoutes: Routes = [
     ViewClientsComponent,
     ViewOverallComponent,
     QuestionnaireEditComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ResetPasswordId2Component
   ],
   imports: [
     RouterModule.forRoot(
