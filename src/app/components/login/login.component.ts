@@ -38,7 +38,23 @@ export class LoginComponent implements OnInit {
     }
 
     // TODO:
-    this.authenticationService.login(this.formData.username.value, this.formData.password.value);
+    this.authenticationService.login(this.formData.username.value, this.formData.password.value)
+      .subscribe(
+        res => {
+
+          localStorage.setItem('id_token', res.data.token);
+          this.router.navigate(['']);
+      },
+      res => {
+          alert(res.error.err.message + 'Wrong username or password');
+          return;
+      });
 
   }
+
+  // TODO: delete this function
+  test() {
+    alert(localStorage.getItem('id_token'));
+  }
+
 }

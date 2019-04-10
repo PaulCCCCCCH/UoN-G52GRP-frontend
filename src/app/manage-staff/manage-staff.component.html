@@ -1,35 +1,16 @@
-<!--HTML document for manage staff-->
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <!--title of  page-->
-  <title>
-    Manage staff
-  </title>
-   
-  <!--Script used-->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-</head>
-
-<body>
-
 <div class="container">
   
   <!--Title of the page-->
   <h1 style="margin: 20px;text-align: center;color:blue;" >
     Manage Staff
   </h1>
-
-  <!--Sub-title-->
-  <h2 style="margin:30px">
-    List of staff
-  </h2>
+  <div class="row">
+    <div class="col-12 text-right">
+      <button class="btn btn-outline-primary" id="addClient" (click)="openWindow(addStaffWindow, null)">
+        <i class="fas fa-plus">
+        </i>
+      </button>
+    </div>
 
   <!--Table to display the current staff in the system -->
   <table class="table">
@@ -51,63 +32,13 @@
 
     <tbody>
 
-      <tr class="info">
-
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test@test.com</td>
-        <td>Test</td>      
-        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
-      
-      </tr>  
-
-      <tr class="info">
-
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test@test.com</td>
-        <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
-      
-      </tr>
-
-      <tr class="info">
-
-        <td>Test</td>
-        <td>Test</td>
-        <td>Test@test.com</td>
-        <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)">View info</button></td>
-      
-      </tr>
-
-      <tr class="info">
+      <tr *ngFor="let staff of staffList"  class="info">
         
-        <td>Test</td>
-        <td>test</td>
+        <td>{{staff.name_first}}</td>
+        <td>{{staff.name_last}}</td>
         <td>test@test.com</td>
         <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
-      
-      </tr>
-
-      <tr class="info">
-        
-        <td>Test</td>
-        <td>test</td>
-        <td>test@test.com</td>
-        <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)">View info</button></td>
-      
-      </tr>
-
-      <tr class="info">
-        
-        <td>Test</td>
-        <td>test</td>
-        <td>test@test.com</td>
-        <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg" (click)="open(content)" >View info</button></td>
+        <td><button type="button" class="btn btn-primary btn-lg" (click)="openWindow(editStaffWindow)" >Edit Staff</button></td>
       
       </tr>
 
@@ -115,30 +46,60 @@
 
   </table>
 
+  <ng-template #addStaffWindow let-modal>
+    <div class="modal-header">
+      <!--Title-->
+      <div class="modal-title">
+        Add new staff to the company
+      </div>
+      <!--Close button-->
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div class="text-right">
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">
+                  &times;
+                </span>
+          </button>
+        </div>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <label for="newStaffId"></label>
+      <input type="text" [(ngModel)]="newStaffId" id="newStaffId" placeholder="Input staff id">
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="addStaff()">Submit</button>
+    </div>
+
+
+  </ng-template>
+
   <!--Pop over functionality and the view of the pop over page-->
-  <!--Modal is used to facilite the pop over page-->
-  <ng-template #content >
+  <ng-template #editStaffWindow let-modal>
 
         <div class="modal-header">
-          <!--Close button-->
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
-            <span aria-hidden="true">
-
-              &times;
-
-            </span>
-
-          </button>
 
           <!--Title-->
-          <h2 class="modal-title" id="myModalLabel" style="text-align:center ">
+          <div class="modal-title">
+                Manage client's access right and group
+          </div>
 
-            Manage client's access right and group
 
-          </h2>
-
+          <!--Close button-->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <div class="text-right">
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">
+                  &times;
+                </span>
+                </button>
+             </div>
+          </button>
         </div>
+
+
         <!--Main part of pop over page-->
         <div class="modal-body">
           
@@ -160,7 +121,7 @@
               <!--Second input; Clients that staff can view; A email input is required-->             
               <input aria-required="true" required="" style= "width:300px;max-width:98%;" type= "email"> 
               <!--Button to submit the input information-->        
-              <input class="pushbuttton-wide" style="background-color: aqua;color:blueviolet;;cursor:pointer;display:inline-block;font-size: 15px;font-weight:700;letter-spacing:1px;padding: .25em 1em .4em;text-align: center;vertical-align: middle;text-transform:uppercase;border-radius:3px;;margin-left: 0cm" type="submit" value="Submit">
+              <input class="btn-secondary" type="submit" value="Submit">
           
             </form>
 
@@ -170,6 +131,3 @@
 
 </div>
    
-
-</body>
-</html>

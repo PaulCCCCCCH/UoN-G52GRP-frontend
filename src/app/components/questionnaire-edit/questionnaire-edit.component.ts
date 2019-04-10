@@ -5,6 +5,7 @@ import {GetQuestionService} from '../../services/getQuestion/get-question.servic
 import {Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {QuestionnaireService} from '../../services/questionnaire/questionnaire.service';
 
 @Component({
   selector: 'app-questionnaire-edit',
@@ -28,7 +29,9 @@ export class QuestionnaireEditComponent implements OnInit {
 
   constructor(private _location: Location,
               private questionService: GetQuestionService,
-              private modalService: NgbModal) {
+              private modalService: NgbModal,
+              private formService: QuestionnaireService
+  ) {
     this.questions = [];
     this.from = 0;
     this.to = 0;
@@ -85,6 +88,14 @@ export class QuestionnaireEditComponent implements OnInit {
 
   removeChoice(question: Question, choiceIndex: number) {
     question.choices.splice(choiceIndex, 1);
+  }
+
+  submit() {
+    const form = JSON.stringify(this.questions);
+    this.formService.postQuestionnaire(form, 'testing').subscribe(
+      res => alert('Form saved!'),
+      err => alert('Server error! form not saved')
+    );
   }
 
 }
