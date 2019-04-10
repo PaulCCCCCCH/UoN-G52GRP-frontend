@@ -10,15 +10,20 @@
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input type="text" formControlName="username" class="fadeIn second" name="login" placeholder="login">
+      <input type="password" formControlName="password" class="fadeIn third" name="login" placeholder="password">
       <input type="submit" class="fadeIn fourth" value="Log In" href="home">
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
       <a class="underlineHover" href="login">Forgot Password?</a>
+    </div>
+
+    <!-- For testing! -->
+    <div>
+      <button (click)="test()"> Test </button>
     </div>
 
   </div>

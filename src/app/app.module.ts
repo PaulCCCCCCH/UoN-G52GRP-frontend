@@ -1,6 +1,6 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -32,24 +32,33 @@ import { ViewResponseSetComponent } from './components/view-response-set/view-re
 import { ManageStaffComponent } from './manage-staff/manage-staff.component';
 import { ViewClientsComponent } from './components/view-clients/view-clients.component';
 import { ViewOverallComponent } from './components/view-overall/view-overall.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AlertService } from './services/alert/alert.service';
+import {AuthInterceptorService} from './services/auth/auth-interceptor.service';
+import {AuthGuardService} from './services/auth/auth-guard.service';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import { ResetPasswordId2Component } from './components/reset-password-id2/reset-password-id2.component';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 const appRoutes: Routes = [
+      { path: '', canActivate: [AuthGuardService], children: [
+          { path: '', component: HomeComponent},
+          { path: 'manage-staff/:id', component: ManageStaffComponent},
+          { path: 'view-clients', component: ViewClientsComponent},
+          { path: 'home', component: HomeComponent, data: { title: 'Home' }},
+
+      ]},
+
+  { path: 'login', component: LoginComponent, data: { title: 'Login' }},
   // Main
   { path: '', component: HomeComponent },
-  { path: 'index', redirectTo: 'index', pathMatch: 'full'},
   // Functionality
   { path: 'q-list', component: QListComponent},
   { path: 'view-questionnaire/:id', component: ViewQuestionnaireComponent},
   { path: 'assign', component: AssignComponent},
   { path: 'view-response-list/:id', component: ResponseListComponent},
   { path: 'view-response-set/:qid/:uid', component: ViewResponseSetComponent},
-  { path: 'manage-staff', component: ManageStaffComponent },
-  { path: 'view-clients', component: ViewClientsComponent },
+
   { path: 'view-questionnaire/:id/view-overall', component: ViewOverallComponent },
   { path: 'reset-password',component:ResetPasswordComponent},
   { path: 'reset-password-id2', component:ResetPasswordId2Component},
@@ -63,8 +72,6 @@ const appRoutes: Routes = [
   { path: 'response/submit/success', component: QuestionnaireSubmitComponent, data: { title: 'Submitted' }},
 
   //Invesigator Routes
-  { path: 'login', component: LoginComponent, data: { title: 'Login' }},
-  { path: 'home', component: HomeComponent, data: { title: 'Home' }},
   { path: 'questionnaires/:id', component: ViewQuestionnairesComponent, data: { title: 'Questionnaires' }},
   { path: 'questionnaire-edit', component: QuestionnaireEditComponent },
   // Others
@@ -111,10 +118,12 @@ const appRoutes: Routes = [
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [
     DemoService,
-    AlertService
+    AlertService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent],
 })
