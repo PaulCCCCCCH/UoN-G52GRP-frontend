@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Questionnaire } from '../../../classes/questionnaire';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {QuestionnaireService} from '../../services/questionnaire/questionnaire.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-view-questionnaire',
@@ -11,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ViewQuestionnaireComponent implements OnInit {
 
-  private id = +this.route.snapshot.paramMap.get('id');
+  private id = this.route.snapshot.paramMap.get('id');
   private questionnaire: Questionnaire;
   progress: number;
   finished = false;
@@ -19,15 +19,17 @@ export class ViewQuestionnaireComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private questionnaireService: QuestionnaireService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
   }
 
   ngOnInit() {
-    this.questionnaireService.getQuestionnaire(this.id).subscribe(questionnaires => {
-      this.questionnaire = questionnaires[0];
-      this.progress = this.questionnaire.responseNumber / this.questionnaire.assignedNumber;
-      this.finished = true;
+    this.questionnaireService.getQuestionnaire(this.id).subscribe(
+      res => {
+        this.questionnaire = res.data;
+        this.progress = this.questionnaire.responseNumber / this.questionnaire.assignedNumber;
+        this.finished = true;
     });
     /*
     this.questionnaireService.getQList().subscribe(questionnaires =>
@@ -42,11 +44,22 @@ export class ViewQuestionnaireComponent implements OnInit {
   }
 
   viewResponseList() {
-    window.location.href = 'view-response-list/' + this.id;
+    this.router.navigate(['/view-response-list/' + this.id]);
   }
 
   viewOverall() {
-    window.location.href += '/view-overall';
+    this.router.navigate(['/questionnaire/view-overall/' + this.id]);
+  }
+
+  deleteQuestionnaire() {
+    this.questionnaireService.deleteQuestionnaire(this.id).subscribe(
+      res => {
+        alert('Successfully deleted questionnaire!');
+        this.modalService.dismissAll();
+        this.router.navigate(['/questionnaires/']);
+      },
+      err => alert('Server error! Questionnaire not deleted!')
+    );
   }
 }
 

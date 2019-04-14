@@ -12,7 +12,7 @@ import {ActivatedRoute} from '@angular/router';
 export class ResponseListComponent implements OnInit {
 
   private responses: ResponseSet[];
-  private id = +this.route.snapshot.paramMap.get('id');
+  private id = this.route.snapshot.paramMap.get('id');
 
   constructor(
     private responseService: GetResponseService,
@@ -23,7 +23,7 @@ export class ResponseListComponent implements OnInit {
 
   ngOnInit() {
     this.responseService.getResponseSets(this.id).subscribe(
-      responseSets => this.responses = responseSets
+      res => this.responses = res.data
     );
   }
 

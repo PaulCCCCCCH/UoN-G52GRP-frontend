@@ -6,6 +6,8 @@ import {Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {QuestionnaireService} from '../../services/questionnaire/questionnaire.service';
+import {Questionnaire} from '../../../classes/questionnaire';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-questionnaire-edit',
@@ -15,6 +17,10 @@ import {QuestionnaireService} from '../../services/questionnaire/questionnaire.s
 export class QuestionnaireEditComponent implements OnInit {
 
   private questions: Question[];
+  private questionnaire: Questionnaire;
+  private questionnaireId: string;
+  private inputTitle: string;
+  private inputDescription: string;
 
   // Alert
   private _success = new Subject<string>();
@@ -26,11 +32,15 @@ export class QuestionnaireEditComponent implements OnInit {
   private from: number;
   private to: number;
 
+  private questionChoicesMapping = {};
+
 
   constructor(private _location: Location,
               private questionService: GetQuestionService,
               private modalService: NgbModal,
-              private formService: QuestionnaireService
+              private questionnaireService: QuestionnaireService,
+              private route: ActivatedRoute,
+              private router: Router
   ) {
     this.questions = [];
     this.from = 0;
@@ -44,13 +54,18 @@ export class QuestionnaireEditComponent implements OnInit {
       debounceTime(this.messageShowTimeMs)
     ).subscribe(() => this.successMessage = null);
 
-
-    this.questionService.getQuestion(1111).subscribe(
-      question => this.questions.push(question[0])
-    );
-    this.questionService.getQuestion(2222).subscribe(
-      question => this.questions.push(question[0])
-    );
+    this.questionnaireId = this.route.snapshot.paramMap.get('id');
+    // TODO: edit draft given id.
+    if (this.questionnaireId) {
+      this.questionnaireService.getQuestionnaire(this.questionnaireId).subscribe(
+        res => {
+          this.questions = JSON.parse(res.data.form);
+          this.inputTitle = res.data.title;
+          this.inputDescription = res.data.description;
+        }
+      );
+      return;
+    }
   }
 
   backClicked() {
@@ -58,7 +73,11 @@ export class QuestionnaireEditComponent implements OnInit {
   }
 
   addQuestion(typeCode: number) {
-    this.questions.push(new Question(typeCode));
+    const question = new Question(typeCode);
+    if (question.typeCode === 2 || question.typeCode === 3){
+      question.choices = [];
+    }
+    this.questions.push(question);
     this._success.next(`Successfully added a question`);
   }
 
@@ -83,19 +102,60 @@ export class QuestionnaireEditComponent implements OnInit {
   }
 
   addChoice(question: Question) {
-    question.choices.push('Input text here');
+    question.choices.push('');
   }
 
   removeChoice(question: Question, choiceIndex: number) {
     question.choices.splice(choiceIndex, 1);
   }
 
+  openWindow(content) {
+    this.modalService.open(content, {windowClass: 'dark-modal'});
+  }
+
   submit() {
+    const id = this.questionnaireId;
     const form = JSON.stringify(this.questions);
-    this.formService.postQuestionnaire(form, 'testing').subscribe(
-      res => alert('Form saved!'),
-      err => alert('Server error! form not saved')
+    if (!id) {
+      this.questionnaireService.postQuestionnaire(form, this.inputTitle, this.inputDescription).subscribe(
+        res => {
+          alert('Form saved!');
+          this.questionnaireId = res.data._id;
+          this.router.navigate(['/questionnaire/edit/' + this.questionnaireId]);
+        },
+        err => this.errorAlert(err)
+      );
+    } else {
+      this.questionnaireService.updateQuestionnaire(this.questionnaireId, form, this.inputTitle, this.inputDescription).subscribe(
+        res => alert('Form saved!'),
+        err => this.errorAlert(err)
+      );
+    }
+  }
+
+  deleteQuestionnaire() {
+    this.questionnaireService.deleteQuestionnaire(this.questionnaireId).subscribe(
+      res => {
+        alert('Successfully deleted questionnaire!');
+        this.router.navigate(['questionnaires/']);
+        this.modalService.dismissAll();
+      },
+      err => this.errorAlert(err)
     );
+  }
+
+  errorAlert(err) {
+    alert('Server error! Operation failed!');
+  }
+
+  trackByFn(index: any, item: any) {
+    return index;
+  }
+
+  // For debugging
+  print(j: number, qc) {
+    alert('Now editing ' + j);
+    console.log(qc);
   }
 
 }

@@ -1,6 +1,6 @@
 export class Response {
-  questionId: number;
-  responseId: number;
+  questionId: string;
+  responseId: string;
   type: string;		// text | text box | choice | multiple choices
   typeCode: number; 	// 1     |      2      |       3    |            4
   responseBody: string; 			/* For (multiple) choices questions, give a string of

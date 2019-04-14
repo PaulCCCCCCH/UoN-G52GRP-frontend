@@ -1,5 +1,5 @@
 export class Question {
-  id: number;
+  id: string;
   type: string;		//text | text box | choice | multiple choices
   typeCode: number; 	//1     |      2      |       3    |            4
   preReqs: number[];    			// List of prerequisite question IDs
@@ -32,6 +32,8 @@ export class Question {
         this.type = 'Multiple Choices';
         break;
     }
+    this.choices = [];
+    this.questionBody = '';
   }
 
   setBody(body: string) {
@@ -39,6 +41,6 @@ export class Question {
   }
 
   addPrereq(index: number) {
-    // TODO
+    // TODO: Add question dependencies.
   }
 }

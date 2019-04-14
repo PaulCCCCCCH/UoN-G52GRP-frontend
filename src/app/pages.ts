@@ -2,7 +2,7 @@ import { Page } from '../classes/page';
 
 export const PAGES: Page[] = [
   { pageName: 'View Active Questionnaires',
-    pageURL: 'q-list',
+    pageURL: 'questionnaires',
     pageDescription: 'Show the list of active questionnaires',
     iconURL: 'https://via.placeholder.com/300',
   },

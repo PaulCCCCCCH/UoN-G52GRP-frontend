@@ -39,6 +39,13 @@ export class ViewClientsComponent implements OnInit {
     this.newDescription = '';
   }
 
+  submit() {
+    if (this.selectedClient === null) {
+      this.addClient();
+    } else {
+      this.editClient();
+    }
+  }
 
   removeClient() {
     this.clientService.removeClient(this.selectedClient._id).subscribe(
@@ -54,12 +61,7 @@ export class ViewClientsComponent implements OnInit {
   }
 
   editClient() {
-    let selectedId = null;
-    if (this.selectedClient !== null) {
-      selectedId = this.selectedClient._id;
-    } else {
-      selectedId = undefined;
-    }
+    const selectedId = this.selectedClient._id;
     this.clientService.editClient(selectedId, this.newName, this.newDescription).subscribe(
       res => {
         alert('Client information updated successfully!');
@@ -68,6 +70,19 @@ export class ViewClientsComponent implements OnInit {
       },
       err => {
         alert('Operation failed!');
+      }
+    );
+  }
+
+  addClient() {
+    this.clientService.addClient(this.newName, this.newDescription).subscribe(
+      res => {
+        alert('Client created successfully!');
+        this.ngOnInit();
+        this.modalService.dismissAll();
+      },
+      err => {
+        alert('Server error! Failed to add client.');
       }
     );
   }

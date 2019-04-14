@@ -30,6 +30,36 @@
   </div>
 </ng-template>
 
+
+<ng-template #deleteQuestionnaireWindow let-modal>
+  <!--Header of pop over page-->
+  <div class="modal-header">
+    <h4 class="modal-title">
+      Delete Questionnaire
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">
+          &times;
+        </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    The draft will be deleted permanently.
+    Are you sure?
+
+  </div>
+
+  <div class="modal-footer">
+
+    <button type="button" class="btn btn-outline-danger" (click)="deleteQuestionnaire()">
+      Delete Questionnaire
+    </button>
+
+  </div>
+
+</ng-template>
+
 <!--Facilite the main User interface -->
 <div id="temp" class="container topmargin">
   <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
@@ -50,14 +80,14 @@
               <div class="col-6 text-left">
 
                 <!--Button to deletequestionnaire -->
-                <button type="button" class="btn btn-danger">
+                <button type="button" (click)="openWindow(deleteQuestionnaireWindow)" class="btn btn-danger">
                   <i class="far fa-trash-alt">
-                 </i>
+                  </i>
                 </button>
 
                 <!--Button to save change-->
-                <button style="margin-left: 10px;" type="button" class="btn btn-success">
-                  <i class="far fa-save" (click)="submit()">
+                <button style="margin-left: 10px;" type="button" class="btn btn-success" (click)="submit()">
+                  <i class="far fa-save">
                   </i>
                 </button>
 
@@ -98,6 +128,13 @@
         </div>
 
         <div class="card-body">
+          <label for="formTitle"></label>
+          <input [(ngModel)]="inputTitle" type="text" class="form-control" id="formTitle" aria-describedby="emailHelp" placeholder="Type your questionnaire title here">
+
+
+          <label for="formDescription"></label>
+          <input [(ngModel)]="inputDescription" type="text" class="form-control" id="formDescription" aria-describedby="emailHelp" placeholder="Type your questionnaire description here">
+
           <ul class="list-group list-group-flush" id="form">
             
             <li *ngFor="let question of questions; let i = index" class="list-group-item">
@@ -149,7 +186,7 @@
 
                   </div>
                   <div class="form-group">
-                    <label for="questionBody">Question</label>
+                    <label for="questionBody"></label>
                     <input [(ngModel)]="question.questionBody" type="text" class="form-control" id="questionBody" aria-describedby="emailHelp" placeholder="Type your question here">
                   </div>
 
@@ -178,15 +215,14 @@
 
                   <div class="form-group">
                     <ul class="list-group">
-                      <li *ngFor="let choice of question.choices; let j = index" class="list-group-item">
+                      <li *ngFor="let choice of question.choices; let j = index; trackBy:trackByFn" class="list-group-item">
                         <div class="row">
                           <label class="col-2" for="{{question.id}}/{{j}}">Choice {{j + 1}}</label>
-
                           <div class="col-10 text-right">
                             <button type="button" (click)="removeChoice(question, j)" class="btn-sm btn-danger">X</button>
                           </div>
-                          
-                          <input [(ngModel)]="choice" class="form-control" type="text" id="{{question.id}}/{{j}}" />
+<!-- TODO: Problem here!-->
+                          <input [(ngModel)]="question.choices[j]" type="text" id="{{question.id}}/{{j}}" placeholder="Input choice text here" />
                         </div>
                       </li>
                     </ul>

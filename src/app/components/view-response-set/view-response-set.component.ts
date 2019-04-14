@@ -14,8 +14,8 @@ import {Response} from '../../../classes/response';
 })
 export class ViewResponseSetComponent implements OnInit {
 
-  uid = +this.route.snapshot.paramMap.get('uid');
-  qid = +this.route.snapshot.paramMap.get('qid');
+  uid = this.route.snapshot.paramMap.get('uid');
+  qid = this.route.snapshot.paramMap.get('qid');
   private responseSet: ResponseSet;
   private responses: Response[];
 

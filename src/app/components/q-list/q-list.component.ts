@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Questionnaire } from '../../../classes/questionnaire';
 import { QuestionnaireService } from '../../services/questionnaire/questionnaire.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-q-list',
@@ -9,21 +10,34 @@ import { QuestionnaireService } from '../../services/questionnaire/questionnaire
 })
 export class QListComponent implements OnInit {
 
-  // FAKE_QLIST: Questionnaire[];
   qList: Questionnaire[];
   public toggled;
 
-  constructor(private questionnaireService: QuestionnaireService) {
-    /*this.FAKE_QLIST = [
-      new Questionnaire(1, 'How is Peter?'),
-      new Questionnaire(2, 'What do you think of ACE module?'),
-      new Questionnaire(3, 'Another questionnaire.'),
-    ];*/
+  private status = this.route.snapshot.paramMap.get('status');
+
+  constructor(
+    private questionnaireService: QuestionnaireService,
+    private route: ActivatedRoute
+  ) {
   }
 
   ngOnInit() {
-    this.questionnaireService.getQList().subscribe(questionnaires =>
-      this.qList = questionnaires
+    this.getQList();
+  }
+
+  getQList() {
+    this.questionnaireService.getQList(this.status).subscribe(
+      res => {
+        this.qList = res.data;
+        this.qList.forEach(
+          q => {
+            q.created_at = new Date(q.created_at).toDateString();
+          }
+        );
+      },
+      err => {
+        alert('Server error! Cannot get list!');
+      }
     );
   }
 

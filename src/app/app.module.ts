@@ -53,13 +53,10 @@ const appRoutes: Routes = [
   // Main
   { path: '', component: HomeComponent },
   // Functionality
-  { path: 'q-list', component: QListComponent},
-  { path: 'view-questionnaire/:id', component: ViewQuestionnaireComponent},
   { path: 'assign', component: AssignComponent},
   { path: 'view-response-list/:id', component: ResponseListComponent},
   { path: 'view-response-set/:qid/:uid', component: ViewResponseSetComponent},
 
-  { path: 'view-questionnaire/:id/view-overall', component: ViewOverallComponent },
   { path: 'reset-password',component:ResetPasswordComponent},
   { path: 'reset-password-id2', component:ResetPasswordId2Component},
   // Others
@@ -72,8 +69,14 @@ const appRoutes: Routes = [
   { path: 'response/submit/success', component: QuestionnaireSubmitComponent, data: { title: 'Submitted' }},
 
   //Invesigator Routes
-  { path: 'questionnaires/:id', component: ViewQuestionnairesComponent, data: { title: 'Questionnaires' }},
-  { path: 'questionnaire-edit', component: QuestionnaireEditComponent },
+  { path: 'questionnaire/edit/:id', component: QuestionnaireEditComponent },
+  { path: 'questionnaire/create', component: QuestionnaireEditComponent },
+  { path: 'questionnaire/view/:id', component: ViewQuestionnaireComponent},
+  { path: 'questionnaire/view-overall/:id', component: ViewOverallComponent},
+
+  { path: 'questionnaires', component: QListComponent},
+  { path: 'questionnaires/:status', component: QListComponent},
+
   // Others
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
   //END

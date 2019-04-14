@@ -1,13 +1,15 @@
 import {QuestionSet} from './questionSet';
 import {ResponseSet} from './responseSet';
+import {Question} from './question';
+import {Permission} from './permission';
 
 export class Questionnaire {
 
     clientName: string; 		// Client company name
-    clientId: number; 		// The ID of the client that the questionnaire belongs to
-    id: number;
+    clientId: string; 		// The ID of the client that the questionnaire belongs to
+    _id: string;
     title: string;
-    dateAssigned: string;
+    created_at: string;
     deadline: string;		// Should be Javascript built in Date Object
     description: string;
     responseNumber: number;
@@ -17,10 +19,11 @@ export class Questionnaire {
     questionSetUrl: QuestionSet;		// url to get the QuestionSet object
     responseSetListUrl: ResponseSet[ ];	// url to get ResponseSet object array
     respondentListUrl: string; // url to get Respondent object array
+    form: Question[];
+    permissions: Permission;
 
 
-
-  constructor(id: number, title: string) {
+  constructor(id: string, title: string) {
     /*
     this.id = id;
     this.title = title;

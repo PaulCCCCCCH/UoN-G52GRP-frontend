@@ -16,7 +16,7 @@ export class QuestionnaireFillComponent implements OnInit {
   selected = '';
   out = '';
 
-  private formId: number;
+  private formId: string;
   private questionnaire: Questionnaire;
   private questions: Question[];
   private responseSet: ResponseSet;
@@ -35,26 +35,28 @@ export class QuestionnaireFillComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formId = +this.route.snapshot.paramMap.get('formId');
-    this.questionnaireService.getQuestionnaire(this.formId).subscribe( q => {
-      this.questionnaire = q[0];
-      this.questionService.getQuestionSet(this.formId).subscribe(questionSet => {
-        this.questions = questionSet[0].questions;
+    this.formId = this.route.snapshot.paramMap.get('formId');
+    this.questionnaireService.getQuestionnaire(this.formId).subscribe(
+      res_form => {
+        this.questionnaire = res_form.data;
+        this.questionService.getQuestionSet(this.formId).subscribe(
+          res_questions => {
+            this.questions = res_questions.data;
 
-        // TODO: If draft found, do not create new response set.
-        this.createResponseSet();
-        /**
-        responseSet = this.fetchResponseSet();
-        if(!responseSet) {
+            // TODO: If draft found, do not create new response set.
+            this.createResponseSet();
+            /**
+             responseSet = this.fetchResponseSet();
+             if(!responseSet) {
           this.createResponseSet();
         }
-        */
+             */
 
-        // Call loadMapping only after questions and responses are all fetched
-        this.loadMapping();
+            // Call loadMapping only after questions and responses are all fetched
+            this.loadMapping();
 
+          });
       });
-    });
   }
 
 

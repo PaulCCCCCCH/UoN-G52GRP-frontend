@@ -50,7 +50,7 @@
 
     <div class="col-6">
       <!-- button to show the pop up window -->
-      <button class="btn btn-primary" (click)="openWindowCustomClass(viewAssigned)">
+      <button class="btn btn-primary" (click)="openWindowCustomClass(viewAssignedWindow)">
         Show List
       </button>
     </div>
@@ -159,7 +159,7 @@
       <div class="col-4">
         
         <!--Button to change deadline-->
-        <button class="btn btn-outline-success" (click)="openWindowCustomClass(changeDeadline)">
+        <button class="btn btn-outline-success" (click)="openWindowCustomClass(changeDeadlineWindow)">
           Change Deadline
         </button>
       </div>
@@ -172,7 +172,7 @@
 
       <div class="col-4">
         <!--Button to send chase up email-->
-        <button class="btn btn-outline-success" (click)="openWindowCustomClass(sendChaseUp)">
+        <button class="btn btn-outline-success" (click)="openWindowCustomClass(sendChaseUpWindow)">
           Send Chase-up
         </button>
       </div>
@@ -196,7 +196,7 @@
 
       <div class="col-4">
         <!--Button to delete questionarrie -->
-        <button class="btn btn-outline-danger" (click)="openWindowCustomClass(deleteQuestionnaire)">
+        <button class="btn btn-outline-danger" (click)="openWindowCustomClass(deleteQuestionnaireWindow)">
           delete
         </button>
 
@@ -213,7 +213,7 @@
 
       <div class="col-4">
         <!--Button to close the email-->
-        <button class="btn btn-outline-danger" (click)="openWindowCustomClass(closeQuestionnaire)">
+        <button class="btn btn-outline-danger" (click)="openWindowCustomClass(closeQuestionnaireWindow)">
           Close
         </button>
 
@@ -222,7 +222,7 @@
   </div>
  
   <!--facilitate pop up page to change deadline-->
-  <ng-template #changeDeadline let-modal>
+  <ng-template #changeDeadlineWindow let-modal>
     <!--Header of pop over-->
     <div class="modal-header">
       <h4 class="modal-title">
@@ -249,7 +249,7 @@
   </ng-template>
 
    <!--facilitate pop u ppage to send chase up email-->
-  <ng-template #sendChaseUp let-modal>
+  <ng-template #sendChaseUpWindow let-modal>
     <!--Header of pop over-->
     <div class="modal-header">
       <h4 class="modal-title">
@@ -279,7 +279,7 @@
   </ng-template>
 
 <!--facilitate pop up page to view assigned-->
-  <ng-template #viewAssigned let-modal>
+  <ng-template #viewAssignedWindow let-modal>
     <!--Header of the pop over-->
     <div class="modal-header">
       <h4 class="modal-title">
@@ -314,11 +314,11 @@
 
   </ng-template>
   <!--facilitate pop up page used to delete questionnarie-->
-  <ng-template #deleteQuestionnaire let-modal>
+  <ng-template #deleteQuestionnaireWindow let-modal>
     <!--Header of pop over page-->
     <div class="modal-header">
       <h4 class="modal-title">
-        Send Chase-up Emails
+        Delete Questionnaire
       </h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">
@@ -335,7 +335,7 @@
 
     <div class="modal-footer">
       
-      <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">
+      <button type="button" class="btn btn-outline-danger" (click)="deleteQuestionnaire()">
         Delete Questionnaire
       </button>
 
@@ -344,12 +344,12 @@
   </ng-template>
   
   <!--facilitate pop up page used to close questionnarie-->
-  <ng-template #closeQuestionnaire let-modal>
+  <ng-template #closeQuestionnaireWindow let-modal>
     <!--Header of the pop over page-->
     <div class="modal-header">
 
       <h4 class="modal-title">
-        Send Chase-up Emails
+        Closing Questionnaire
       </h4>
 
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">

@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {ResponseSet} from '../../../classes/responseSet';
 import {Response} from '../../../classes/response';
+import {MyHttpResponse} from '../../../classes/myHttpResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -16,22 +17,22 @@ export class GetResponseService {
   /**
    * Get one a complete response to a questionnaire.
    */
-  getResponseSet(questionnaireId: number, userId: number): Observable<ResponseSet[]> {
-    return this.http.get<ResponseSet[]>(this.baseUrl + `responseSets/?userId=${userId}&questionnaireId=${questionnaireId}`);
+  getResponseSet(questionnaireId: string, userId: string): Observable<MyHttpResponse> {
+    return this.http.get<MyHttpResponse>(this.baseUrl + `responseSets/?userId=${userId}&questionnaireId=${questionnaireId}`);
   }
 
   /**
    * Get one response to a question.
    */
-  getResponse(responseId: number): Observable<Response> {
-    return this.http.get<Response>(this.baseUrl + `responses/?responseId=${responseId}`);
+  getResponse(responseId: string): Observable<MyHttpResponse> {
+    return this.http.get<MyHttpResponse>(this.baseUrl + `responses/?responseId=${responseId}`);
   }
 
   /**
    * Get the list of all responses to a questionnaire.
    */
-  getResponseSets(questionnaireId: number): Observable<ResponseSet[]> {
-    return this.http.get<ResponseSet[]>(this.baseUrl + `responseSets/?questionnaireId=${questionnaireId}`);
+  getResponseSets(questionnaireId: string): Observable<MyHttpResponse> {
+    return this.http.get<MyHttpResponse>(this.baseUrl + `responseSets/?questionnaireId=${questionnaireId}`);
   }
 
 }
