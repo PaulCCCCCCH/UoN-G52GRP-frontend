@@ -25,10 +25,13 @@ export class ViewQuestionnaireComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.questionnaireService.getQuestionnaire(this.id).subscribe(
+    this.questionnaireService.getActiveQuestionnaire(this.id).subscribe(
       res => {
-        this.questionnaire = res.data;
+        const q = res.data;
+        this.questionnaire = q;
         this.progress = this.questionnaire.responseNumber / this.questionnaire.assignedNumber;
+        this.questionnaire.created_at = new Date(q.created_at).toDateString();
+        this.questionnaire.deadline = new Date(q.deadline).toDateString();
         this.finished = true;
     });
     /*
@@ -60,6 +63,10 @@ export class ViewQuestionnaireComponent implements OnInit {
       },
       err => alert('Server error! Questionnaire not deleted!')
     );
+  }
+
+  changeDeadline(deadline: Date) {
+    //TODO: Change deadline
   }
 }
 

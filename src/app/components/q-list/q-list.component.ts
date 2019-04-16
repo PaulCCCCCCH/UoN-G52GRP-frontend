@@ -32,6 +32,7 @@ export class QListComponent implements OnInit {
         this.qList.forEach(
           q => {
             q.created_at = new Date(q.created_at).toDateString();
+            q.deadline = new Date(q.deadline).toDateString();
           }
         );
       },

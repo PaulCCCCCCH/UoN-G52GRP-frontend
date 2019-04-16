@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Questionnaire } from '../../../classes/questionnaire';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {forkJoin, Observable} from 'rxjs';
 import {MyHttpResponse} from '../../../classes/myHttpResponse';
 import {baseUrl} from '../../globals';
 
@@ -12,6 +12,7 @@ export class QuestionnaireService {
 
 //  private baseUrl = 'https://my-json-server.typicode.com/paulcccccch/demo/questionnaires';
   private baseUrl = baseUrl + '/questionnaires';
+  private baseUrlActive = baseUrl + '/activequestionnaires';
   constructor(private http: HttpClient) { }
 
   getQuestionnaire(id: string): Observable<MyHttpResponse> {
@@ -20,10 +21,10 @@ export class QuestionnaireService {
 
   getQList(status: string): Observable<MyHttpResponse> {
     if (status === 'active') {
-      return this.http.get<MyHttpResponse>(baseUrl + `/activequestionnaires/`);
+      return this.http.get<MyHttpResponse>(this.baseUrlActive);
     } else if (status === 'expired') {
       // TODO: Need the list of expired questionnaires
-      return this.http.get<MyHttpResponse>(baseUrl + `/activequestionnaires/`);
+      return this.http.get<MyHttpResponse>(this.baseUrlActive);
     }
     return this.http.get<MyHttpResponse>(this.baseUrl);
   }
@@ -35,7 +36,7 @@ export class QuestionnaireService {
       description: description,
       form: form
     }
-    return this.http.post<MyHttpResponse>(this.baseUrl + '/questionnaire', reqBody);
+    return this.http.post<MyHttpResponse>(this.baseUrl + '/questionnaire/', reqBody);
   }
 
   deleteQuestionnaire(id: string) {
@@ -48,6 +49,60 @@ export class QuestionnaireService {
     reqs.push({propName: 'form', value: form});
     reqs.push({propName: 'description', value: description});
     return this.http.patch<MyHttpResponse>(this.baseUrl + `/questionnaire/` + id, reqs);
+  }
+
+  createActiveQuestionnaire(id: string, title: string, description: string) {
+    const reqBody = {
+      qid: id,
+      title: title,
+      description: description,
+    };
+    return this.http.post<MyHttpResponse>(this.baseUrlActive + '/activequestionnaire/', reqBody);
+  }
+
+  getActiveQuestionnaire(id: string) {
+    return this.http.get<MyHttpResponse>(this.baseUrlActive + '/activequestionnaire/' + id);
+  }
+
+  assignRespondents(qid: string, emails: string[]) {
+    const reqBody = {
+      respondents: emails
+    };
+    return this.http.post<MyHttpResponse>(this.baseUrlActive + `/activequestionnaire/respondents/addbylist/` + qid, reqBody);
+  }
+
+  activateQuestionnaire(qid: string, deadline: Date) {
+    const reqBody = {
+      qid: qid,
+      deadline: deadline
+    };
+    return this.http.post<MyHttpResponse>(this.baseUrlActive + `/activequestionnaire/activate`, reqBody);
+  }
+
+  validateEmails(emails: string[]): boolean {
+    if (emails.length === 0) {
+      alert('Email list cannot be empty!');
+      return false;
+    }
+    let valid = true;
+    const invalids: string[] = [];
+    emails.forEach(
+      email => {
+        if (!this.validateEmail(email)) {
+          valid = false;
+          invalids.push(email);
+        }
+      }
+    );
+    if (invalids.length > 0) {
+      alert('Invalid email addresses detected: ' + invalids);
+    }
+    return valid;
+  }
+
+  validateEmail(email: string): boolean {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
   }
 
 }

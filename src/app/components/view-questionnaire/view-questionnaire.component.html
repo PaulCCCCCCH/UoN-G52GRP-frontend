@@ -4,7 +4,7 @@
   <div class="row border-bottom">
       <!--Title of questionnaire-->
       <h1 class="card-title">
-          {{ questionnaire.title }}
+          {{ questionnaire.title || questionnaire.name }}
       </h1>
 
   </div>
@@ -237,8 +237,7 @@
 
     </div>
     <div class="modal-body">
-      <input type="text" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()"/>
-
+      <app-set-deadline (emitter)="changeDeadline($event)"></app-set-deadline>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-success" (click)="modal.close('Close click')">
@@ -247,6 +246,7 @@
     </div>
 
   </ng-template>
+
 
    <!--facilitate pop u ppage to send chase up email-->
   <ng-template #sendChaseUpWindow let-modal>

@@ -60,6 +60,32 @@
 
 </ng-template>
 
+<ng-template #assignWindow let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      Final step: assignment
+    </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">
+              &times;
+            </span>
+      </button>
+  </div>
+  <div class="modal-body">
+    <app-assign (emitter)="onListChange($event)"></app-assign>
+    <app-set-deadline (emitter)="setDeadline($event)"></app-set-deadline>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn-secondary" (click)="checkValidity()">
+      check validity
+    </button>
+    <button class="btn-success" (click)="activate()">
+      FINISH!
+    </button>
+  </div>
+</ng-template>
+
 <!--Facilite the main User interface -->
 <div id="temp" class="container topmargin">
   <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
@@ -91,37 +117,13 @@
                   </i>
                 </button>
 
+                <button style="margin-left: 10px;" type="button" class="btn btn-primary" [disabled]="!!questionnaireId" (click)="openWindow(assignWindow)">
+                  <i class="fas fa-paper-plane">
+                  </i>
+                </button>
+
               </div>
-              <div class="col-4 text-right">
-                <div ngbDropdown>
 
-                  <!--Choose type of the question-->
-                  <button class="btn btn-outline-primary" id="addQuestionOptions" ngbDropdownToggle>
-                    <i class="fas fa-plus">
-                    </i>
-                  </button>
-
-                  <!--Add a quetion of user's chosen type-->
-                  <div ngbDropdownMenu aria-labelledby="addQuestionOptions">
-         
-                    <button class="dropdown-item" (click)="addQuestion(1)">
-                      Text
-                    </button>
-
-                    <button class="dropdown-item" (click)="addQuestion(2)">
-                      Text Box
-                    </button>
-
-                    <button class="dropdown-item" (click)="addQuestion(3)">
-                      Choice
-                    </button>
-
-                    <button class="dropdown-item" (click)="addQuestion(4)">
-                      Multiple Choices
-                    </button>
-
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -234,7 +236,40 @@
 
           </ul>
 
-        </div>
+          <div class="row topmargin">
+          <div class="col-12 text-right">
+            <div ngbDropdown>
+
+              <!--Choose type of the question-->
+              <button class="btn btn-outline-primary" id="addQuestionOptions" ngbDropdownToggle>
+                <i class="fas fa-plus">
+                </i>
+              </button>
+
+              <!--Add a quetion of user's chosen type-->
+              <div ngbDropdownMenu aria-labelledby="addQuestionOptions">
+
+                <button class="dropdown-item" (click)="addQuestion(1)">
+                  Text
+                </button>
+
+                <button class="dropdown-item" (click)="addQuestion(2)">
+                  Text Box
+                </button>
+
+                <button class="dropdown-item" (click)="addQuestion(3)">
+                  Choice
+                </button>
+
+                <button class="dropdown-item" (click)="addQuestion(4)">
+                  Multiple Choices
+                </button>
+
+              </div>
+            </div>
+
+            </div>
+          </div>
       </div>
     </div>
   </div>

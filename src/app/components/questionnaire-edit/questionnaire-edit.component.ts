@@ -4,7 +4,7 @@ import {Question} from '../../../classes/question';
 import {GetQuestionService} from '../../services/getQuestion/get-question.service';
 import {Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {QuestionnaireService} from '../../services/questionnaire/questionnaire.service';
 import {Questionnaire} from '../../../classes/questionnaire';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -12,7 +12,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-questionnaire-edit',
   templateUrl: './questionnaire-edit.component.html',
-  styleUrls: ['./questionnaire-edit.component.scss']
+  styleUrls: ['./questionnaire-edit.component.scss'],
+  providers: [NgbDropdownConfig]
 })
 export class QuestionnaireEditComponent implements OnInit {
 
@@ -21,6 +22,8 @@ export class QuestionnaireEditComponent implements OnInit {
   private questionnaireId: string;
   private inputTitle: string;
   private inputDescription: string;
+  private emailList: string[];
+  private deadline: Date;
 
   // Alert
   private _success = new Subject<string>();
@@ -32,7 +35,6 @@ export class QuestionnaireEditComponent implements OnInit {
   private from: number;
   private to: number;
 
-  private questionChoicesMapping = {};
 
 
   constructor(private _location: Location,
@@ -40,11 +42,13 @@ export class QuestionnaireEditComponent implements OnInit {
               private modalService: NgbModal,
               private questionnaireService: QuestionnaireService,
               private route: ActivatedRoute,
-              private router: Router
+              private router: Router,
+              private config: NgbDropdownConfig
   ) {
     this.questions = [];
     this.from = 0;
     this.to = 0;
+    this.config.placement = 'top-left';
   }
 
   ngOnInit() {
@@ -69,12 +73,12 @@ export class QuestionnaireEditComponent implements OnInit {
   }
 
   backClicked() {
-    this._location.back();
+    this.router.navigate(['/questionnaires']);
   }
 
   addQuestion(typeCode: number) {
     const question = new Question(typeCode);
-    if (question.typeCode === 2 || question.typeCode === 3){
+    if (question.typeCode === 2 || question.typeCode === 3) {
       question.choices = [];
     }
     this.questions.push(question);
@@ -144,13 +148,58 @@ export class QuestionnaireEditComponent implements OnInit {
     );
   }
 
+  activate() {
+    if (!this.questionnaireId) {
+      alert('Please save the draft first!');
+      return;
+    }
+    if (!this.questionnaireService.validateEmails(this.emailList)) {
+      return;
+    }
+    this.questionnaireService.createActiveQuestionnaire(this.questionnaireId, this.inputTitle, this.inputDescription).subscribe(
+      res => {
+        const newId = res.data._id;
+        this.questionnaireService.assignRespondents(newId, this.emailList).subscribe(
+          () => {
+            this.questionnaireService.activateQuestionnaire(newId, this.deadline).subscribe(
+              () => {
+                this.router.navigate(['/questionnaires/active']);
+                alert('Questionnaire activated!');
+                this.modalService.dismissAll();
+              }
+            );
+
+          }
+        );
+      },
+      err => this.errorAlert(err)
+    );
+  }
+
+  checkValidity() {
+    if (this.questionnaireService.validateEmails(this.emailList)) {
+      alert('email addresses valid!');
+    }
+  }
+
+  setDeadline(deadline) {
+    console.log(deadline);
+    this.deadline = deadline;
+  }
+
+  onListChange(emailList) {
+    this.emailList = emailList;
+  }
+
   errorAlert(err) {
-    alert('Server error! Operation failed!');
+    alert('Operation failed! Message from server: ' + err.error.err.message);
+    console.log(err);
   }
 
   trackByFn(index: any, item: any) {
     return index;
   }
+
 
   // For debugging
   print(j: number, qc) {

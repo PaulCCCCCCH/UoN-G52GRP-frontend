@@ -9,6 +9,7 @@ export class Questionnaire {
     clientId: string; 		// The ID of the client that the questionnaire belongs to
     _id: string;
     title: string;
+    name: string;         // TODO: should really by title
     created_at: string;
     deadline: string;		// Should be Javascript built in Date Object
     description: string;

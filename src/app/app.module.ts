@@ -26,7 +26,7 @@ import { ViewQuestionnairesComponent } from './components/investigator/questionn
 import { QuestionnaireSubmitConfirmComponent } from './components/respondent/questionnaire-submit-confirm/questionnaire-submit-confirm.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { AssignComponent } from './assign/assign.component';
+import { AssignComponent } from './components/assign/assign.component';
 import { ResponseListComponent } from './components/response-list/response-list.component';
 import { ViewResponseSetComponent } from './components/view-response-set/view-response-set.component';
 import { ManageStaffComponent } from './manage-staff/manage-staff.component';
@@ -38,6 +38,7 @@ import {AuthInterceptorService} from './services/auth/auth-interceptor.service';
 import {AuthGuardService} from './services/auth/auth-guard.service';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import { ResetPasswordId2Component } from './components/reset-password-id2/reset-password-id2.component';
+import { SetDeadlineComponent } from './components/set-deadline/set-deadline.component';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 const appRoutes: Routes = [
@@ -109,7 +110,8 @@ const appRoutes: Routes = [
     ViewOverallComponent,
     QuestionnaireEditComponent,
     ResetPasswordComponent,
-    ResetPasswordId2Component
+    ResetPasswordId2Component,
+    SetDeadlineComponent,
   ],
   imports: [
     RouterModule.forRoot(
