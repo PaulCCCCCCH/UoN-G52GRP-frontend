@@ -127,12 +127,12 @@ export class QuestionnaireEditComponent implements OnInit {
           this.questionnaireId = res.data._id;
           this.router.navigate(['/questionnaire/edit/' + this.questionnaireId]);
         },
-        err => this.errorAlert(err)
+        err => this.alertError(err)
       );
     } else {
       this.questionnaireService.updateQuestionnaire(this.questionnaireId, form, this.inputTitle, this.inputDescription).subscribe(
         res => alert('Form saved!'),
-        err => this.errorAlert(err)
+        err => this.alertError(err)
       );
     }
   }
@@ -144,9 +144,10 @@ export class QuestionnaireEditComponent implements OnInit {
         this.router.navigate(['questionnaires/']);
         this.modalService.dismissAll();
       },
-      err => this.errorAlert(err)
+      err => this.alertError(err)
     );
   }
+
 
   activate() {
     if (!this.questionnaireId) {
@@ -172,7 +173,7 @@ export class QuestionnaireEditComponent implements OnInit {
           }
         );
       },
-      err => this.errorAlert(err)
+      err => this.alertError(err)
     );
   }
 
@@ -191,9 +192,13 @@ export class QuestionnaireEditComponent implements OnInit {
     this.emailList = emailList;
   }
 
-  errorAlert(err) {
+  alertError(err) {
     alert('Operation failed! Message from server: ' + err.error.err.message);
     console.log(err);
+  }
+
+  alertSave() {
+    alert('Please save the draft first');
   }
 
   trackByFn(index: any, item: any) {

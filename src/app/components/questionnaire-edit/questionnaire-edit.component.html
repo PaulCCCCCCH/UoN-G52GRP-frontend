@@ -117,7 +117,7 @@
                   </i>
                 </button>
 
-                <button style="margin-left: 10px;" type="button" class="btn btn-primary" [disabled]="!!questionnaireId" (click)="openWindow(assignWindow)">
+                <button style="margin-left: 10px;" type="button" class="btn btn-primary" (click)="questionnaireId? openWindow(assignWindow) : alertSave()">
                   <i class="fas fa-paper-plane">
                   </i>
                 </button>
