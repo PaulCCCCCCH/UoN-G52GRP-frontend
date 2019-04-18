@@ -8,9 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { DemoComponent } from './demo/demo.component';
 import { DemoService } from './services/demo.service';
-import { InfoComponent } from './components/info/info.component';
 import { NavComponent } from './components/core/nav/nav.component';
 import { PageNotFoundComponent } from './components/errors/page-not-found/page-not-found.component';
 import { QuestionnaireDashboardComponent } from './components/respondent/questionnaire-dashboard/questionnaire-dashboard.component';
@@ -39,6 +37,7 @@ import {AuthGuardService} from './services/auth/auth-guard.service';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import { ResetPasswordId2Component } from './components/reset-password-id2/reset-password-id2.component';
 import { SetDeadlineComponent } from './components/set-deadline/set-deadline.component';
+import { AboutComponent } from './components/about/about.component';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 const appRoutes: Routes = [
@@ -61,7 +60,7 @@ const appRoutes: Routes = [
   { path: 'reset-password',component:ResetPasswordComponent},
   { path: 'reset-password-id2', component:ResetPasswordId2Component},
   // Others
-  { path: 'info', component: InfoComponent, data: { title: 'info' }},
+  { path: 'about', component: AboutComponent, data: { title: 'about' }},
 
   //Respondant Routes
   { path: 'response/dash', component: QuestionnaireDashboardComponent, data: { title: 'Dashboard' }},
@@ -79,7 +78,7 @@ const appRoutes: Routes = [
   { path: 'questionnaires/:status', component: QListComponent},
 
   // Others
-  { path: 'info', component: InfoComponent, data: { title: 'info' }},
+  { path: 'about', component: AboutComponent, data: { title: 'about' }},
   //END
   { path: '**', component: PageNotFoundComponent, data: {title: 'Page Not Found'}} //Needs to be last since it will match every url
 ];
@@ -87,8 +86,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    DemoComponent,
-    InfoComponent,
     NavComponent,
     PageNotFoundComponent,
     ViewQuestionnaireComponent,
@@ -112,6 +109,7 @@ const appRoutes: Routes = [
     ResetPasswordComponent,
     ResetPasswordId2Component,
     SetDeadlineComponent,
+    AboutComponent,
   ],
   imports: [
     RouterModule.forRoot(
