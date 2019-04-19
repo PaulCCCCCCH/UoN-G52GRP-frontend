@@ -1,3 +1,5 @@
+import {Questionnaire} from './questionnaire';
+
 export class Response {
   questionId: string;
   responseId: string;
@@ -7,5 +9,6 @@ export class Response {
 						* numbers separated by comma, e.g. ‘1, 3, 4’ ,  ‘1’
 						* For text questions, just return the string.
 						*/
+  questionnaire: Questionnaire;
 
 }

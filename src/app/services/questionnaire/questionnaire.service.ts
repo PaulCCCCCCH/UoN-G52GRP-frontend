@@ -13,18 +13,17 @@ export class QuestionnaireService {
 //  private baseUrl = 'https://my-json-server.typicode.com/paulcccccch/demo/questionnaires';
   private baseUrl = baseUrl + '/questionnaires';
   private baseUrlActive = baseUrl + '/activequestionnaires';
+  private baseUrlArchived = baseUrl + '/archivedquestionnaires';
   constructor(private http: HttpClient) { }
 
-  getQuestionnaire(id: string): Observable<MyHttpResponse> {
-    return this.http.get<MyHttpResponse>(this.baseUrl + `/questionnaire/${id}`);
-  }
+
 
   getQList(status: string): Observable<MyHttpResponse> {
     if (status === 'active') {
       return this.http.get<MyHttpResponse>(this.baseUrlActive);
-    } else if (status === 'expired') {
+    } else if (status === 'archived') {
       // TODO: Need the list of expired questionnaires
-      return this.http.get<MyHttpResponse>(this.baseUrlActive);
+      return this.http.get<MyHttpResponse>(this.baseUrlArchived);
     }
     return this.http.get<MyHttpResponse>(this.baseUrl);
   }
@@ -60,8 +59,15 @@ export class QuestionnaireService {
     return this.http.post<MyHttpResponse>(this.baseUrlActive + '/activequestionnaire/', reqBody);
   }
 
-  getActiveQuestionnaire(id: string) {
-    return this.http.get<MyHttpResponse>(this.baseUrlActive + '/activequestionnaire/' + id);
+
+  getQuestionnaire(id: string, status: string): Observable<MyHttpResponse> {
+    if (status === 'active') {
+      return this.http.get<MyHttpResponse>(this.baseUrlActive + `/activequestionnaire/${id}`);
+    } else if (status === 'archived') {
+      return this.http.get<MyHttpResponse>(this.baseUrlArchived + `/archivedquestionnaire/${id}`);
+    } else {
+      return this.http.get<MyHttpResponse>(this.baseUrl + `/questionnaire/${id}`);
+    }
   }
 
   assignRespondents(qid: string, emails: string[]) {
@@ -71,12 +77,28 @@ export class QuestionnaireService {
     return this.http.post<MyHttpResponse>(this.baseUrlActive + `/activequestionnaire/respondents/addbylist/` + qid, reqBody);
   }
 
+  // TODO: not used
+ /*
+  removeRespondent(qid: string, email: string) {
+    const reqBody = {
+      respondent: email
+    };
+    return this.http.delete<MyHttpResponse>(this.baseUrlActive + `/activequestionnaire/respondents/` + qid, reqBody);
+  }
+*/
   activateQuestionnaire(qid: string, deadline: Date) {
     const reqBody = {
       qid: qid,
       deadline: deadline
     };
     return this.http.post<MyHttpResponse>(this.baseUrlActive + `/activequestionnaire/activate`, reqBody);
+  }
+
+  archiveQuestionnaire(qid: string) {
+    const reqBody = {
+      qid: qid,
+    };
+    return this.http.post<MyHttpResponse>(this.baseUrlActive + `/activequestionnaire/archive`, reqBody);
   }
 
   validateEmails(emails: string[]): boolean {

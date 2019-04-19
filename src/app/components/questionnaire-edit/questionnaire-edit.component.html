@@ -72,14 +72,23 @@
       </button>
   </div>
   <div class="modal-body">
+
     <app-assign (emitter)="onListChange($event)"></app-assign>
+    <br>
+    <div class="col-12 text-right">
+      <button class="btn-secondary" (click)="checkValidity()">
+        check validity
+      </button>
+    </div>
+
+    <h5>
+      Set deadline
+    </h5>
     <app-set-deadline (emitter)="setDeadline($event)"></app-set-deadline>
   </div>
 
   <div class="modal-footer">
-    <button class="btn-secondary" (click)="checkValidity()">
-      check validity
-    </button>
+
     <button class="btn-success" (click)="activate()">
       FINISH!
     </button>

@@ -24,6 +24,7 @@
     "@fortawesome/fontawesome-free": "^5.7.0",
     "@ng-bootstrap/ng-bootstrap": "^4.0.2",
     "angular-in-memory-web-api": "^0.8.0",
+    "angular2-uuid": "^1.1.1",
     "bootstrap": "4.2.1",
     "core-js": "^2.6.3",
     "font-awesome": "^4.7.0",

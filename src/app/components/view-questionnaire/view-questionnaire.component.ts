@@ -11,6 +11,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class ViewQuestionnaireComponent implements OnInit {
 
+  private status = this.route.snapshot.paramMap.get('status');
   private id = this.route.snapshot.paramMap.get('id');
   private questionnaire: Questionnaire;
   progress: number;
@@ -25,7 +26,7 @@ export class ViewQuestionnaireComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.questionnaireService.getActiveQuestionnaire(this.id).subscribe(
+    this.questionnaireService.getQuestionnaire(this.id, this.status).subscribe(
       res => {
         const q = res.data;
         this.questionnaire = q;
@@ -51,7 +52,7 @@ export class ViewQuestionnaireComponent implements OnInit {
   }
 
   viewOverall() {
-    this.router.navigate(['/questionnaire/view-overall/' + this.id]);
+    this.router.navigate(['/questionnaire/view-overall/' + this.status + '/' + this.id]);
   }
 
   deleteQuestionnaire() {
@@ -62,6 +63,17 @@ export class ViewQuestionnaireComponent implements OnInit {
         this.router.navigate(['/questionnaires/']);
       },
       err => alert('Server error! Questionnaire not deleted!')
+    );
+  }
+
+  closeQuestionnaire() {
+    this.questionnaireService.archiveQuestionnaire(this.id).subscribe(
+      res => {
+        alert('Questionnaire archived!');
+        this.modalService.dismissAll();
+        this.router.navigate(['/questionnaires/archived']);
+      },
+      err => alert('Server error! Questionnaire not archived!')
     );
   }
 

@@ -64,16 +64,16 @@ const appRoutes: Routes = [
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
 
   //Respondant Routes
-  { path: 'response/dash', component: QuestionnaireDashboardComponent, data: { title: 'Dashboard' }},
-  { path: 'response/complete/:formId', component: QuestionnaireFillComponent, data: { title: 'Questionnaire' }},
-  { path: 'response/submit/confirm', component: QuestionnaireSubmitConfirmComponent, data: { title: 'Submitting' }},
-  { path: 'response/submit/success', component: QuestionnaireSubmitComponent, data: { title: 'Submitted' }},
+  { path: 'response/dash/:ticket', component: QuestionnaireDashboardComponent, data: { title: 'Dashboard' }},
+  { path: 'response/fill/:ticket', component: QuestionnaireFillComponent, data: { title: 'Questionnaire' }},
+  { path: 'response/submit/confirm/:ticket', component: QuestionnaireSubmitConfirmComponent, data: { title: 'Submitting' }},
+  { path: 'response/submit/success/:ticket', component: QuestionnaireSubmitComponent, data: { title: 'Submitted' }},
 
   //Invesigator Routes
   { path: 'questionnaire/edit/:id', component: QuestionnaireEditComponent },
   { path: 'questionnaire/create', component: QuestionnaireEditComponent },
-  { path: 'questionnaire/view/:id', component: ViewQuestionnaireComponent},
-  { path: 'questionnaire/view-overall/:id', component: ViewOverallComponent},
+  { path: 'questionnaire/view/:status/:id', component: ViewQuestionnaireComponent},
+  { path: 'questionnaire/view-overall/:status/:id', component: ViewOverallComponent},
 
   { path: 'questionnaires', component: QListComponent},
   { path: 'questionnaires/:status', component: QListComponent},
@@ -81,7 +81,8 @@ const appRoutes: Routes = [
   // Others
   { path: 'info', component: InfoComponent, data: { title: 'info' }},
   //END
-  { path: '**', component: PageNotFoundComponent, data: {title: 'Page Not Found'}} //Needs to be last since it will match every url
+  { path: '**', component: PageNotFoundComponent, data: {title: 'Page Not Found'}}, //Needs to be last since it will match every url
+  { path: 'error', component: PageNotFoundComponent},
 ];
 
 @NgModule({
