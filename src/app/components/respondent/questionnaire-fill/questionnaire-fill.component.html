@@ -1,3 +1,47 @@
+<ng-template #resetResponseWindow let-modal>
+  <div class="modal-header">
+    <div class="modal-title">
+      <h1>Reset response</h1>
+    </div>
+
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <p> Reset response will clear all content and everything will be lost. Are you sure?</p>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-danger" (click)="reset()">Reset</button>
+  </div>
+
+</ng-template>
+
+
+<ng-template #submitWindow let-modal>
+  <div class="modal-header">
+    <div class="modal-title">
+      <h1>Submit Response</h1>
+    </div>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <p>Once submitted, no further modifications can be made.</p>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-success" (click)="submit()">submit</button>
+  </div>
+
+</ng-template>
+
+
+
 <div id="temp" class="container topmargin">
   <div class="row">
     <div class="col-12">
@@ -5,7 +49,23 @@
         <div class="card-header">
           <div class="container-fluid" style="margin-bottom:12px;">
             <div class="row">
+              <div class="col-12">
+                <button type="button" class="btn btn-danger" (click)="openWindow(resetResponseWindow)">
+                  <i class="far fa-trash-alt">
+                  </i>
+                </button>
 
+                <!--Button to save change-->
+                <button style="margin-left: 10px;" type="button" class="btn btn-success" (click)="save()">
+                  <i class="far fa-save">
+                  </i>
+                </button>
+
+                <button style="margin-left: 10px;" type="button" class="btn btn-primary" (click)="openWindow(submitWindow)">
+                  <i class="fas fa-check-circle">
+                  </i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -29,11 +89,11 @@
 
                 <div class="card-body">
                   <label for="{{question.id}}"></label>
-                  <input type="text" class="form-control" id="{{question.id}}" [(ngModel)]="QAmapping[question.id].responseBody"/>
+                  <input type="text" class="form-control" id="{{question.id}}" [(ngModel)]="responses[question.id].responseBody"/>
                 </div>
 
                   <!-- test binding  TODO: delete this line -->
-                  <div><h1>{{responseSet.responses[0].responseBody}}</h1></div>
+                  <div><h1>{{responses[question.id].responseBody}}</h1></div>
 
                 </div>
 
@@ -47,11 +107,11 @@
                     <div class="card-body">
                       <div *ngFor="let choice of question.choices; let j = index" class="list-group-item">
                         <div class="row">
-                          <input class="col-1" type="radio" name="{{question.id}}" (click)="onClickRadio(question, j)"/>
+                          <input class="col-1" type="radio" name="{{question.id}}" [checked]="isChecked(question.id, j)" (click)="onClickRadio(question, j)"/>
                           <p class="col-11" >{{choice}}</p>
                         </div>
                         <!-- test binding  TODO: delete this line -->
-                          <div><h1>{{responseSet.responses[2].responseBody}}</h1></div>
+                          <div><h1>{{responses[question.id].responseBody}}</h1></div>
                       </div>
                     </div>
                     </div>
@@ -68,11 +128,11 @@
                       <div *ngFor="let choice of question.choices; let j = index" class="list-group-item">
                         <div class="row">
                           <label for="{{question.id}}/{{j}}"></label>
-                          <input class="col-1" type="checkbox" (click)="onClickCheckbox(question, j)" id="{{question.id}}/{{j}}" />
+                          <input class="col-1" type="checkbox" [checked]="isChecked(question.id, j)" (click)="onClickCheckbox(question, j)" id="{{question.id}}/{{j}}" />
                           <p class="col-11">{{choice}}</p>
                         </div>
                          <!-- test binding  TODO: delete this line -->
-                          <div><h1>{{responseSet.responses[1].responseBody}}</h1></div>
+                          <div><h1>{{responses[question.id].responseBody}}</h1></div>
                       </div>
                     </div>
                     </div>

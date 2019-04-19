@@ -6,18 +6,18 @@
         <p class="lead">Here you can see the status of your questionnaire.</p>
         <hr class="my-4">
         <div class="card">
-        <h5 class="card-header">My Questionnaire</h5>
+        <h5 class="card-header">{{title}}</h5>
         <div class="card-body">
           <h5 class="card-title">Company Name</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Due 01/06/2019 at 5:00PM (GMT)</h6>
+          <h6 class="card-subtitle mb-2 text-muted">Due {{deadline}}</h6>
           <div class="container">
             <div class="row">
               <div class="col-lg-10 col-md-8 col-sm-12">
                 <h5 class="card-title">The Title</h5>
-                <p class="card-text">A brief description of the form and what it is about.</p>
+                <p class="card-text">{{description}}</p>
               </div>
               <div class="col-lg-2 col-md-4 col-sm-12 text-center">
-                <a href="/response/complete/4" class="btn btn-primary">Continue</a>
+                <button (click)="toFillPage()" class="btn btn-primary">Continue</button>
               </div>
             </div>
           </div>

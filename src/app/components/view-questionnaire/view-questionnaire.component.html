@@ -296,19 +296,9 @@
 
     <div class="modal-body">
       <ul>
-
-        <li>
-          psyabc@nottingham.ac.uk
+        <li *ngFor="let respondent of questionnaire.respondents ">
+          {{ respondent }}
         </li>
-
-        <li>
-          psyabc@gmail.ac.uk
-        </li>
-
-        <li>
-          anotherexample@nottingham.ac.uk
-        </li>
-
       </ul>
     </div>
 
@@ -365,7 +355,7 @@
     </div>
     <div class="modal-footer">
 
-      <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">
+      <button type="button" class="btn btn-outline-danger" (click)="closeQuestionnaire()">
         Close Questionnaire
       </button>
 

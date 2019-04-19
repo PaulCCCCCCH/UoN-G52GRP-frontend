@@ -49,13 +49,14 @@
   </div>
 
   <div class="row">
+    <h5>Input Email Addresses</h5>
+  </div>
+
+  <div class="row">
 
 
       <!--Description for input area-->
-    <label for="emailInput">
-        Email addresses:
-    </label>
-
+    <label for="emailInput"></label>
         <!--Input area, valid email adress only-->
     <textarea style="overflow-y: scroll"  id="emailInput" type="email" [(ngModel)]="inputEmails" (ngModelChange)="parseEmails()" name="emailInput" multiple> </textarea>
   </div>

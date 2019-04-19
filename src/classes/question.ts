@@ -1,3 +1,5 @@
+import {UUID} from 'angular2-uuid';
+
 export class Question {
   id: string;
   type: string;		//text | text box | choice | multiple choices
@@ -34,6 +36,7 @@ export class Question {
     }
     this.choices = [];
     this.questionBody = '';
+    this.id = UUID.UUID();
   }
 
   setBody(body: string) {

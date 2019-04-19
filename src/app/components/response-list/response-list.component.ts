@@ -11,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ResponseListComponent implements OnInit {
 
-  private responses: ResponseSet[];
+  private responses = {};
   private id = this.route.snapshot.paramMap.get('id');
 
   constructor(

@@ -22,6 +22,7 @@ export class Questionnaire {
     respondentListUrl: string; // url to get Respondent object array
     form: Question[];
     permissions: Permission;
+    respondents: string[];
 
 
   constructor(id: string, title: string) {

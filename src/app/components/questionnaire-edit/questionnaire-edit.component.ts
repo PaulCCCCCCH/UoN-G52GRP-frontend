@@ -61,7 +61,7 @@ export class QuestionnaireEditComponent implements OnInit {
     this.questionnaireId = this.route.snapshot.paramMap.get('id');
     // TODO: edit draft given id.
     if (this.questionnaireId) {
-      this.questionnaireService.getQuestionnaire(this.questionnaireId).subscribe(
+      this.questionnaireService.getQuestionnaire(this.questionnaireId, '').subscribe(
         res => {
           this.questions = JSON.parse(res.data.form);
           this.inputTitle = res.data.title;
@@ -82,6 +82,7 @@ export class QuestionnaireEditComponent implements OnInit {
       question.choices = [];
     }
     this.questions.push(question);
+    console.log(question);
     this._success.next(`Successfully added a question`);
   }
 

@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
           alert(res.error.err.message + 'Wrong username or password');
           return;
       });
-
   }
 
   // TODO: delete this function
