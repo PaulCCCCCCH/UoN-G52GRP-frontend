@@ -155,6 +155,9 @@ export class QuestionnaireEditComponent implements OnInit {
       alert('Please save the draft first!');
       return;
     }
+    if (!this.deadline || this.deadline < new Date()) {
+      alert('Deadline required!');
+    }
     if (!this.questionnaireService.validateEmails(this.emailList)) {
       return;
     }
