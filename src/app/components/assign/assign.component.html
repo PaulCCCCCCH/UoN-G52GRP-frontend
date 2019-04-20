@@ -37,15 +37,11 @@
 <!--Row is used to formalise data-->
   <div class="row">
     <p>Input email addresses of respondents, separated by comma or space (including line break).</p>
-    <p>
-      <button class="btn btn-outline-dark" (click)="openWindow(exampleInputWindow)">
-        show example inputs
-      </button>
-    </p>
-
+      <p>We strongly recommend that you use a text editor to edit the list locally and then copy & paste into the box below.</p>
+    
     <br>
     <p><b>Note: Once the questionnaire is activated, you will not be able to amend the assignment (add or remove respondent) afterwards due to privacy and security concerns.</b></p>
-    <p>We strongly recommend that you use a text editor to edit the list locally and copy & paste.</p>
+    
   </div>
 
   <div class="row">
@@ -60,16 +56,19 @@
         <!--Input area, valid email adress only-->
     <textarea style="overflow-y: scroll"  id="emailInput" type="email" [(ngModel)]="inputEmails" (ngModelChange)="parseEmails()" name="emailInput" multiple> </textarea>
   </div>
+  <br>
   <!--Sumbit button for the input area-->
   <div class="row">
-    <div class="col-12 text-right">
+   
+    <p>
+      <button class="btn btn-outline-dark" (click)="openWindow(exampleInputWindow)">
+        show example inputs
+      </button>&nbsp;
       <button class="btn btn-secondary" (click)="showEmails()">
         show list
       </button>
-    </div>
+    </p>
 
-
-  </div>
 
 
 
