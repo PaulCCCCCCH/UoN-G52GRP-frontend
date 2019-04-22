@@ -1,8 +1,8 @@
 <div class="container">
   
   <!--Title of the page-->
-  <h1 style="margin: 20px;text-align: center;color:blue;" >
-    Manage Staff
+  <h1 class="topmargin" style="text-align: center;" >
+    {{companyName}}
   </h1>
   <div class="row">
     <div class="col-12 text-right">
@@ -24,8 +24,8 @@
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Email</th>
-        <th>Company</th>        
         <th>View Info</th>
+        <th></th>
 
       </tr>
 
@@ -38,8 +38,8 @@
         <td>{{staff.name_first}}</td>
         <td>{{staff.name_last}}</td>
         <td>test@test.com</td>
-        <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg" (click)="openWindow(editStaffWindow)" >Edit Staff</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="openWindow(editStaffWindow, staff)" >Edit Staff</button></td>
+        <td><button class="btn btn-danger" (click)="openWindow(removeStaffWindow, staff)"><i class="fas fa-user-slash"></i></button></td>
       
       </tr>
 
@@ -55,26 +55,53 @@
       </div>
       <!--Close button-->
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <div class="text-right">
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">
                   &times;
                 </span>
           </button>
-        </div>
       </button>
     </div>
 
     <div class="modal-body">
-      <label for="newStaffId"></label>
-      <input type="text" [(ngModel)]="newStaffId" id="newStaffId" placeholder="Input staff id">
+      Please check the staff that you wish to add:
+      <div *ngFor="let user of userList; let i = index">
+        <label for="{{user._id}}">
+          {{user.name_last}} {{user.name_first}} | {{user.email}}
+        </label>
+        <input type="checkbox" id="{{user._id}}" [(ngModel)]="isNewStaff[i]">
+      </div>
     </div>
 
     <div class="modal-footer">
       <button class="btn-secondary" (click)="addStaff()">Submit</button>
     </div>
 
+  </ng-template>
 
+  <ng-template #removeStaffWindow let-modal>
+    <div class="modal-header">
+      <!--Title-->
+      <div class="modal-title">
+        Removing staff from the company
+      </div>
+      <!--Close button-->
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">
+                  &times;
+                </span>
+          </button>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      The staff will no longer have access to the questionnaires of this company
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="removeStaff()">remove</button>
+    </div>
   </ng-template>
 
   <!--Pop over functionality and the view of the pop over page-->
@@ -90,13 +117,11 @@
 
           <!--Close button-->
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <div class="text-right">
                 <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">
                   &times;
                 </span>
                 </button>
-             </div>
           </button>
         </div>
 

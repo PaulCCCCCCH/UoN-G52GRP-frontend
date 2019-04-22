@@ -77,15 +77,13 @@ export class QuestionnaireService {
     return this.http.post<MyHttpResponse>(this.baseUrlActive + `/activequestionnaire/respondents/addbylist/` + qid, reqBody);
   }
 
-  // TODO: not used
- /*
   removeRespondent(qid: string, email: string) {
     const reqBody = {
       respondent: email
     };
-    return this.http.delete<MyHttpResponse>(this.baseUrlActive + `/activequestionnaire/respondents/` + qid, reqBody);
+    return this.http.post<MyHttpResponse>(this.baseUrlActive + `/activequestionnaire/respondents/delete` + qid, reqBody);
   }
-*/
+
   activateQuestionnaire(qid: string, deadline: Date) {
     const reqBody = {
       qid: qid,

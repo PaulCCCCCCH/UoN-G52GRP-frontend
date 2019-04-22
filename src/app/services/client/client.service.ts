@@ -17,8 +17,8 @@ export class ClientService {
 
   constructor(private http: HttpClient) { }
 
-  getClient(id: string): Observable<Client[]> {
-    return this.http.get<Client[]>(this.baseUrl + `/${id}`);
+  getClient(id: string): Observable<MyHttpResponse> {
+    return this.http.get<MyHttpResponse>(this.baseUrl + '/company' + `/${id}`);
   }
 
   getClients(): Observable<MyHttpResponse> {
@@ -48,5 +48,4 @@ export class ClientService {
     const reqBody = {name: name, description: description};
     return this.http.post<MyHttpResponse>(this.baseUrl + `/company/`, reqBody);
   }
-
 }
