@@ -24,7 +24,7 @@
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Email</th>
-        <th>View Info</th>
+        <th></th>
         <th></th>
 
       </tr>
@@ -38,7 +38,6 @@
         <td>{{staff.name_first}}</td>
         <td>{{staff.name_last}}</td>
         <td>test@test.com</td>
-        <td><button type="button" class="btn btn-primary" (click)="openWindow(editStaffWindow, staff)" >Edit Staff</button></td>
         <td><button class="btn btn-danger" (click)="openWindow(removeStaffWindow, staff)"><i class="fas fa-user-slash"></i></button></td>
       
       </tr>
@@ -103,56 +102,5 @@
       <button class="btn-secondary" (click)="removeStaff()">remove</button>
     </div>
   </ng-template>
-
-  <!--Pop over functionality and the view of the pop over page-->
-  <ng-template #editStaffWindow let-modal>
-
-        <div class="modal-header">
-
-          <!--Title-->
-          <div class="modal-title">
-                Manage client's access right and group
-          </div>
-
-
-          <!--Close button-->
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                <span aria-hidden="true">
-                  &times;
-                </span>
-                </button>
-          </button>
-        </div>
-
-
-        <!--Main part of pop over page-->
-        <div class="modal-body">
-          
-          <!--Edit detailed info for a staff-->
-          <form class="contact-form" method="get">
-
-            <!--Description for first input area-->
-            <label style="font-size: 20px">
-              Clients can be viewed:  
-            </label>
-              
-              <!--First input; Clients that staff can edit; A email input is required. -->
-              <input aria-required="true" required="" style= "width:300px;max-width:98%;" type= "email">
-              
-              <!--Description for the second input area-->
-              <label style="font-size: 20px">
-                Clients can be edited:  
-               </label>
-              <!--Second input; Clients that staff can view; A email input is required-->             
-              <input aria-required="true" required="" style= "width:300px;max-width:98%;" type= "email"> 
-              <!--Button to submit the input information-->        
-              <input class="btn-secondary" type="submit" value="Submit">
-          
-            </form>
-
-        </div>
-
-</ng-template>
 
 </div>

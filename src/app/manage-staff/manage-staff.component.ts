@@ -56,7 +56,7 @@ export class ManageStaffComponent implements OnInit {
       if (this.isNewStaff[i]) {
         this.staffService.addStaff(this.companyId, this.userList[i]._id).subscribe(
           res => {
-            this.refresh()
+            this.refresh();
           }
         );
       }
