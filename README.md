@@ -1,4 +1,4 @@
-# Secure information gathering project--repository for front-end
+# Secure information gathering project-repository for front-end
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
@@ -8,7 +8,7 @@ This repsoitory is for front-end part
 
 If interested in backend part, please refer to [back-end repository](https://github.com/Jas57/nottsgroup-backend)
 
-## team member of front-end part
+## Team member of front-end part
 
 Chonghan Chen, Meng Wu, Mohsin Warraich
 
