@@ -4,6 +4,9 @@ import {ResponseSet} from '../../../classes/responseSet';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 
+/**
+ * @todo
+ */
 @Component({
   selector: 'app-response-list',
   templateUrl: './response-list.component.html',

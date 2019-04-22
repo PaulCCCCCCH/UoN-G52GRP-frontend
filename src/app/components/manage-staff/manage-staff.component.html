@@ -1,0 +1,106 @@
+<div class="container">
+  
+  <!--Title of the page-->
+  <h1 class="topmargin" style="text-align: center;" >
+    {{companyName}}
+  </h1>
+  <div class="row">
+    <div class="col-12 text-right">
+      <button class="btn btn-outline-primary" id="addClient" (click)="openWindow(addStaffWindow, null)">
+        <i class="fas fa-plus">
+        </i>
+      </button>
+    </div>
+  </div>
+
+  <!--Table to display the current staff in the system -->
+  <table class="table">
+
+    <thead>
+      <!--Info for the staff, including name, email adress, company and detailed info. -->
+      <!-- For detailed info part, after clicking in, a pop over window will show, containing coressponding info for the staff -->
+      <tr class="info">
+
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th></th>
+        <th></th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let staff of staffList"  class="info">
+        
+        <td>{{staff.name_first}}</td>
+        <td>{{staff.name_last}}</td>
+        <td>test@test.com</td>
+        <td><button class="btn btn-danger" (click)="openWindow(removeStaffWindow, staff)"><i class="fas fa-user-slash"></i></button></td>
+      
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <ng-template #addStaffWindow let-modal>
+    <div class="modal-header">
+      <!--Title-->
+      <div class="modal-title">
+        Add new staff to the company
+      </div>
+      <!--Close button-->
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">
+                  &times;
+                </span>
+          </button>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      Please check the staff that you wish to add:
+      <div *ngFor="let user of userList; let i = index">
+        <label for="{{user._id}}">
+          {{user.name_last}} {{user.name_first}} | {{user.email}}
+        </label>
+        <input type="checkbox" id="{{user._id}}" [(ngModel)]="isNewStaff[i]">
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="addStaff()">Submit</button>
+    </div>
+
+  </ng-template>
+
+  <ng-template #removeStaffWindow let-modal>
+    <div class="modal-header">
+      <!--Title-->
+      <div class="modal-title">
+        Removing staff from the company
+      </div>
+      <!--Close button-->
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">
+                  &times;
+                </span>
+          </button>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      The staff will no longer have access to the questionnaires of this company
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="removeStaff()">remove</button>
+    </div>
+  </ng-template>
+
+</div>

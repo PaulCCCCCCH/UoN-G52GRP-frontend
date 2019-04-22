@@ -2,6 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
+/**
+ * Any out going http requests will be intercepted by this class.
+ * An header containing authorization information will be added
+ * to each request.
+ *
+ * @author Chonghan Chen
+ */
 @Injectable({
   providedIn: 'root'
 })

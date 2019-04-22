@@ -1,0 +1,285 @@
+<!--Html file to factilite the functionality to editquestionnaire -->
+
+<!--functionality the pop-over functionality-->
+<ng-template #changeIndex let-modal>
+  <!--head of the modal-->
+  <div class="modal-header">
+    <h4 class="modal-title">
+      Change Question Index
+    </h4>
+
+    <!--Button to close the pop over-->
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+  </div>
+
+  <!--Body of the pop over-->
+  <div class="modal-body">
+    <input type="number" [(ngModel)]="to" class="form-control" id="changeTo" aria-describedby="emailHelp" placeholder="Input your target index">
+  </div>
+
+  <!--Footer if pop over-->
+  <div class="modal-footer">
+    <!--Button to change index-->
+    <button type="button" class="btn btn-light" (click)="setIndex();modal.dismiss('Cross click')">
+      Change Index
+    </button>
+
+  </div>
+</ng-template>
+
+
+<ng-template #deleteQuestionnaireWindow let-modal>
+  <!--Header of pop over page-->
+  <div class="modal-header">
+    <h4 class="modal-title">
+      Delete Questionnaire
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">
+          &times;
+        </span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    The draft will be deleted permanently.
+    Are you sure?
+
+  </div>
+
+  <div class="modal-footer">
+
+    <button type="button" class="btn btn-outline-danger" (click)="deleteQuestionnaire()">
+      Delete Questionnaire
+    </button>
+
+  </div>
+
+</ng-template>
+
+<ng-template #assignWindow let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">
+      Final step: assignment
+    </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">
+              &times;
+            </span>
+      </button>
+  </div>
+  <div class="modal-body">
+
+    <app-assign (emitter)="onListChange($event)"></app-assign>
+    <br>
+    <div class="col-12 text-right">
+      <button class="btn-secondary" (click)="checkValidity()">
+        check validity
+      </button>
+    </div>
+
+    <h5>
+      Set deadline
+    </h5>
+    <app-set-deadline (emitter)="setDeadline($event)"></app-set-deadline>
+  </div>
+
+  <div class="modal-footer">
+
+    <button class="btn-success" (click)="activate()">
+      FINISH!
+    </button>
+  </div>
+</ng-template>
+
+<!--Facilite the main User interface -->
+<div id="temp" class="container topmargin">
+  <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="container-fluid" style="margin-bottom:12px;">
+            <div class="row">
+              <div class="col-2 text-left">
+             
+                <button (click)="backClicked()" class="btn btn-outline-primary">
+                  <i class="fas fa-chevron-left">
+                  </i>
+                </button>
+
+              </div>
+              <div class="col-6 text-left">
+
+                <!--Button to deletequestionnaire -->
+                <button type="button" (click)="openWindow(deleteQuestionnaireWindow)" class="btn btn-danger">
+                  <i class="far fa-trash-alt">
+                  </i>
+                </button>
+
+                <!--Button to save change-->
+                <button style="margin-left: 10px;" type="button" class="btn btn-success" (click)="submit()">
+                  <i class="far fa-save">
+                  </i>
+                </button>
+
+                <button style="margin-left: 10px;" type="button" class="btn btn-primary" (click)="questionnaireId? openWindow(assignWindow) : alertSave()">
+                  <i class="fas fa-paper-plane">
+                  </i>
+                </button>
+
+              </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <label for="formTitle"></label>
+          <input [(ngModel)]="inputTitle" type="text" class="form-control" id="formTitle" aria-describedby="emailHelp" placeholder="Type your questionnaire title here">
+
+
+          <label for="formDescription"></label>
+          <input [(ngModel)]="inputDescription" type="text" class="form-control" id="formDescription" aria-describedby="emailHelp" placeholder="Type your questionnaire description here">
+
+          <ul class="list-group list-group-flush" id="form">
+            
+            <li *ngFor="let question of questions; let i = index" class="list-group-item">
+              <div class="card">
+                <div class="card-header">
+                  <div class="row">
+
+                    <!--Track number of question-->
+                    <div class="col-2">
+                      QUESTION {{i + 1}}
+                    </div>
+
+                    <div class="text-right col-10">
+                      <div ngbDropdown class="d-inline-block">
+
+                        <button class="btn btn-outline-primary" id="questionOptions" ngbDropdownToggle>
+                          Question Options
+                        </button>
+
+                        <div ngbDropdownMenu aria-labelledby="questionOptions">
+                          <!--Change question of Index-->
+                          <button class="dropdown-item" (click)="openChangeIndexWindow(changeIndex, i)">
+                            Change Index
+                          </button>
+                          <!--Add choices for multple choices-->
+                          <button *ngIf="question.typeCode==3 || question.typeCode==4" class="dropdown-item" (click)="addChoice(question)">
+                            Add Choices
+                          </button>
+                          <!--Delete a certain question-->
+                          <button class="dropdown-item" (click)="deleteQuestion(i)">
+                            Delete Question
+                          </button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="question.typeCode == 1 || question.typeCode == 2" class="card-body">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+
+                    <label class="form-check-label" for="defaultCheck1">
+                      <span class="badge badge-danger">
+                        *Required
+                      </span>
+                    </label>
+
+                  </div>
+                  <div class="form-group">
+                    <label for="questionBody"></label>
+                    <input [(ngModel)]="question.questionBody" type="text" class="form-control" id="questionBody" aria-describedby="emailHelp" placeholder="Type your question here">
+                  </div>
+
+                </div>
+
+                <div *ngIf="question.typeCode == 3 || question.typeCode == 4" class="card-body">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+
+                      <span class="badge badge-danger">
+                        *Required
+                      </span>
+
+                    </label>
+                  </div>
+                 
+                  <div class="form-group">
+
+                    <label for="exampleInputEmail1">
+                      Question
+                    </label>
+
+                    <input [(ngModel)]="question.questionBody" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Type your question here">
+                  </div>
+
+                  <div class="form-group">
+                    <ul class="list-group">
+                      <li *ngFor="let choice of question.choices; let j = index; trackBy:trackByFn" class="list-group-item">
+                        <div class="row">
+                          <label class="col-2" for="{{question.id}}/{{j}}">Choice {{j + 1}}</label>
+                          <div class="col-10 text-right">
+                            <button type="button" (click)="removeChoice(question, j)" class="btn-sm btn-danger">X</button>
+                          </div>
+<!-- TODO: Problem here!-->
+                          <input [(ngModel)]="question.choices[j]" type="text" id="{{question.id}}/{{j}}" placeholder="Input choice text here" />
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+          <div class="row topmargin">
+          <div class="col-12 text-right">
+            <div ngbDropdown>
+
+              <!--Choose type of the question-->
+              <button class="btn btn-outline-primary" id="addQuestionOptions" ngbDropdownToggle>
+                <i class="fas fa-plus">
+                </i>
+              </button>
+
+              <!--Add a quetion of user's chosen type-->
+              <div ngbDropdownMenu aria-labelledby="addQuestionOptions">
+
+                <button class="dropdown-item" (click)="addQuestion(1)">
+                  Text
+                </button>
+
+                <button class="dropdown-item" (click)="addQuestion(2)">
+                  Text Box
+                </button>
+
+                <button class="dropdown-item" (click)="addQuestion(3)">
+                  Choice
+                </button>
+
+                <button class="dropdown-item" (click)="addQuestion(4)">
+                  Multiple Choices
+                </button>
+
+              </div>
+            </div>
+
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

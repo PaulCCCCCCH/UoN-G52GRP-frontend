@@ -5,6 +5,13 @@ import {ResponseSet} from '../../../classes/responseSet';
 import {GetQuestionService} from '../../services/getQuestion/get-question.service';
 import {Question} from '../../../classes/question';
 
+/**
+ * @todo
+ * not working properly at present
+ *
+ * @author Chonghan Chen
+ */
+
 @Component({
   selector: 'app-view-overall',
   templateUrl: './view-overall.component.html',

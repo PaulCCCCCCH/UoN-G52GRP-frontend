@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {QuestionnaireService} from '../../../services/questionnaire/questionnaire.service';
-import {GetQuestionService} from '../../../services/getQuestion/get-question.service';
-import {Questionnaire} from '../../../../classes/questionnaire';
 import {Question} from '../../../../classes/question';
-import {ResponseSet} from '../../../../classes/responseSet';
 import {Response} from '../../../../classes/response';
 import {ResponseService} from '../../../services/response/response.service';
 import {Form} from '../../../../classes/form';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+
+
+/**
+ * The page is for respondent to fill out a questionnaire
+ * @author Chonghan Chen
+ */
 
 @Component({
   selector: 'app-questionnaire-fill',
@@ -16,27 +19,50 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./questionnaire-fill.component.scss']
 })
 export class QuestionnaireFillComponent implements OnInit {
-  selected = '';
-  out = '';
 
+   /**
+   * The unique ticket of the 'respondent-questionnaire' pair
+   * from the url.
+   */
   private ticket: string;
+
+  /**
+   * All questions of current questionnaire.
+   */
   private questions: Question[];
+
+  /**
+   * The responses dictionary where:
+   *    key = question id
+   *    value = response
+   */
   private responses = {};
+
+  /**
+   * The mapping for choice questions. This is only
+   * an auxiliary variable and will not be submitted and
+   * saved in the database. For each item:
+   *    key = question id
+   *    value = response body (string of choices)
+   *
+   * Note that only choice questions will need this variable.
+   */
   private choicesMapping = {};
 
   constructor(
    private route: ActivatedRoute,
    private questionnaireService: QuestionnaireService,
-   private questionService: GetQuestionService,
    private responseService: ResponseService,
    private modalService: NgbModal,
    private router: Router
   ) {}
 
-  onAddPost() {
-    this.selected = this.out;
-  }
-
+  /**
+   * Initializes the component by doing the following:
+   * 1. Get the unique ticked from current url.
+   * 2. Get corresponding questionnaire.
+   * 3. Parse questionnaire data and store them in local variables.
+   */
   ngOnInit() {
     this.ticket = this.route.snapshot.paramMap.get('ticket');
     this.responseService.getForm(this.ticket).subscribe(
@@ -63,17 +89,6 @@ export class QuestionnaireFillComponent implements OnInit {
         );
         console.log(this.responses);
         console.log(this.choicesMapping);
-
-        // TODO: If draft found, do not create new response set.
-            /**
-             responseSet = this.fetchResponseSet();
-             if(!responseSet) {
-          this.createResponseSet();
-        }
-             */
-
-            // Call loadMapping only after questions and responses are all fetched
-
       },
       err => {
         if (err.status === 403) {
@@ -87,6 +102,13 @@ export class QuestionnaireFillComponent implements OnInit {
   }
 
 
+  /**
+   * Initializes response.
+   * This is called either when:
+   * 1. The user opens the page for the first time
+   * 2. The user resets the questionnaire.
+   *
+   */
   initResponses() {
 
     // Get responses
@@ -104,10 +126,21 @@ export class QuestionnaireFillComponent implements OnInit {
 
   }
 
+  /**
+   * Used to open a modal with the given tag
+   * @param content the tag of the template that the user wishes to open
+   */
   openWindow(content) {
     this.modalService.open(content, {windowClass: 'dark-modal'});
   }
 
+  /**
+   * Parse a string of choices (separated by comma) to an integer array.
+   * (e.g. from '1,2,3,4' (string) to [1,2,3,4] (int[]))
+   *
+   * @param str a string of choices separated by comma
+   * @returns a list of integers
+   */
   intStringToArray(str) {
     if (str === '') {
       return [];
@@ -116,6 +149,15 @@ export class QuestionnaireFillComponent implements OnInit {
   }
 
 
+  /**
+   * Updates [[this.choicesMapping]] when the user clicks on a checkbox
+   * of a multiple choices question.
+   * @param question the question that the user is giving response to
+   * @param choice the choice that the user is either adding or removing.
+   *
+   * Note that this function is different from [[this.onClickRatio]] in that
+   * more than one choices may be selected.
+   */
   onClickCheckbox(question: Question, choice: number) {
     const response = this.responses[question.id];
     let choices = [];
@@ -135,11 +177,25 @@ export class QuestionnaireFillComponent implements OnInit {
     response.responseBody = choices.toString();
   }
 
+  /**
+   * Updates [[this.choicesMapping]] when the user clicks on a radio box
+   * of a choice question.
+   * @param question the question that the user is giving response to
+   * @param choice the choice that the user is either adding or removing.
+   *
+   * Note that this function is different from [[this.onClickCheckbox]] in that
+   * only one choice is allowed.
+   */
   onClickRadio(question: Question, choice: number) {
     const response = this.responses[question.id];
     response.responseBody = choice.toString();
   }
 
+  /**
+   * Stringifies current form and prepare it for submission.
+   * @returns the stringified form ready to be put
+   *          in a http request.
+   */
   getStringifiedForm() {
     const form = new Form();
     form.responses = JSON.stringify(this.responses);
@@ -147,6 +203,9 @@ export class QuestionnaireFillComponent implements OnInit {
     return JSON.stringify(form);
   }
 
+  /**
+   * Saves current form to the database.
+   */
   save() {
     const formString = this.getStringifiedForm();
     this.responseService.saveResponse(this.ticket, formString).subscribe(
@@ -155,6 +214,11 @@ export class QuestionnaireFillComponent implements OnInit {
     );
   }
 
+  /**
+   * Finishes and submits current response.
+   * This cannot be undone and the user will no longer
+   * have access to the questionnaire.
+   */
   submit() {
     const formString = this.getStringifiedForm();
     this.responseService.submitResponse(this.ticket, formString).subscribe(
@@ -167,15 +231,29 @@ export class QuestionnaireFillComponent implements OnInit {
     );
   }
 
+  /**
+   * Clear all the response made by the user to the questionnaire.
+   * Saved records will be deleted.
+   */
   reset() {
     this.initResponses();
     this.save();
   }
 
+  /**
+   * A utility function that checks if a choice is selected or not.
+   * @param qid the id of the question
+   * @param choice the index of the choice that needs to be checked
+   */
   isChecked(qid: string, choice: number) {
     return this.choicesMapping[qid].includes(choice);
   }
 
+  /**
+   * A utility function that checks if an object is empty.
+   * i.e. if an object looks like {};
+   * @param obj the object that needs to be checked
+   */
   isEmpty(obj) {
     return Object.entries(obj).length === 0 && obj.constructor === Object;
   }

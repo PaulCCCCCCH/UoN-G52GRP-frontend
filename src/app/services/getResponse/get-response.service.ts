@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {ResponseSet} from '../../../classes/responseSet';
-import {Response} from '../../../classes/response';
 import {MyHttpResponse} from '../../../classes/myHttpResponse';
 
+/**
+ * Service used to retrieve responses of a questionnaire.
+ * This is not currently used, and may be removed in the future.
+ *
+ * @author Chonghan Chen
+ */
 @Injectable({
   providedIn: 'root'
 })

@@ -7,6 +7,9 @@ import {GetQuestionService} from '../../services/getQuestion/get-question.servic
 import {Question} from '../../../classes/question';
 import {Response} from '../../../classes/response';
 
+/**
+ * @todo
+ */
 @Component({
   selector: 'app-view-response-set',
   templateUrl: './view-response-set.component.html',
