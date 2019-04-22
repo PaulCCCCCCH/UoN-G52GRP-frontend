@@ -1,8 +1,8 @@
 <div class="container">
   
   <!--Title of the page-->
-  <h1 style="margin: 20px;text-align: center;color:blue;" >
-    Manage Staff
+  <h1 class="topmargin" style="text-align: center;" >
+    {{companyName}}
   </h1>
   <div class="row">
     <div class="col-12 text-right">
@@ -24,8 +24,8 @@
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Email</th>
-        <th>Company</th>        
-        <th>View Info</th>
+        <th></th>
+        <th></th>
 
       </tr>
 
@@ -38,8 +38,7 @@
         <td>{{staff.name_first}}</td>
         <td>{{staff.name_last}}</td>
         <td>test@test.com</td>
-        <td>Test</td>
-        <td><button type="button" class="btn btn-primary btn-lg" (click)="openWindow(editStaffWindow)" >Edit Staff</button></td>
+        <td><button class="btn btn-danger" (click)="openWindow(removeStaffWindow, staff)"><i class="fas fa-user-slash"></i></button></td>
       
       </tr>
 
@@ -55,79 +54,53 @@
       </div>
       <!--Close button-->
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <div class="text-right">
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">
                   &times;
                 </span>
           </button>
-        </div>
       </button>
     </div>
 
     <div class="modal-body">
-      <label for="newStaffId"></label>
-      <input type="text" [(ngModel)]="newStaffId" id="newStaffId" placeholder="Input staff id">
+      Please check the staff that you wish to add:
+      <div *ngFor="let user of userList; let i = index">
+        <label for="{{user._id}}">
+          {{user.name_last}} {{user.name_first}} | {{user.email}}
+        </label>
+        <input type="checkbox" id="{{user._id}}" [(ngModel)]="isNewStaff[i]">
+      </div>
     </div>
 
     <div class="modal-footer">
       <button class="btn-secondary" (click)="addStaff()">Submit</button>
     </div>
 
-
   </ng-template>
 
-  <!--Pop over functionality and the view of the pop over page-->
-  <ng-template #editStaffWindow let-modal>
-
-        <div class="modal-header">
-
-          <!--Title-->
-          <div class="modal-title">
-                Manage client's access right and group
-          </div>
-
-
-          <!--Close button-->
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <div class="text-right">
-                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+  <ng-template #removeStaffWindow let-modal>
+    <div class="modal-header">
+      <!--Title-->
+      <div class="modal-title">
+        Removing staff from the company
+      </div>
+      <!--Close button-->
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">
                   &times;
                 </span>
-                </button>
-             </div>
           </button>
-        </div>
+      </button>
+    </div>
 
+    <div class="modal-body">
+      The staff will no longer have access to the questionnaires of this company
+    </div>
 
-        <!--Main part of pop over page-->
-        <div class="modal-body">
-          
-          <!--Edit detailed info for a staff-->
-          <form class="contact-form" method="get">
-
-            <!--Description for first input area-->
-            <label style="font-size: 20px">
-              Clients can be viewed:  
-            </label>
-              
-              <!--First input; Clients that staff can edit; A email input is required. -->
-              <input aria-required="true" required="" style= "width:300px;max-width:98%;" type= "email">
-              
-              <!--Description for the second input area-->
-              <label style="font-size: 20px">
-                Clients can be edited:  
-               </label>
-              <!--Second input; Clients that staff can view; A email input is required-->             
-              <input aria-required="true" required="" style= "width:300px;max-width:98%;" type= "email"> 
-              <!--Button to submit the input information-->        
-              <input class="btn-secondary" type="submit" value="Submit">
-          
-            </form>
-
-        </div>
-
-</ng-template>
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="removeStaff()">remove</button>
+    </div>
+  </ng-template>
 
 </div>

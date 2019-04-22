@@ -12,18 +12,20 @@ export class StaffService {
 
   private baseUrl = baseUrl + '/companies/company/staff';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getStaff(companyId: string): Observable<MyHttpResponse> {
-    return this.httpClient.get<MyHttpResponse>(this.baseUrl + '/' + companyId);
+    return this.http.get<MyHttpResponse>(this.baseUrl + '/' + companyId);
   }
 
   addStaff(companyId: string, userId: string): Observable<MyHttpResponse> {
-    const reqBody = {userId: userId};
-    return this.httpClient.post<MyHttpResponse>(this.baseUrl + '/add/' + companyId, reqBody);
+    const reqBody = {userid: userId};
+    return this.http.post<MyHttpResponse>(this.baseUrl + '/add/' + companyId, reqBody);
   }
 
-
-
+  removeStaff(companyId: string, userId: string) {
+    const reqBody = {userid: userId};
+    return this.http.post<MyHttpResponse>(this.baseUrl + '/remove/' + companyId, reqBody);
+  }
 
 }
