@@ -15,6 +15,7 @@ Chonghan Chen, Meng Wu, Mohsin Warraich
 ## Documentation of front-end part
 
 [User manual](https://docs.google.com/document/d/1QMOTcix_hP9MvcApvg0kDYNO-zEVm8ZQRStfBnLHOAs/edit?usp=sharing): guide considering  how to use our product as a user
+
 [structure of front-end](https://docs.google.com/document/d/1b7BJJPGxa56RJod3rj5N4pfZmzL38Qi_kGt5bpqwryk/edit?usp=sharing): show general structure of front-end
 
 ## Porject management tool of front-end part
