@@ -6,7 +6,7 @@ Secure information gathering project is second year software group project of Un
 
 This repository  is for front-end part
 
-If interested in backend part, please refer to [back-end repository](https://github.com/Jas57/nottsgroup-backend)
+If interested in back-end part, please refer to [back-end repository](https://github.com/Jas57/nottsgroup-backend)
 
 ## Team member of front-end part
 
@@ -43,9 +43,11 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## HTTP Client 
+
 Install the In-memory Web API package from npm: npm install angular-in-memory-web-api --save
 
 ## Generate Service
+
 To gengerate a service file, for example, InMemoryData, following command:
 ng generate service InMemoryData      is needed
 
