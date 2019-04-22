@@ -2,8 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
-Secure information gathering project is second year software group project of University of Nottingham,chool of Computer Science。 
+Secure information gathering project is second year software group project of University of Nottingham,chool of Computer Science.
+
 This repsoitory is for front-end part
+
 If interested in backend part, please refer to [back-end repository](https://github.com/Jas57/nottsgroup-backend)
 
 ## Development server
