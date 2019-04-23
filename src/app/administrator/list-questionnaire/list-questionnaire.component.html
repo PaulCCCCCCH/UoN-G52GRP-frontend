@@ -1,0 +1,52 @@
+<div class="container topmargin">
+  <div class="row no-gutters attr_name">
+    <div class="col-4">Questionnaire Title</div>
+    <div class="col-3">Time Assigned</div>
+    <div class="col-3">Deadline</div>
+  </div>
+  <div class="accordion" *ngFor="let questionnaire of qList">
+
+    <button class="card btn entries" (click)="onClick(questionnaire._id)" style="text-align: left">
+      <div class="card-header row no-gutters mb-0" id="heading">
+
+        <div class="col-4">
+          {{ questionnaire.title || questionnaire.name}}
+        </div>
+
+        <div class="col-3">
+          {{ questionnaire.created_at }}
+        </div>
+
+        <div class="col-3">
+          {{ questionnaire.deadline }}
+        </div>
+
+        <div *ngIf="!this.status" class="col-2">
+          <a href="{{'admin/questionnaire/edit/' + questionnaire._id}}"> Edit </a>
+        </div>
+
+        <div *ngIf="this.status">
+          <a href="{{'admin/questionnaire/view/' + status + '/' + questionnaire._id }}"> Detail </a>
+        </div>
+
+      </div>
+      <div>
+        <div id="{{ questionnaire._id }}">
+          <div class="card">
+            <div class="card-body">
+              {{ questionnaire.description }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="collapse" id="{{ 'collapse' + questionnaire._id }}">
+        <div class="card card-body">
+          Questionnaire details
+        </div>
+      </div>
+    </button>
+
+  </div>
+</div>

@@ -17,5 +17,11 @@
       "es2018",
       "dom"
     ]
+  },
+  "typedocOptions": {
+    "mode": "file",
+    "out": "docs",
+    "module": "app",
+    "exclude": "**/*.spec.ts"
   }
 }
