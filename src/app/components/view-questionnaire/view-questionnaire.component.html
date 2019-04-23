@@ -2,10 +2,10 @@
 
 <div *ngIf="finished" class="container topmargin">
   <div class="row border-bottom">
-      <!--Title of questionnaire-->
-      <h1 class="card-title">
-          {{ questionnaire.title || questionnaire.name }}
-      </h1>
+    <!--Title of questionnaire-->
+    <h1 class="card-title">
+      {{ questionnaire.title || questionnaire.name }}
+    </h1>
 
   </div>
 
@@ -24,9 +24,9 @@
 
   </div>
 
-<!--Deadline for completing the questionnaire -->
+  <!--Deadline for completing the questionnaire -->
   <div class="row">
-    
+
     <div class="col-6">
       <b>
         Deadline:
@@ -38,7 +38,7 @@
     </div>
 
   </div>
- 
+
   <!--People that questionnarie assigned to-->
   <div class="row">
 
@@ -56,7 +56,7 @@
     </div>
 
   </div>
-  
+
   <!--Status of the questionnarie-->
   <div class="row border-bottom" style="padding-bottom: 30px">
 
@@ -81,13 +81,13 @@
     </h2>
 
   </div>
-    
-    <!--Progress bar used to show number of people already responded and percentage compared to all people assigned-->
-    <p>
-      <ngb-progressbar type="success" [value]="33">
-        {{ questionnaire.responseNumber }} / {{ questionnaire.assignedNumber }}
-      </ngb-progressbar>
-    </p>
+
+  <!--Progress bar used to show number of people already responded and percentage compared to all people assigned-->
+  <p>
+    <ngb-progressbar type="success" [value]="33">
+      {{ questionnaire.responseNumber }} / {{ questionnaire.assignedNumber }}
+    </ngb-progressbar>
+  </p>
 
   <hr>
 
@@ -129,7 +129,7 @@
   </div>
 
   <hr>
- 
+
   <div class="card-title">
     <h2>
       Services
@@ -143,7 +143,7 @@
       <div class="col-8">
         Assign the questionnaire to other people through email.
       </div>
-       
+
       <div class="col-4">
         <!--Button to assign the questionnarie-->
         <button type="button" class="btn btn-outline-success">
@@ -157,7 +157,7 @@
         Change the deadline of the questionnaire.
       </div>
       <div class="col-4">
-        
+
         <!--Button to change deadline-->
         <button class="btn btn-outline-success" (click)="openWindowCustomClass(changeDeadlineWindow)">
           Change Deadline
@@ -220,7 +220,7 @@
       </div>
     </div>
   </div>
- 
+
   <!--facilitate pop up page to change deadline-->
   <ng-template #changeDeadlineWindow let-modal>
     <!--Header of pop over-->
@@ -228,7 +228,7 @@
       <h4 class="modal-title">
         Changing Deadline
       </h4>
-     <!--Button to close the pop over-->
+      <!--Button to close the pop over-->
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">
           &times;
@@ -248,7 +248,7 @@
   </ng-template>
 
 
-   <!--facilitate pop u ppage to send chase up email-->
+  <!--facilitate pop u ppage to send chase up email-->
   <ng-template #sendChaseUpWindow let-modal>
     <!--Header of pop over-->
     <div class="modal-header">
@@ -264,7 +264,8 @@
 
     </div>
     <div class="modal-body">
-      All the users that has been assigned this questionnaire but has not responded will receive and email. Once you have done it,
+      All the users that has been assigned this questionnaire but has not responded will receive and email. Once you
+      have done it,
       you cannot do it again for this questionnaire in 8 hours. Are you sure you want to send now?
 
     </div>
@@ -278,14 +279,14 @@
 
   </ng-template>
 
-<!--facilitate pop up page to view assigned-->
+  <!--facilitate pop up page to view assigned-->
   <ng-template #viewAssignedWindow let-modal>
     <!--Header of the pop over-->
     <div class="modal-header">
       <h4 class="modal-title">
-        Questionnaire assigned to: 
+        Questionnaire assigned to:
       </h4>
-     
+
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">
           &times;
@@ -324,7 +325,7 @@
     </div>
 
     <div class="modal-footer">
-      
+
       <button type="button" class="btn btn-outline-danger" (click)="deleteQuestionnaire()">
         Delete Questionnaire
       </button>
@@ -332,7 +333,7 @@
     </div>
 
   </ng-template>
-  
+
   <!--facilitate pop up page used to close questionnarie-->
   <ng-template #closeQuestionnaireWindow let-modal>
     <!--Header of the pop over page-->

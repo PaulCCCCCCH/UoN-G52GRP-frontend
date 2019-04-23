@@ -17,7 +17,9 @@
           </ng-template>
           <ng-template #choiceBlock class="container">
             <div *ngFor="let choicePair of getChoicePairs(getQuestionByResponse(response))">
-              <p><span class="font-weight-bolder "*ngIf="response.responseBody.split(',').includes(choicePair.index.toString())"> √ </span> {{choicePair.text}}</p>
+              <p><span class="font-weight-bolder "
+                       *ngIf="response.responseBody.split(',').includes(choicePair.index.toString())"> √ </span> {{choicePair.text}}
+              </p>
             </div>
           </ng-template>
 
@@ -26,7 +28,6 @@
       </div>
     </div>
   </div>
-
 
 
 </div>

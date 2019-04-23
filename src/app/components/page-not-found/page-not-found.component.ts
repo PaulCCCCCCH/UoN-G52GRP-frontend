@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-page-not-found',
@@ -11,7 +11,8 @@ export class PageNotFoundComponent implements OnInit {
    * It is a view-only page which requires no controller.
    * @author Meng Wu
    */
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResponseService} from '../../../services/response/response.service';
 
@@ -42,7 +42,8 @@ export class QuestionnaireDashboardComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private responseService: ResponseService
-  ) { }
+  ) {
+  }
 
   /**
    * Initializes the page by retrieving corresponding questionnaire

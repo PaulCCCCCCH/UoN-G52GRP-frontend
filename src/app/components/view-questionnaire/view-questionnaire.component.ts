@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Questionnaire } from '../../../classes/questionnaire';
+import {Component, OnInit} from '@angular/core';
+import {Questionnaire} from '../../../classes/questionnaire';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {QuestionnaireService} from '../../services/questionnaire/questionnaire.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -70,7 +70,7 @@ export class ViewQuestionnaireComponent implements OnInit {
         this.questionnaire.created_at = new Date(q.created_at).toDateString();
         this.questionnaire.deadline = new Date(q.deadline).toDateString();
         this.finished = true;
-    });
+      });
     /*
     this.questionnaireService.getQList().subscribe(questionnaires =>
       this.questionnaire = questionnaires[0]
@@ -85,7 +85,7 @@ export class ViewQuestionnaireComponent implements OnInit {
    *
    */
   openWindowCustomClass(content) {
-    this.modalService.open(content, { windowClass: 'dark-modal' });
+    this.modalService.open(content, {windowClass: 'dark-modal'});
   }
 
   /**
@@ -97,7 +97,7 @@ export class ViewQuestionnaireComponent implements OnInit {
     this.router.navigate(['/view-response-list/' + this.id]);
   }
 
-   /**
+  /**
    * Navigates to a page where the user can the overall statistics of
    * the questionnaire.
    * Used by a navigation button

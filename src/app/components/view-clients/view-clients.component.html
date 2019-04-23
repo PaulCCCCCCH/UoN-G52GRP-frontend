@@ -1,44 +1,44 @@
 <div *ngIf="finished" class="container topmargin">
 
-    <div class="row">
-      <div class="col-12 text-right">
-        <button class="btn btn-outline-primary" id="addClient" (click)="openWindow(editClientWindow, null)">
-          <i class="fas fa-plus">
-          </i>
-        </button>
+  <div class="row">
+    <div class="col-12 text-right">
+      <button class="btn btn-outline-primary" id="addClient" (click)="openWindow(editClientWindow, null)">
+        <i class="fas fa-plus">
+        </i>
+      </button>
+    </div>
+
+  </div>
+  <div class="accordion" *ngFor="let client of clients">
+
+    <div class="card topmargin border-bottom">
+      <div class="card-header row" id="heading">
+        <h1 class="card-title"> {{client.name}} </h1>
+        <p style="margin-top: 30px; margin-left: 30px"> {{client.description}} </p>
       </div>
 
-    </div>
-    <div class="accordion" *ngFor="let client of clients">
+      <div class="card-body">
 
-      <div class="card topmargin border-bottom">
-        <div class="card-header row" id="heading">
-          <h1 class="card-title"> {{client.name}} </h1>
-          <p style="margin-top: 30px; margin-left: 30px"> {{client.description}} </p>
-        </div>
-
-        <div class="card-body">
-
-          <div class="row">
-            <div class="col-3">
-              <button class="btn-secondary" (click)="openWindow(editClientWindow, client)" > edit </button>
-            </div>
-            <div class="col-3">
-              <a href="{{'questionnaires/' + client._id }}"> See all forms</a>
-            </div>
-            <div class="col-3">
-              <a href="{{'manage-staff/' + client._id}}"> Manage Company Staff </a>
-            </div>
-            <div class="col-3 text-right">
-              <button type="button" (click)="openWindow(removeClientWindow, client)" class="btn-sm btn-danger">X</button>
-            </div>
-
+        <div class="row">
+          <div class="col-3">
+            <button class="btn-secondary" (click)="openWindow(editClientWindow, client)"> edit</button>
           </div>
-        </div>
+          <div class="col-3">
+            <a href="{{'questionnaires/' + client._id }}"> See all forms</a>
+          </div>
+          <div class="col-3">
+            <a href="{{'manage-staff/' + client._id}}"> Manage Company Staff </a>
+          </div>
+          <div class="col-3 text-right">
+            <button type="button" (click)="openWindow(removeClientWindow, client)" class="btn-sm btn-danger">X</button>
+          </div>
 
+        </div>
       </div>
 
     </div>
+
+  </div>
 
 </div>
 
@@ -75,8 +75,7 @@
 </ng-template>
 
 
-
-<ng-template #editClientWindow  let-modal>
+<ng-template #editClientWindow let-modal>
   <div class="modal-header">
     <div class="row">
       <div class="modal-title col-10">
@@ -99,7 +98,8 @@
       <input [(ngModel)]="newName" class="form-control" type="text" id="newName" placeholder="Name">
 
       <label for="newDescription"></label>
-      <input [(ngModel)]="newDescription" class="form-control" type="text" id="newDescription" placeholder="Description">
+      <input [(ngModel)]="newDescription" class="form-control" type="text" id="newDescription"
+             placeholder="Description">
     </div>
   </div>
 

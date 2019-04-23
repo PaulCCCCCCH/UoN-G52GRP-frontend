@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { QuestionnaireSubmitConfirmComponent } from './questionnaire-submit-confirm.component';
+import {QuestionnaireSubmitConfirmComponent} from './questionnaire-submit-confirm.component';
 
 describe('QuestionnaireSubmitConfirmComponent', () => {
   let component: QuestionnaireSubmitConfirmComponent;
@@ -8,9 +8,9 @@ describe('QuestionnaireSubmitConfirmComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuestionnaireSubmitConfirmComponent ]
+      declarations: [QuestionnaireSubmitConfirmComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

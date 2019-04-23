@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SetDeadlineComponent } from './set-deadline.component';
+import {SetDeadlineComponent} from './set-deadline.component';
 
 describe('SetDeadlineComponent', () => {
   let component: SetDeadlineComponent;
@@ -8,9 +8,9 @@ describe('SetDeadlineComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SetDeadlineComponent ]
+      declarations: [SetDeadlineComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

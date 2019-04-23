@@ -62,6 +62,7 @@ export class ManageStaffComponent implements OnInit {
     private clientService: ClientService,
   ) {
   }
+
   /**
    * Open the modal with the given tag and set staff in
    * the argument to be the 'selected staff'.

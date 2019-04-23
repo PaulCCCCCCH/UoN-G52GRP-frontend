@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { AuthService } from '../../services/auth/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +27,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthService,
-  ) { }
+  ) {
+  }
 
   /**
    * Initializes the component.
@@ -68,11 +68,11 @@ export class LoginComponent implements OnInit {
 
           localStorage.setItem('id_token', res.data.token);
           this.router.navigate(['']);
-      },
-      res => {
+        },
+        res => {
           alert(res.error.err.message + 'Wrong username or password');
           return;
-      });
+        });
   }
 
 }

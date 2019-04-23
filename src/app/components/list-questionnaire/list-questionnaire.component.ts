@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Questionnaire } from '../../../classes/questionnaire';
-import { QuestionnaireService } from '../../services/questionnaire/questionnaire.service';
+import {Component, OnInit} from '@angular/core';
+import {Questionnaire} from '../../../classes/questionnaire';
+import {QuestionnaireService} from '../../services/questionnaire/questionnaire.service';
 import {ActivatedRoute} from '@angular/router';
 
 /**

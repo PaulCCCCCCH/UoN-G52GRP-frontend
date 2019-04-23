@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ManageStaffComponent } from './manage-staff.component';
+import {ManageStaffComponent} from './manage-staff.component';
 
 describe('ManageStaffComponent', () => {
   let component: ManageStaffComponent;
@@ -8,9 +8,9 @@ describe('ManageStaffComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManageStaffComponent ]
+      declarations: [ManageStaffComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

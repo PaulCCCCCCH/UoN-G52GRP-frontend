@@ -20,7 +20,8 @@ export class AssignComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.inputEmailList = [];
@@ -30,7 +31,7 @@ export class AssignComponent implements OnInit {
    * Converts current string of emails into array of strings
    * Any duplicated emails will be removed
    * @emits the parsed list of emails
-    */
+   */
   parseEmails() {
     if (!this.inputEmails) {
       return;

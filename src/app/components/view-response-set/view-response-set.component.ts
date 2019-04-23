@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {GetResponseService} from '../../services/getResponse/get-response.service';
 import {ResponseSet} from '../../../classes/responseSet';
@@ -31,7 +31,8 @@ export class ViewResponseSetComponent implements OnInit {
     private route: ActivatedRoute,
     private responseService: GetResponseService,
     private questionService: GetQuestionService,
-) { }
+  ) {
+  }
 
   ngOnInit() {
 

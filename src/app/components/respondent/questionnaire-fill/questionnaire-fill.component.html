@@ -41,7 +41,6 @@
 </ng-template>
 
 
-
 <div id="temp" class="container topmargin">
   <div class="row">
     <div class="col-12">
@@ -61,7 +60,8 @@
                   </i>
                 </button>
 
-                <button style="margin-left: 10px;" type="button" class="btn btn-primary" (click)="openWindow(submitWindow)">
+                <button style="margin-left: 10px;" type="button" class="btn btn-primary"
+                        (click)="openWindow(submitWindow)">
                   <i class="fas fa-check-circle">
                   </i>
                 </button>
@@ -85,12 +85,13 @@
 
                 <div *ngIf="question.typeCode == 1 || question.typeCode == 2" class="card-body">
 
-                <h3><span style="color: darkgrey">Text: </span>{{question.questionBody}}</h3>
+                  <h3><span style="color: darkgrey">Text: </span>{{question.questionBody}}</h3>
 
-                <div class="card-body">
-                  <label for="{{question.id}}"></label>
-                  <input type="text" class="form-control" id="{{question.id}}" [(ngModel)]="responses[question.id].responseBody"/>
-                </div>
+                  <div class="card-body">
+                    <label for="{{question.id}}"></label>
+                    <input type="text" class="form-control" id="{{question.id}}"
+                           [(ngModel)]="responses[question.id].responseBody"/>
+                  </div>
 
                   <!-- test binding  TODO: delete this line -->
                   <div><h1>{{responses[question.id].responseBody}}</h1></div>
@@ -107,14 +108,15 @@
                     <div class="card-body">
                       <div *ngFor="let choice of question.choices; let j = index" class="list-group-item">
                         <div class="row">
-                          <input class="col-1" type="radio" name="{{question.id}}" [checked]="isChecked(question.id, j)" (click)="onClickRadio(question, j)"/>
-                          <p class="col-11" >{{choice}}</p>
+                          <input class="col-1" type="radio" name="{{question.id}}" [checked]="isChecked(question.id, j)"
+                                 (click)="onClickRadio(question, j)"/>
+                          <p class="col-11">{{choice}}</p>
                         </div>
                         <!-- test binding  TODO: delete this line -->
-                          <div><h1>{{responses[question.id].responseBody}}</h1></div>
+                        <div><h1>{{responses[question.id].responseBody}}</h1></div>
                       </div>
                     </div>
-                    </div>
+                  </div>
 
                 </div>
 
@@ -128,17 +130,17 @@
                       <div *ngFor="let choice of question.choices; let j = index" class="list-group-item">
                         <div class="row">
                           <label for="{{question.id}}/{{j}}"></label>
-                          <input class="col-1" type="checkbox" [checked]="isChecked(question.id, j)" (click)="onClickCheckbox(question, j)" id="{{question.id}}/{{j}}" />
+                          <input class="col-1" type="checkbox" [checked]="isChecked(question.id, j)"
+                                 (click)="onClickCheckbox(question, j)" id="{{question.id}}/{{j}}"/>
                           <p class="col-11">{{choice}}</p>
                         </div>
-                         <!-- test binding  TODO: delete this line -->
-                          <div><h1>{{responses[question.id].responseBody}}</h1></div>
+                        <!-- test binding  TODO: delete this line -->
+                        <div><h1>{{responses[question.id].responseBody}}</h1></div>
                       </div>
                     </div>
-                    </div>
+                  </div>
 
                 </div>
-
 
 
               </div>

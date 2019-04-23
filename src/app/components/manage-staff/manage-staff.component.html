@@ -1,7 +1,7 @@
 <div class="container">
-  
+
   <!--Title of the page-->
-  <h1 class="topmargin" style="text-align: center;" >
+  <h1 class="topmargin" style="text-align: center;">
     {{companyName}}
   </h1>
   <div class="row">
@@ -17,30 +17,33 @@
   <table class="table">
 
     <thead>
-      <!--Info for the staff, including name, email adress, company and detailed info. -->
-      <!-- For detailed info part, after clicking in, a pop over window will show, containing coressponding info for the staff -->
-      <tr class="info">
+    <!--Info for the staff, including name, email adress, company and detailed info. -->
+    <!-- For detailed info part, after clicking in, a pop over window will show, containing coressponding info for the staff -->
+    <tr class="info">
 
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-        <th></th>
-        <th></th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th></th>
+      <th></th>
 
-      </tr>
+    </tr>
 
     </thead>
 
     <tbody>
 
-      <tr *ngFor="let staff of staffList"  class="info">
-        
-        <td>{{staff.name_first}}</td>
-        <td>{{staff.name_last}}</td>
-        <td>test@test.com</td>
-        <td><button class="btn btn-danger" (click)="openWindow(removeStaffWindow, staff)"><i class="fas fa-user-slash"></i></button></td>
-      
-      </tr>
+    <tr *ngFor="let staff of staffList" class="info">
+
+      <td>{{staff.name_first}}</td>
+      <td>{{staff.name_last}}</td>
+      <td>test@test.com</td>
+      <td>
+        <button class="btn btn-danger" (click)="openWindow(removeStaffWindow, staff)"><i class="fas fa-user-slash"></i>
+        </button>
+      </td>
+
+    </tr>
 
     </tbody>
 
@@ -54,11 +57,11 @@
       </div>
       <!--Close button-->
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">
                   &times;
                 </span>
-          </button>
+        </button>
       </button>
     </div>
 
@@ -86,11 +89,11 @@
       </div>
       <!--Close button-->
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">
                   &times;
                 </span>
-          </button>
+        </button>
       </button>
     </div>
 

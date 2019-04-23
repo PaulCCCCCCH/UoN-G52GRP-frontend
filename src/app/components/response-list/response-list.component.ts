@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GetResponseService} from '../../services/getResponse/get-response.service';
-import {ResponseSet} from '../../../classes/responseSet';
-import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 
 /**

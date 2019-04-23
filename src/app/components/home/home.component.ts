@@ -1,12 +1,12 @@
-import { Component, OnInit,  } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {Component, OnInit,} from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
 
 /**
-* The homepage of the front-end system. It consists of links to
-* different pages.
-* @author Mohsin Warraich
-*/
+ * The homepage of the front-end system. It consists of links to
+ * different pages.
+ * @author Mohsin Warraich
+ */
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private router: Router
-  ) { }
+  ) {
+  }
 
   /**
    * Open a ng-template with the given tag

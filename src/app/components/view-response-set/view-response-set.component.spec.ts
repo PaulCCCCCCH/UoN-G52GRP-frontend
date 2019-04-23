@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ViewResponseSetComponent } from './view-response-set.component';
+import {ViewResponseSetComponent} from './view-response-set.component';
 
 describe('ViewResponseSetComponent', () => {
   let component: ViewResponseSetComponent;
@@ -8,9 +8,9 @@ describe('ViewResponseSetComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewResponseSetComponent ]
+      declarations: [ViewResponseSetComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

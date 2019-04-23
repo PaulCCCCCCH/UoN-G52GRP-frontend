@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Client } from '../../../classes/client';
-import { ClientService } from '../../services/client/client.service';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Client} from '../../../classes/client';
+import {ClientService} from '../../services/client/client.service';
+import {ActivatedRoute} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 /**
@@ -47,7 +47,7 @@ export class ViewClientsComponent implements OnInit {
    */
   newName: string;
 
-   /**
+  /**
    * The input field of the 'Add new client' pop-up window.
    * This is dynamically bound to the input.
    */
@@ -57,7 +57,8 @@ export class ViewClientsComponent implements OnInit {
     private clientService: ClientService,
     private route: ActivatedRoute,
     private modalService: NgbModal
-  ) {}
+  ) {
+  }
 
   /**
    * Initializes the page by retrieving the list of clients
@@ -80,7 +81,7 @@ export class ViewClientsComponent implements OnInit {
    *
    */
   openWindow(content, selectedClient: Client) {
-    this.modalService.open(content, {windowClass : 'dark-modal'});
+    this.modalService.open(content, {windowClass: 'dark-modal'});
     this.selectedClient = selectedClient;
     this.newName = '';
     this.newDescription = '';

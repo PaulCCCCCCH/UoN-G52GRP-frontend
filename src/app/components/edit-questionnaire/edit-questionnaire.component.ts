@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Location} from '@angular/common';
 import {Question} from '../../../classes/question';
 import {Subject} from 'rxjs';
@@ -78,7 +78,6 @@ export class EditQuestionnaireComponent implements OnInit {
   private to: number;
 
 
-
   constructor(private _location: Location,
               private modalService: NgbModal,
               private questionnaireService: QuestionnaireService,
@@ -145,7 +144,7 @@ export class EditQuestionnaireComponent implements OnInit {
 
   /**
    * Delete a question of given index.
-    * @param index the index of the question to be deleted
+   * @param index the index of the question to be deleted
    */
   deleteQuestion(index: number) {
     this.questions.splice(index, 1);

@@ -23,10 +23,11 @@ export class SetDeadlineComponent implements OnInit {
   /**
    * Emitter that emits current selected date as a Date object so that
    * paretn component can use.
-    */
+   */
   @Output() emitter = new EventEmitter<Date>();
 
-  constructor() { }
+  constructor() {
+  }
 
   /**
    * Initializes the component
@@ -46,7 +47,6 @@ export class SetDeadlineComponent implements OnInit {
     console.log(date);
     this.emitter.emit(date);
   }
-
 
 
 }

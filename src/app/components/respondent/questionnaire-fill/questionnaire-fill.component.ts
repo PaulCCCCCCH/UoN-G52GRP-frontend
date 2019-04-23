@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {QuestionnaireService} from '../../../services/questionnaire/questionnaire.service';
 import {Question} from '../../../../classes/question';
@@ -20,7 +20,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class QuestionnaireFillComponent implements OnInit {
 
-   /**
+  /**
    * The unique ticket of the 'respondent-questionnaire' pair
    * from the url.
    */
@@ -50,12 +50,13 @@ export class QuestionnaireFillComponent implements OnInit {
   private choicesMapping = {};
 
   constructor(
-   private route: ActivatedRoute,
-   private questionnaireService: QuestionnaireService,
-   private responseService: ResponseService,
-   private modalService: NgbModal,
-   private router: Router
-  ) {}
+    private route: ActivatedRoute,
+    private questionnaireService: QuestionnaireService,
+    private responseService: ResponseService,
+    private modalService: NgbModal,
+    private router: Router
+  ) {
+  }
 
   /**
    * Initializes the component by doing the following:
@@ -98,7 +99,7 @@ export class QuestionnaireFillComponent implements OnInit {
           alert('Server error! Failed to retrieve the form');
         }
       }
-      );
+    );
   }
 
 
